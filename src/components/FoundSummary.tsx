@@ -26,11 +26,22 @@ const FoundSummary = ({
   const [minimized, setMinimized] = useState<boolean>(defaultMinimized)
 
   useEffect(() => {
-    // confetti when new line is 100%
+    // Confetti when a line hits 100%. `previousFound[line]` may be
+    // `undefined` if the line wasn't tracked last render (e.g. it was just
+    // re-enabled in settings and back-filled with sibling stations), so we
+    // coerce to 0 to catch that increase.
+    //
+    // The `Object.keys(previousFound).length > 0` guard suppresses the
+    // spurious firing on page refresh: on first mount `foundStationsPerLine`
+    // is `{}` (pre-LS-hydration), then jumps to fully-populated counts —
+    // without this check every already-complete line would confetti on load.
+    // Any real user-driven change happens with a populated previousFound.
+    const hasPriorTracking =
+      previousFound && Object.keys(previousFound).length > 0
     const newFoundLines = Object.keys(foundStationsPerLine).filter(
       (line) =>
-        previousFound &&
-        foundStationsPerLine[line] > previousFound[line] &&
+        hasPriorTracking &&
+        foundStationsPerLine[line] > (previousFound![line] ?? 0) &&
         foundStationsPerLine[line] === stationsPerLine[line],
     )
 

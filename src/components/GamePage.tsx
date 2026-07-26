@@ -1,36 +1,36 @@
 'use client'
 
-import { useState, useCallback, useMemo, useEffect, useRef } from 'react'
-import Fuse from 'fuse.js'
-import { useLocalStorageValue } from '@react-hookz/web'
-import mapboxgl from 'mapbox-gl'
-import { coordEach } from '@turf/meta'
-import 'mapbox-gl/dist/mapbox-gl.css'
-import 'react-circular-progressbar/dist/styles.css'
-import MenuComponent from '@/components/Menu'
-import IntroModal from '@/components/IntroModal'
+import FoundList from '@/components/FoundList'
 import FoundSummary from '@/components/FoundSummary'
-import {
-  DataFeatureCollection,
-  DataFeature,
-  GameMode,
-  PinProgress,
-  RoutesFeatureCollection,
-} from '@/lib/types'
+import Input from '@/components/Input'
+import IntroModal from '@/components/IntroModal'
+import MenuComponent from '@/components/Menu'
+import PinMode, { pinClickHandlerRef, pinResetRef } from '@/components/PinMode'
+import SettingsModal from '@/components/SettingsModal'
+import StripeModal from '@/components/StripeModal'
+import useHideLabels from '@/hooks/useHideLabels'
+import useNormalizeString from '@/hooks/useNormalizeString'
+import useTranslation from '@/hooks/useTranslation'
+import { useConfig } from '@/lib/configContext'
 import {
   computePinScoreProportion,
   isPinGameInProgress,
 } from '@/lib/pinScoring'
-import Input from '@/components/Input'
-import useHideLabels from '@/hooks/useHideLabels'
-import StripeModal from '@/components/StripeModal'
-import { useConfig } from '@/lib/configContext'
-import useTranslation from '@/hooks/useTranslation'
-import FoundList from '@/components/FoundList'
-import useNormalizeString from '@/hooks/useNormalizeString'
+import {
+  DataFeature,
+  DataFeatureCollection,
+  GameMode,
+  PinProgress,
+  RoutesFeatureCollection,
+} from '@/lib/types'
+import { useLocalStorageValue } from '@react-hookz/web'
+import { coordEach } from '@turf/meta'
 import { bbox } from '@turf/turf'
-import PinMode, { pinClickHandlerRef, pinResetRef } from '@/components/PinMode'
-import SettingsModal from '@/components/SettingsModal'
+import Fuse from 'fuse.js'
+import mapboxgl from 'mapbox-gl'
+import 'mapbox-gl/dist/mapbox-gl.css'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import 'react-circular-progressbar/dist/styles.css'
 
 export default function GamePage({
   fc,
@@ -105,18 +105,27 @@ export default function GamePage({
     return map
   }, [fc.features])
 
+  // Features currently in play (all types — points, routes, etc.) after
+  // filtering by the enabled-line set. Used as the base for fuse, per-line
+  // counts, and the score denominator so line selection applies uniformly to
+  // both game modes.
+  const enabledFeatures = useMemo(
+    () =>
+      fc.features.filter(
+        (f) => f.properties.line && enabledLines.has(f.properties.line),
+      ),
+    [fc.features, enabledLines],
+  )
+
   const stationsPerLine = useMemo(() => {
     const stationsPerLine: { [key: string]: number } = {}
-    for (let feature of fc.features) {
+    for (let feature of enabledFeatures) {
       const line = feature.properties.line
-      if (!line) {
-        continue
-      }
+      if (!line) continue
       stationsPerLine[line] = (stationsPerLine[line] || 0) + 1
     }
-
     return stationsPerLine
-  }, [fc])
+  }, [enabledFeatures])
 
   const { value: localFound, set: setFound } = useLocalStorageValue<
     number[] | null
@@ -132,8 +141,13 @@ export default function GamePage({
     })
 
   const found: number[] = useMemo(() => {
-    return (localFound || []).filter((f) => idMap.has(f))
-  }, [localFound, idMap])
+    return (localFound || []).filter((f) => {
+      const feat = idMap.get(f)
+      if (!feat) return false
+      const line = feat.properties.line
+      return !!line && enabledLines.has(line)
+    })
+  }, [localFound, idMap, enabledLines])
 
   // Unconfirmed reset — clears typing state and reseeds an active pin game.
   // Callers that need a confirmation prompt should wrap this (see onReset).
@@ -175,7 +189,7 @@ export default function GamePage({
 
   const fuse = useMemo(
     () =>
-      new Fuse(fc.features, {
+      new Fuse(enabledFeatures, {
         includeScore: true,
         includeMatches: true,
         keys: [
@@ -198,10 +212,12 @@ export default function GamePage({
           }
         },
       }),
-    [fc, normalizeString],
+    [enabledFeatures, normalizeString],
   )
 
-  const foundProportion = found.length / fc.features.length
+  const foundProportion = enabledFeatures.length
+    ? found.length / enabledFeatures.length
+    : 0
 
   // Map station name → all feature ids sharing that name (Baker Street exists
   // as one feature per line served — 5 features for 5 IDs but one "station").
@@ -260,26 +276,17 @@ export default function GamePage({
     return out
   }, [mode, pinProgress, idMap, nameToIds])
 
-  // stationsPerLine filtered to lines currently enabled (pin mode only shows
-  // enabled lines in the panel).
-  const pinStationsPerLine = useMemo(() => {
-    const out: Record<string, number> = {}
-    for (const [line, count] of Object.entries(stationsPerLine)) {
-      if (enabledLines.has(line)) out[line] = count
-    }
-    return out
-  }, [stationsPerLine, enabledLines])
-
   const pinScoreProportion = useMemo(
     () => (mode === 'type' ? 0 : computePinScoreProportion(pinProgress)),
     [mode, pinProgress],
   )
 
-  // What the FoundSummary/ProgressBars actually use.
+  // What the FoundSummary/ProgressBars actually use. stationsPerLine is
+  // already filtered to enabled lines, so both modes share the same
+  // denominator dictionary.
   const panelFoundPerLine =
     mode === 'type' ? foundStationsPerLine : pinFirstPerLine
-  const panelStationsPerLine =
-    mode === 'type' ? stationsPerLine : pinStationsPerLine
+  const panelStationsPerLine = stationsPerLine
   const panelProportion = mode === 'type' ? foundProportion : pinScoreProportion
 
   // Brief red flash on the station clicked when it's the wrong answer.
@@ -812,6 +819,37 @@ export default function GamePage({
     map.triggerRepaint()
   }, [found, map, mode])
 
+  // Line routes stay drawn but dimmed when disabled — useful for map
+  // context. Station features on disabled lines are filtered out entirely:
+  // multi-line stations have one feature per line, so the enabled siblings
+  // at the same location keep the station visible. If we merely dimmed
+  // them, the disabled-line feature (often the topmost per its layout
+  // sort-key, which can't read feature-state) would cover the found dot
+  // below.
+  useEffect(() => {
+    if (!map) return
+    const enabledArr = [...enabledLines]
+    const opacityExpr: mapboxgl.Expression = [
+      'case',
+      ['match', ['get', 'line'], enabledArr, true, false],
+      1,
+      0.1,
+    ]
+    const enabledFilter: mapboxgl.Expression = [
+      'match',
+      ['get', 'line'],
+      enabledArr,
+      true,
+      false,
+    ]
+    if (map.getLayer('lines')) {
+      map.setPaintProperty('lines', 'line-opacity', opacityExpr)
+    }
+    for (const id of ['stations', 'stations-circles', 'stations-labels']) {
+      if (map.getLayer(id)) map.setFilter(id, enabledFilter)
+    }
+  }, [map, enabledLines])
+
   const zoomToFeature = useCallback(
     (id: number) => {
       if (!map) return
@@ -919,18 +957,10 @@ export default function GamePage({
         setMode={setModeValue}
         enabledLines={enabledLines}
         setEnabledLines={setEnabledLines}
-        onLinesChangedReset={() => {
-          // Line changes only affect pin mode. Typing progress is untouched.
-          // If PinMode is mounted, force a reseed with the new pool. If not,
-          // PinMode's init pool-check will auto-seed on next mount.
-          pinResetRef.current?.()
-        }}
-        onModeChangeReset={() => {
-          // Full state wipe so switching modes gives a clean slate in both
-          // directions (the confirm dialog warns the user about this).
-          // Imperatively clear any `found` visuals we've applied first — the
-          // setFound([]) inside resetAll goes through a state update that
-          // may not repaint reliably before the mode change lands.
+        onCommitReset={() => {
+          // Full state wipe. Imperatively clear any `found` visuals we've
+          // applied first as insurance in case the effect-driven clear from
+          // setFound([]) doesn't repaint in time.
           if (map) {
             for (const id of foundAppliedRef.current) {
               map.removeFeatureState({ source: 'features', id }, 'found')
@@ -939,6 +969,31 @@ export default function GamePage({
             map.triggerRepaint()
           }
           resetAll()
+        }}
+        onCommitKeep={(newEnabledLines) => {
+          // Type-mode line change: keep any previously-found station that
+          // still has at least one feature on a currently-enabled line.
+          // We collect names from ALL previously-found ids first (not just
+          // the ones whose specific feature id survives the filter), so a
+          // station whose only found feature was on a removed line still
+          // gets a chance to be preserved via a sibling on a newly-enabled
+          // line. Sibling features on the same station name are also
+          // back-filled from the enabled set, keeping Input's already-found
+          // detection in sync across multi-line stations.
+          const foundNames = new Set<string>()
+          for (const id of localFound || []) {
+            const name = idMap.get(id)?.properties.name
+            if (name) foundNames.add(name)
+          }
+          const kept = new Set<number>()
+          for (const name of foundNames) {
+            const siblingIds = nameToIds.get(name) || []
+            for (const id of siblingIds) {
+              const line = idMap.get(id)?.properties.line
+              if (line && newEnabledLines.has(line)) kept.add(id)
+            }
+          }
+          setFound([...kept])
         }}
         hasActiveGame={
           mode === 'type'

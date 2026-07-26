@@ -1,11 +1,10 @@
 'use client'
 
+import { useConfig } from '@/lib/configContext'
+import { GameMode } from '@/lib/types'
+import { Dialog, Transition } from '@headlessui/react'
 import { Fragment, useEffect, useState } from 'react'
 import { flushSync } from 'react-dom'
-import { Dialog, Transition } from '@headlessui/react'
-import { useConfig } from '@/lib/configContext'
-import useTranslation from '@/hooks/useTranslation'
-import { GameMode } from '@/lib/types'
 
 const MODE_OPTIONS: { value: GameMode; label: string; description: string }[] = [
   {
@@ -26,6 +25,24 @@ function setsEqual(a: Set<string>, b: Set<string>): boolean {
   return true
 }
 
+type ConfirmKind = 'mode' | 'lines-pin' | 'lines-type'
+
+const CONFIRM_MESSAGES: Record<ConfirmKind, string> = {
+  mode: 'You are changing game mode - you are going to lose all of your progress. Are you sure?',
+  'lines-pin':
+    'You are changing the selected lines - you are going to lose all of your progress. Are you sure?',
+  'lines-type':
+    'You are changing the selected lines - you may lose some of your progress. Are you sure?',
+}
+
+// Type-mode line changes preserve valid found stations rather than doing a
+// full wipe; every other kind fully resets both modes.
+const CONFIRM_ACTION: Record<ConfirmKind, 'reset' | 'keep'> = {
+  mode: 'reset',
+  'lines-pin': 'reset',
+  'lines-type': 'keep',
+}
+
 export default function SettingsModal({
   open,
   setOpen,
@@ -33,8 +50,8 @@ export default function SettingsModal({
   setMode,
   enabledLines,
   setEnabledLines,
-  onLinesChangedReset,
-  onModeChangeReset,
+  onCommitReset,
+  onCommitKeep,
   hasActiveGame,
 }: {
   open: boolean
@@ -43,20 +60,20 @@ export default function SettingsModal({
   setMode: (mode: GameMode) => void
   enabledLines: Set<string>
   setEnabledLines: (lines: Set<string>) => void
-  /** Apply the new line pool to any active pin game. */
-  onLinesChangedReset: () => void
-  /** Fired synchronously when the user commits a mode change so the caller
-   *  can wipe both modes' game state and any map visuals belonging to the
-   *  previous mode. Runs before setMode's flushSync so bookkeeping tied to
-   *  the outgoing mode is still intact. */
-  onModeChangeReset: () => void
+  /** Fired after mode changes (or pin-mode line changes) have been flushed.
+   *  Caller should imperatively clear map visuals and reseed/reset both
+   *  modes. */
+  onCommitReset: () => void
+  /** Fired after a type-mode line change has been flushed. Caller should
+   *  purge `found` so it only contains ids on lines present in
+   *  `newEnabledLines`. */
+  onCommitKeep: (newEnabledLines: Set<string>) => void
   /** When true, Done prompts for confirmation before applying mode or line
    *  changes (used when an in-progress game would be disturbed). When false,
    *  changes apply silently. */
   hasActiveGame: boolean
 }) {
   const { LINES } = useConfig()
-  const { t } = useTranslation()
 
   // Local drafts so cancelling the restart prompt can genuinely revert without
   // fighting parent state. Mode changes are also drafted so radio clicks don't
@@ -91,42 +108,49 @@ export default function SettingsModal({
   )
   const allEnabled = allLineKeys.every((k) => draftLines.has(k))
 
-  const applyChanges = (linesChanged: boolean, modeChanged: boolean) => {
-    if (modeChanged) {
-      // Fire imperative reset BEFORE the state change so bookkeeping tied
-      // to the outgoing mode is still intact (and so the effect-based mode
-      // sync doesn't drain it out from under us).
-      onModeChangeReset()
-      flushSync(() => setMode(draftMode))
-    }
-    if (linesChanged) {
-      // Commit synchronously so PinMode's derived poolIds is up-to-date by
-      // the time we ask it to reseed.
-      flushSync(() => setEnabledLines(draftLines))
-      onLinesChangedReset()
-    }
+  const applyChanges = (
+    linesChanged: boolean,
+    modeChanged: boolean,
+    action: 'reset' | 'keep' | null,
+  ) => {
+    if (modeChanged) flushSync(() => setMode(draftMode))
+    if (linesChanged) flushSync(() => setEnabledLines(draftLines))
+    // Fire callback AFTER all state has been flushed so PinMode's derived
+    // poolIds (and any other line-dep memos) reflect the new selection.
+    if (action === 'reset') onCommitReset()
+    else if (action === 'keep') onCommitKeep(draftLines)
   }
 
   const handleDone = () => {
     const linesChanged = !setsEqual(draftLines, enabledLines)
     const modeChanged = draftMode !== mode
-    if (linesChanged || modeChanged) {
-      if (hasActiveGame) {
-        if (confirm(t('restartWarning'))) {
-          applyChanges(linesChanged, modeChanged)
-        } else {
-          // User declined — revert both drafts and keep the modal open so they
-          // can adjust their selection.
-          setDraftLines(new Set(enabledLines))
-          setDraftMode(mode)
-          return
-        }
-      } else {
-        // No active game to disturb — apply immediately, no prompt.
-        applyChanges(linesChanged, modeChanged)
-      }
+
+    if (!linesChanged && !modeChanged) {
+      setOpen(false)
+      return
     }
-    setOpen(false)
+
+    if (!hasActiveGame) {
+      // Nothing at stake — commit silently.
+      applyChanges(linesChanged, modeChanged, null)
+      setOpen(false)
+      return
+    }
+
+    // Determine which confirmation copy to show. Mode change trumps
+    // simultaneous line changes.
+    let kind: ConfirmKind
+    if (modeChanged) kind = 'mode'
+    else if (mode !== 'type') kind = 'lines-pin'
+    else kind = 'lines-type'
+
+    if (confirm(CONFIRM_MESSAGES[kind])) {
+      applyChanges(linesChanged, modeChanged, CONFIRM_ACTION[kind])
+      setOpen(false)
+    } else {
+      setDraftLines(new Set(enabledLines))
+      setDraftMode(mode)
+    }
   }
 
   return (
@@ -212,7 +236,7 @@ export default function SettingsModal({
                     </button>
                   </div>
                   <p className="mt-1 text-xs text-gray-500">
-                    Currently used by pin mode to filter which stations you are asked about.
+                    Which lines to include in the game.
                   </p>
                   <div className="mt-2 flex max-h-64 flex-col gap-1 overflow-y-auto">
                     {allLineKeys.map((key) => {
