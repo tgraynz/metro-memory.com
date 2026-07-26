@@ -8,6 +8,7 @@ import MenuComponent from '@/components/Menu'
 import PinMode, { pinClickHandlerRef, pinResetRef } from '@/components/PinMode'
 import SettingsModal from '@/components/SettingsModal'
 import StripeModal from '@/components/StripeModal'
+import TypeResults from '@/components/TypeResults'
 import useHideLabels from '@/hooks/useHideLabels'
 import useNormalizeString from '@/hooks/useNormalizeString'
 import useTranslation from '@/hooks/useTranslation'
@@ -27,6 +28,7 @@ import Fuse from 'fuse.js'
 import mapboxgl from 'mapbox-gl'
 import 'mapbox-gl/dist/mapbox-gl.css'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { flushSync } from 'react-dom'
 import 'react-circular-progressbar/dist/styles.css'
 
 export default function GamePage({
@@ -88,6 +90,34 @@ export default function GamePage({
     initializeWithValue: false,
   })
 
+  // Review mode: `reviewPool` is a snapshot of station names the player
+  // missed on the last completed round. `isReview` flags that the current
+  // round is being played against that pool. Both are keyed on mode so pin
+  // / pinHard / type each keep their own review state.
+  const reviewPoolKey = `${CITY_NAME}-review-pool-${mode}`
+  const { value: reviewPool, set: setReviewPool } = useLocalStorageValue<
+    string[] | null
+  >(reviewPoolKey, { defaultValue: null, initializeWithValue: false })
+
+  const isReviewKey = `${CITY_NAME}-is-review-${mode}`
+  const { value: isReviewValue, set: setIsReview } =
+    useLocalStorageValue<boolean>(isReviewKey, {
+      defaultValue: false,
+      initializeWithValue: false,
+    })
+  const isReview = !!isReviewValue
+
+  // Type mode only: `typeGaveUp` triggers the round-complete view before
+  // the player has found every station. Persisted so a mid-give-up refresh
+  // still lands on the results view.
+  const typeGaveUpKey = `${CITY_NAME}-type-gave-up`
+  const { value: typeGaveUpValue, set: setTypeGaveUp } =
+    useLocalStorageValue<boolean>(typeGaveUpKey, {
+      defaultValue: false,
+      initializeWithValue: false,
+    })
+  const typeGaveUp = !!typeGaveUpValue
+
   const { value: hasShownStripeModal, set: setHasShownStripeModal } =
     useLocalStorageValue<boolean>('has-shown-stripe-modal', {
       defaultValue: false,
@@ -114,15 +144,29 @@ export default function GamePage({
     [fc.features, enabledLines],
   )
 
+  // In review mode we narrow the pool further to only stations whose name
+  // is in the snapshotted review pool. Everything downstream (fuse,
+  // stationsPerLine, foundProportion, pin pool) should use `activeFeatures`
+  // as the source of truth so the score and gameplay match the pool the
+  // player was told they'd be playing.
+  const activeFeatures = useMemo(() => {
+    if (!isReview || !reviewPool || reviewPool.length === 0)
+      return enabledFeatures
+    const nameSet = new Set(reviewPool)
+    return enabledFeatures.filter(
+      (f) => f.properties.name && nameSet.has(f.properties.name),
+    )
+  }, [enabledFeatures, isReview, reviewPool])
+
   const stationsPerLine = useMemo(() => {
     const stationsPerLine: { [key: string]: number } = {}
-    for (let feature of enabledFeatures) {
+    for (let feature of activeFeatures) {
       const line = feature.properties.line
       if (!line) continue
       stationsPerLine[line] = (stationsPerLine[line] || 0) + 1
     }
     return stationsPerLine
-  }, [enabledFeatures])
+  }, [activeFeatures])
 
   const { value: localFound, set: setFound } = useLocalStorageValue<
     number[] | null
@@ -138,28 +182,59 @@ export default function GamePage({
     })
 
   const found: number[] = useMemo(() => {
+    // In review mode also require the feature's name to be in the review
+    // pool, so stale `found` entries from a prior full round don't count
+    // toward the review round's score.
+    const reviewSet =
+      isReview && reviewPool ? new Set(reviewPool) : null
     return (localFound || []).filter((f) => {
       const feat = idMap.get(f)
       if (!feat) return false
       const line = feat.properties.line
-      return !!line && enabledLines.has(line)
+      if (!line || !enabledLines.has(line)) return false
+      if (reviewSet && (!feat.properties.name || !reviewSet.has(feat.properties.name)))
+        return false
+      return true
     })
-  }, [localFound, idMap, enabledLines])
+  }, [localFound, idMap, enabledLines, isReview, reviewPool])
 
   // Unconfirmed reset — clears typing state and reseeds an active pin game.
   // Callers that need a confirmation prompt should wrap this (see onReset).
   const resetAll = useCallback(() => {
-    setFound([])
-    setIsNewPlayer(true)
-    setHasShownStripeModal(false)
-    // Clear any pin-mode progress on disk for both variants.
+    // Commit state changes synchronously so PinMode's derived poolIds (and
+    // pinResetRef, via its [seedGame] effect) reflect the fresh state
+    // BEFORE we ask it to reseed. Without this, a reset out of a review
+    // round would reseed against the stale review pool → empty order →
+    // PinMode renders round-complete immediately.
+    flushSync(() => {
+      setFound([])
+      setIsNewPlayer(true)
+      setHasShownStripeModal(false)
+      setTypeGaveUp(false)
+      setIsReview(false)
+    })
+    // Clear any pin-mode progress and per-mode review pools on disk for all
+    // variants so a fresh session isn't primed by stale review data.
     if (typeof window !== 'undefined') {
       window.localStorage.removeItem(`${CITY_NAME}-pin-progress-pin`)
       window.localStorage.removeItem(`${CITY_NAME}-pin-progress-pinHard`)
+      window.localStorage.removeItem(`${CITY_NAME}-review-pool-type`)
+      window.localStorage.removeItem(`${CITY_NAME}-review-pool-pin`)
+      window.localStorage.removeItem(`${CITY_NAME}-review-pool-pinHard`)
+      window.localStorage.removeItem(`${CITY_NAME}-is-review-type`)
+      window.localStorage.removeItem(`${CITY_NAME}-is-review-pin`)
+      window.localStorage.removeItem(`${CITY_NAME}-is-review-pinHard`)
     }
     // If PinMode is currently mounted, ask it to reseed a fresh game.
     pinResetRef.current?.()
-  }, [setFound, setIsNewPlayer, setHasShownStripeModal, CITY_NAME])
+  }, [
+    setFound,
+    setIsNewPlayer,
+    setHasShownStripeModal,
+    setTypeGaveUp,
+    setIsReview,
+    CITY_NAME,
+  ])
 
   const onReset = useCallback(() => {
     if (confirm(t('restartWarning'))) {
@@ -186,7 +261,7 @@ export default function GamePage({
 
   const fuse = useMemo(
     () =>
-      new Fuse(enabledFeatures, {
+      new Fuse(activeFeatures, {
         includeScore: true,
         includeMatches: true,
         keys: [
@@ -209,12 +284,36 @@ export default function GamePage({
           }
         },
       }),
-    [enabledFeatures, normalizeString],
+    [activeFeatures, normalizeString],
   )
 
-  const foundProportion = enabledFeatures.length
-    ? found.length / enabledFeatures.length
+  const foundProportion = activeFeatures.length
+    ? found.length / activeFeatures.length
     : 0
+
+  // Unique station names in the current active pool — used to compute what
+  // the player missed at round-complete for the review pool snapshot.
+  const activeStationNames = useMemo(() => {
+    const names = new Set<string>()
+    for (const f of activeFeatures) {
+      if (f.properties.name) names.add(f.properties.name)
+    }
+    return names
+  }, [activeFeatures])
+
+  // Type mode is "complete" when every station in the active pool has been
+  // found, or when the player has given up. Either case renders the
+  // TypeResults panel in place of the search input.
+  const typeRoundComplete =
+    mode === 'type' &&
+    activeStationNames.size > 0 &&
+    (foundProportion >= 1 || typeGaveUp)
+
+  const pinRoundComplete =
+    mode !== 'type' &&
+    !!pinProgress &&
+    pinProgress.order.length > 0 &&
+    pinProgress.currentIdx >= pinProgress.order.length
 
   // Map station name → all feature ids sharing that name (Baker Street exists
   // as one feature per line served — 5 features for 5 IDs but one "station").
@@ -232,23 +331,92 @@ export default function GamePage({
     return m
   }, [fc.features])
 
-  // Points only, filtered by enabled lines, deduped by station name so we don't
-  // ask about "Baker Street" once per line.
+  // Points only, filtered by the active pool (enabled lines, further
+  // narrowed to review pool when in review mode), deduped by station name
+  // so we don't ask about "Baker Street" once per line.
   const pinStationPool = useMemo(() => {
     const seen = new Set<string>()
     const out: DataFeature[] = []
-    for (const f of fc.features) {
+    for (const f of activeFeatures) {
       if (f.geometry.type !== 'Point') continue
       const name = f.properties.name
-      const line = f.properties.line
-      if (!name || !line) continue
-      if (!enabledLines.has(line)) continue
+      if (!name) continue
       if (seen.has(name)) continue
       seen.add(name)
       out.push(f)
     }
     return out
-  }, [fc, enabledLines])
+  }, [activeFeatures])
+
+  // Names of stations missed on the currently-complete round — powers the
+  // Review button visibility and gets snapshotted into `reviewPool` on
+  // completion transition.
+  const missedThisRound = useMemo((): string[] => {
+    if (mode === 'type') {
+      if (!typeRoundComplete) return []
+      const foundSet = new Set(found)
+      const out: string[] = []
+      for (const name of activeStationNames) {
+        const siblings = nameToIds.get(name) || []
+        if (!siblings.some((id) => foundSet.has(id))) out.push(name)
+      }
+      return out
+    }
+    if (!pinRoundComplete || !pinProgress) return []
+    // Pin: any state other than first-try counts as needing review.
+    const out = new Set<string>()
+    for (const [idStr, state] of Object.entries(pinProgress.stationStates)) {
+      if (state === 'first') continue
+      const name = idMap.get(Number(idStr))?.properties.name
+      if (name) out.add(name)
+    }
+    return [...out]
+  }, [
+    mode,
+    typeRoundComplete,
+    pinRoundComplete,
+    pinProgress,
+    found,
+    activeStationNames,
+    nameToIds,
+    idMap,
+  ])
+
+  // NOTE: reviewPool is deliberately not snapshotted on round-complete
+  // transition. Doing so would shrink `activeFeatures` (and therefore
+  // `stationsPerLine`) under the round-complete panel, changing the visible
+  // score total before the player has moved on. Both pin progress and the
+  // type-mode `found` / `typeGaveUp` state are persisted, so `missedThisRound`
+  // stays derivable on refresh — the snapshot happens imperatively inside
+  // `handleReview` at the moment the player commits to reviewing.
+
+  const handleGiveUp = useCallback(() => {
+    setTypeGaveUp(true)
+    // Completion effect will fire on next render and snapshot the pool.
+  }, [setTypeGaveUp])
+
+  const handlePlayAgain = useCallback(() => {
+    // flushSync so activeFeatures/pinStationPool reflect the normal pool
+    // before we ask PinMode to reseed.
+    flushSync(() => {
+      setIsReview(false)
+      setTypeGaveUp(false)
+      setFound([])
+    })
+    pinResetRef.current?.()
+  }, [setIsReview, setTypeGaveUp, setFound])
+
+  const handleReview = useCallback(() => {
+    flushSync(() => {
+      // Snapshot immediately in case the completion effect hasn't fired
+      // yet — cheap and idempotent with what the effect would write.
+      setReviewPool(missedThisRound)
+      setIsReview(true)
+      setTypeGaveUp(false)
+      setFound([])
+    })
+    pinResetRef.current?.()
+  }, [missedThisRound, setReviewPool, setIsReview, setTypeGaveUp, setFound])
 
   // ---- Pin-mode-derived stats used by the right-hand score panel ----------
 
@@ -308,36 +476,45 @@ export default function GamePage({
   const revealIdsRef = useRef<number[]>([])
 
   const revealAnswer = useCallback(
-    (correctIds: number[], clickedId: number) => {
+    (correctIds: number[], anchorCoord?: [number, number] | null) => {
       if (!map || correctIds.length === 0) return
 
-      // Only reframe if the correct station is completely off screen. When it
-      // is, zoom OUT to fit both stations with a 1/8th safe margin; never zoom
-      // in — cap at current zoom so fitBounds can only pan / zoom out.
       const correctFeat = idMap.get(correctIds[0])
-      const clickedFeat = idMap.get(clickedId)
-      if (
-        correctFeat?.geometry.type === 'Point' &&
-        clickedFeat?.geometry.type === 'Point'
-      ) {
-        const correctCoord = correctFeat.geometry.coordinates as [number, number]
-        const clickedCoord = clickedFeat.geometry.coordinates as [number, number]
+      if (correctFeat?.geometry.type === 'Point') {
+        const correctCoord = correctFeat.geometry.coordinates as [
+          number,
+          number,
+        ]
         const container = map.getContainer()
         const w = container.clientWidth
         const h = container.clientHeight
+        // Approximate top UI overlay: mobile FoundSummary + prompt chip. On
+        // desktop the chip sits lower (lg:top-32) but this value still keeps
+        // content clear of both. Used both as a "safe area" trigger and as
+        // fitBounds top padding.
+        const safeTop = 200
+
+        // Only reframe if the correct station isn't already comfortably below
+        // the top UI overlay. When we do, fit correct alongside the caller-
+        // supplied anchor (wrong click's coord, or the current map centre for
+        // a skip) so the pan stays anchored to what the player is looking at.
+        // Cap at current zoom so fitBounds can only pan / zoom out.
         const correctPx = map.project(correctCoord)
-        const correctInView =
+        const correctInSafeArea =
           correctPx.x >= 0 &&
           correctPx.x <= w &&
-          correctPx.y >= 0 &&
+          correctPx.y >= safeTop &&
           correctPx.y <= h
-        if (!correctInView) {
+        if (!correctInSafeArea) {
+          const center = map.getCenter()
+          const anchor: [number, number] =
+            anchorCoord ?? [center.lng, center.lat]
           const bounds = new mapboxgl.LngLatBounds()
           bounds.extend(correctCoord)
-          bounds.extend(clickedCoord)
+          bounds.extend(anchor)
           map.fitBounds(bounds, {
             padding: {
-              top: Math.floor(h / 8),
+              top: safeTop,
               bottom: Math.floor(h / 8),
               left: Math.floor(w / 8),
               right: Math.floor(w / 8),
@@ -348,12 +525,22 @@ export default function GamePage({
         }
       }
 
-      // Cancel any existing flash cycle first.
+      // Cancel any existing flash cycle first, tidying up both flags on the
+      // previously-flashing ids.
       if (revealIntervalRef.current != null) {
         clearInterval(revealIntervalRef.current)
         for (const id of revealIdsRef.current) {
-          map.setFeatureState({ source: 'features', id }, { pinFlash: false })
+          map.removeFeatureState({ source: 'features', id }, 'pinFlash')
+          map.removeFeatureState({ source: 'features', id }, 'pinReveal')
         }
+      }
+
+      // Mark the correct feature(s) as "in reveal" so the paint expressions
+      // override any pinState/found/etc. styling for the duration of the
+      // cycle — otherwise a station already marked 'missed' (skip case)
+      // would stay red the whole time and the flash would be invisible.
+      for (const id of correctIds) {
+        map.setFeatureState({ source: 'features', id }, { pinReveal: true })
       }
 
       const PHASE_MS = 200
@@ -373,7 +560,8 @@ export default function GamePage({
             revealIntervalRef.current = null
           }
           for (const id of correctIds) {
-            map.setFeatureState({ source: 'features', id }, { pinFlash: false })
+            map.removeFeatureState({ source: 'features', id }, 'pinFlash')
+            map.removeFeatureState({ source: 'features', id }, 'pinReveal')
           }
           revealIdsRef.current = []
         }
@@ -533,6 +721,12 @@ export default function GamePage({
               'case',
               ['to-boolean', ['feature-state', 'pinFlash']],
               3,
+              // While a reveal animation is in progress but the flash is
+              // currently OFF, force the base "unplayed" styling so the
+              // toggle is visible even when pinState would otherwise show
+              // the station as already played.
+              ['to-boolean', ['feature-state', 'pinReveal']],
+              1,
               ['!=', ['feature-state', 'pinState'], null],
               2.5,
               ['to-boolean', ['feature-state', 'pinHover']],
@@ -546,6 +740,8 @@ export default function GamePage({
               'case',
               ['to-boolean', ['feature-state', 'pinFlash']],
               8,
+              ['to-boolean', ['feature-state', 'pinReveal']],
+              4,
               ['!=', ['feature-state', 'pinState'], null],
               7,
               ['to-boolean', ['feature-state', 'pinHover']],
@@ -559,6 +755,8 @@ export default function GamePage({
             'case',
             ['to-boolean', ['feature-state', 'pinFlash']],
             '#ef4444',
+            ['to-boolean', ['feature-state', 'pinReveal']],
+            'rgba(255, 255, 255, 0.8)',
             ['==', ['feature-state', 'pinState'], 'first'],
             '#22c55e',
             ['==', ['feature-state', 'pinState'], 'second'],
@@ -583,6 +781,8 @@ export default function GamePage({
             'case',
             ['to-boolean', ['feature-state', 'pinFlash']],
             '#7f1d1d',
+            ['to-boolean', ['feature-state', 'pinReveal']],
+            'rgb(122, 122, 122)',
             ['==', ['feature-state', 'pinState'], 'first'],
             '#166534',
             ['==', ['feature-state', 'pinState'], 'second'],
@@ -609,6 +809,8 @@ export default function GamePage({
             'case',
             ['to-boolean', ['feature-state', 'pinFlash']],
             2,
+            ['to-boolean', ['feature-state', 'pinReveal']],
+            0,
             ['!=', ['feature-state', 'pinState'], null],
             2,
             ['to-boolean', ['feature-state', 'pinHover']],
@@ -824,6 +1026,9 @@ export default function GamePage({
   // sort-key, which can't read feature-state) would cover the found dot
   // below.
   //
+  // In review mode, the station filter is narrowed further to only stations
+  // in the review pool, so the player sees exactly the stations in play.
+  //
   // In pin hard mode, the disabled-line treatment is turned off entirely —
   // both lines and stations render at full visibility so the current pool
   // isn't visually inferable.
@@ -843,6 +1048,14 @@ export default function GamePage({
       true,
       false,
     ]
+    const stationFilter: mapboxgl.Expression =
+      isReview && reviewPool && reviewPool.length > 0
+        ? [
+            'all',
+            enabledFilter,
+            ['match', ['get', 'name'], reviewPool, true, false],
+          ]
+        : enabledFilter
     const hideDisabled = mode !== 'pinHard'
     if (map.getLayer('lines')) {
       map.setPaintProperty(
@@ -853,10 +1066,10 @@ export default function GamePage({
     }
     for (const id of ['stations', 'stations-circles', 'stations-labels']) {
       if (map.getLayer(id)) {
-        map.setFilter(id, hideDisabled ? enabledFilter : null)
+        map.setFilter(id, hideDisabled ? stationFilter : null)
       }
     }
-  }, [map, enabledLines, mode])
+  }, [map, enabledLines, mode, isReview, reviewPool])
 
   const zoomToFeature = useCallback(
     (id: number) => {
@@ -893,18 +1106,37 @@ export default function GamePage({
             stationsPerLine={panelStationsPerLine}
             defaultMinimized
             minimizable
+            suppressLineCompleteConfetti={isReview}
           />
           <div className="flex gap-2 lg:gap-4">
             {mode === 'type' ? (
-              <Input
-                fuse={fuse}
-                found={found}
-                setFound={setFound}
-                setIsNewPlayer={setIsNewPlayer}
-                inputRef={inputRef}
-                map={map}
-                idMap={idMap}
-              />
+              typeRoundComplete ? (
+                <TypeResults
+                  foundProportion={foundProportion}
+                  hasMissed={missedThisRound.length > 0}
+                  onPlayAgain={handlePlayAgain}
+                  onReview={handleReview}
+                />
+              ) : (
+                <>
+                  <Input
+                    fuse={fuse}
+                    found={found}
+                    setFound={setFound}
+                    setIsNewPlayer={setIsNewPlayer}
+                    inputRef={inputRef}
+                    map={map}
+                    idMap={idMap}
+                  />
+                  <button
+                    type="button"
+                    onClick={handleGiveUp}
+                    className="shrink-0 rounded-full bg-white px-3 py-2 text-xs font-medium text-gray-500 shadow-lg hover:text-gray-800"
+                  >
+                    Give up
+                  </button>
+                </>
+              )
             ) : (
               <PinMode
                 // Force remount across pin-mode variants so PinMode's
@@ -921,6 +1153,9 @@ export default function GamePage({
                 setProgress={setPinProgress}
                 onFlashWrong={flashWrong}
                 onRevealAnswer={revealAnswer}
+                onPlayAgain={handlePlayAgain}
+                onReview={handleReview}
+                hasMissed={missedThisRound.length > 0}
               />
             )}
             <MenuComponent
@@ -939,6 +1174,7 @@ export default function GamePage({
           stationsPerLine={panelStationsPerLine}
           minimizable
           defaultMinimized
+          suppressLineCompleteConfetti={isReview}
         />
         {callout}
         <hr className="my-4 w-full border-b border-zinc-100" />
@@ -986,7 +1222,10 @@ export default function GamePage({
         onLinesChangedSilent={() => {
           // No active game so we don't need the confirm popup, but the pin
           // order (if PinMode is mounted) was baked from the old pool —
-          // reseed so the prompt matches the new selection.
+          // reseed so the prompt matches the new selection. Also exit review
+          // if we were in one: the snapshotted review pool belonged to the
+          // previous line configuration and may no longer be valid.
+          if (isReview) flushSync(() => setIsReview(false))
           pinResetRef.current?.()
         }}
         onCommitKeep={(newEnabledLines) => {
@@ -1012,6 +1251,10 @@ export default function GamePage({
               if (line && newEnabledLines.has(line)) kept.add(id)
             }
           }
+          // Also exit review if we were in one — the review pool was
+          // snapshotted against the previous line configuration.
+          if (isReview) setIsReview(false)
+          setTypeGaveUp(false)
           setFound([...kept])
         }}
         hasActiveGame={

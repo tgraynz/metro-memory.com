@@ -14,6 +14,7 @@ const FoundSummary = ({
   foundProportion,
   minimizable = false,
   defaultMinimized = false,
+  suppressLineCompleteConfetti = false,
 }: {
   className?: string
   foundStationsPerLine: Record<string, number>
@@ -21,11 +22,16 @@ const FoundSummary = ({
   foundProportion: number
   minimizable?: boolean
   defaultMinimized?: boolean
+  /** In review mode the per-line totals reflect only the review-pool subset,
+   *  so "line complete" here doesn't mean the actual line is complete. Set
+   *  to true to skip the celebratory confetti in that scenario. */
+  suppressLineCompleteConfetti?: boolean
 }) => {
   const previousFound = usePrevious(foundStationsPerLine)
   const [minimized, setMinimized] = useState<boolean>(defaultMinimized)
 
   useEffect(() => {
+    if (suppressLineCompleteConfetti) return
     // Confetti when a line hits 100%. `previousFound[line]` may be
     // `undefined` if the line wasn't tracked last render (e.g. it was just
     // re-enabled in settings and back-filled with sibling stations), so we
@@ -70,7 +76,12 @@ const FoundSummary = ({
 
       makeConfetti()
     }
-  }, [previousFound, foundStationsPerLine, stationsPerLine])
+  }, [
+    previousFound,
+    foundStationsPerLine,
+    stationsPerLine,
+    suppressLineCompleteConfetti,
+  ])
 
   return (
     <div

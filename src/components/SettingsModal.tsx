@@ -9,19 +9,19 @@ import { flushSync } from 'react-dom'
 const MODE_OPTIONS: { value: GameMode; label: string; description: string }[] = [
   {
     value: 'type',
-    label: 'Type mode',
+    label: 'Type',
     description: 'The original game — type station names to reveal them.',
   },
   {
     value: 'pin',
-    label: 'Pin mode',
-    description: 'You are shown a station name and click on the map to find it.',
+    label: 'Pin',
+    description: 'Click on the stations.',
   },
   {
     value: 'pinHard',
-    label: 'Pin mode (hard)',
+    label: 'Pin (hard)',
     description:
-      'Same as pin mode, but played stations leave no trace — no labels or coloured dots persist.',
+      'Played stations leave no trace — labels and coloured dots disappear.',
   },
 ]
 
@@ -282,8 +282,9 @@ export default function SettingsModal({
                 <div className="mt-6">
                   <button
                     type="button"
-                    className="inline-flex w-full justify-center rounded-md bg-zinc-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-zinc-500"
+                    className="inline-flex w-full justify-center rounded-md bg-zinc-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-zinc-500 disabled:cursor-not-allowed disabled:bg-zinc-300 disabled:hover:bg-zinc-300"
                     onClick={handleDone}
+                    disabled={draftLines.size === 0}
                   >
                     Done
                   </button>

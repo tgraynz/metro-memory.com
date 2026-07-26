@@ -26,6 +26,9 @@ export default function PinMode({
   setProgress,
   onFlashWrong,
   onRevealAnswer,
+  onPlayAgain,
+  onReview,
+  hasMissed,
 }: {
   mode: Extract<GameMode, 'pin' | 'pinHard'>
   stationPool: DataFeature[]
@@ -42,9 +45,24 @@ export default function PinMode({
   /** Trigger a transient red flash on the wrong station clicked. */
   onFlashWrong: (id: number) => void
   /** Trigger a 4-cycle reveal flash on all features sharing the correct
-   *  station's name — fired on the 3rd and every subsequent wrong guess.
-   *  `clickedId` is the wrong feature so the map can zoom to fit both. */
-  onRevealAnswer: (featureIds: number[], clickedId: number) => void
+   *  station's name. Fired on the 3rd+ wrong guess and on skip. `anchorCoord`
+   *  is a secondary point that fitBounds should include alongside the
+   *  correct station — the wrong click's coord for a wrong guess, the map's
+   *  current centre for a skip. Callers may omit it to fall back to the
+   *  current centre. */
+  onRevealAnswer: (
+    featureIds: number[],
+    anchorCoord?: [number, number] | null,
+  ) => void
+  /** Round-complete Play Again — resets to a fresh full-pool round. Owned
+   *  by GamePage because it needs to flip the review flag alongside. */
+  onPlayAgain: () => void
+  /** Round-complete Review — resets to a fresh round using the just-missed
+   *  stations as the pool. */
+  onReview: () => void
+  /** Whether the just-completed round has any missed stations. Controls the
+   *  Review button visibility on the round-complete panel. */
+  hasMissed: boolean
 }) {
   // Snapshot of the ids the pool contained when the current game was seeded.
   // Used to detect when the enabled-line set changes and we need a new game.
@@ -196,7 +214,12 @@ export default function PinMode({
         if (nextAttempts >= MAX_ATTEMPTS) {
           const ids =
             (currentName && nameToIds.get(currentName)) || [currentStationId]
-          onRevealAnswer(ids, clickedId)
+          const clickedFeat = idMap.get(clickedId)
+          const clickedCoord =
+            clickedFeat?.geometry.type === 'Point'
+              ? (clickedFeat.geometry.coordinates as [number, number])
+              : null
+          onRevealAnswer(ids, clickedCoord)
         }
       }
     },
@@ -266,10 +289,6 @@ export default function PinMode({
     }
   }, [map])
 
-  const handleReplay = useCallback(() => {
-    seedGame()
-  }, [seedGame])
-
   const handleSkip = useCallback(() => {
     if (!progress || currentStationId == null) return
     const next: PinProgress = {
@@ -282,7 +301,20 @@ export default function PinMode({
       },
     }
     setProgress(next)
-  }, [progress, currentStationId, setProgress])
+    // Reveal the skipped station the same way a 3rd-wrong guess does — flash
+    // it and re-centre the map if it's off-screen or under the top UI.
+    const currentName = idMap.get(currentStationId)?.properties.name
+    const ids =
+      (currentName && nameToIds.get(currentName)) || [currentStationId]
+    onRevealAnswer(ids)
+  }, [
+    progress,
+    currentStationId,
+    setProgress,
+    idMap,
+    nameToIds,
+    onRevealAnswer,
+  ])
 
   // Register the click handler so GamePage can call it from its map layer.
   useEffect(() => {
@@ -322,13 +354,24 @@ export default function PinMode({
         <div className="mt-1 text-center text-3xl font-bold tabular-nums text-zinc-900">
           {(finalScore * 100).toFixed(1)}%
         </div>
-        <button
-          type="button"
-          onClick={handleReplay}
-          className="mt-3 w-full rounded-full bg-zinc-700 px-4 py-2 text-sm font-semibold text-white hover:bg-zinc-600"
-        >
-          Play again
-        </button>
+        <div className="mt-3 flex flex-col gap-2">
+          <button
+            type="button"
+            onClick={onPlayAgain}
+            className="w-full rounded-full bg-zinc-700 px-4 py-2 text-sm font-semibold text-white hover:bg-zinc-600"
+          >
+            Play again
+          </button>
+          {hasMissed && (
+            <button
+              type="button"
+              onClick={onReview}
+              className="w-full rounded-full bg-white px-4 py-2 text-sm font-semibold text-zinc-700 shadow-sm ring-1 ring-inset ring-zinc-300 hover:bg-zinc-50"
+            >
+              Review missed
+            </button>
+          )}
+        </div>
       </div>
     )
   }
