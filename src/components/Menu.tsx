@@ -12,10 +12,12 @@ export default function MenuComponent({
   onReset,
   setHideLabels,
   hideLabels,
+  onOpenSettings,
 }: {
   onReset: () => void
   hideLabels: boolean
   setHideLabels: (hide: boolean) => void
+  onOpenSettings: () => void
 }) {
   const [modalOpen, setModalOpen] = useState(false)
   const { STRIPE_LINK } = useConfig()
@@ -63,6 +65,19 @@ export default function MenuComponent({
                   onClick={() => setHideLabels(!hideLabels)}
                 >
                   {hideLabels ? t('showSolutions') : t('hideSolutions')}
+                </button>
+              )}
+            </Menu.Item>
+            <Menu.Item>
+              {({ active }) => (
+                <button
+                  className={classNames(
+                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                    'block w-full px-4 py-2 text-left text-sm',
+                  )}
+                  onClick={onOpenSettings}
+                >
+                  Settings
                 </button>
               )}
             </Menu.Item>

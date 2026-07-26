@@ -1,13 +1,13 @@
+import GamePage from '@/components/GamePage'
+import Main from '@/components/Main'
+import { Provider } from '@/lib/configContext'
+import { DataFeatureCollection, RoutesFeatureCollection } from '@/lib/types'
+import 'mapbox-gl/dist/mapbox-gl.css'
+import { Cabin } from 'next/font/google'
+import 'react-circular-progressbar/dist/styles.css'
+import config from './config'
 import data from './data/features.json'
 import routes from './data/routes.json'
-import 'mapbox-gl/dist/mapbox-gl.css'
-import 'react-circular-progressbar/dist/styles.css'
-import { DataFeatureCollection, RoutesFeatureCollection } from '@/lib/types'
-import config from './config'
-import GamePage from '@/components/GamePage'
-import { Provider } from '@/lib/configContext'
-import Main from '@/components/Main'
-import { Cabin } from 'next/font/google'
 
 const font = Cabin({
   weight: ['400', '700'],

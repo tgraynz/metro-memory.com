@@ -6,7 +6,6 @@ import { useEffect, useState } from 'react'
 import ProgressBars from './ProgressBars'
 import { MaximizeIcon } from './MaximizeIcon'
 import { MinimizeIcon } from './MinimizeIcon'
-import useTranslation from '@/hooks/useTranslation'
 
 const FoundSummary = ({
   className,
@@ -23,7 +22,6 @@ const FoundSummary = ({
   minimizable?: boolean
   defaultMinimized?: boolean
 }) => {
-  const { t } = useTranslation()
   const previousFound = usePrevious(foundStationsPerLine)
   const [minimized, setMinimized] = useState<boolean>(defaultMinimized)
 
@@ -73,9 +71,8 @@ const FoundSummary = ({
         <p className="mb-2">
           <span className="text-lg font-bold @md:text-2xl">
             {((foundProportion || 0) * 100).toFixed(1)}
-          </span>{' '}
-          <span className="mr-2 text-lg @md:text-xl">%</span>
-          <span className="text-sm">{t('stationsFound')}</span>
+          </span>
+          <span className="text-lg @md:text-xl">%</span>
         </p>
         <ProgressBars
           minimized={minimized}

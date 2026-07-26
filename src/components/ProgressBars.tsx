@@ -15,6 +15,9 @@ const ProgressBars = ({
   minimized?: boolean
 }) => {
   const { LINES, GAUGE_COLORS } = useConfig()
+  const linesToShow = Object.keys(stationsPerLine)
+    .filter((k) => LINES[k])
+    .sort((a, b) => (LINES[a].order ?? 0) - (LINES[b].order ?? 0))
   return (
     <div
       className={classNames('grid gap-2 @container', {
@@ -22,7 +25,7 @@ const ProgressBars = ({
         'grid-cols-2': !minimized,
       })}
     >
-      {Object.keys(LINES).map((line) => {
+      {linesToShow.map((line) => {
         const title = `${LINES[line].name} - ${
           foundStationsPerLine[line] || 0
         }/${stationsPerLine[line]}`

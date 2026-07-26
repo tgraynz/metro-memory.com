@@ -38,6 +38,17 @@ export interface Line {
   order: number
 }
 
+export type GameMode = 'type' | 'pin' | 'pinHard'
+
+export type PinStationState = 'first' | 'second' | 'third' | 'missed'
+
+export interface PinProgress {
+  order: number[]
+  currentIdx: number
+  attemptsForCurrent: number
+  stationStates: Record<number, PinStationState>
+}
+
 export interface Config {
   MAP_FROM_DATA?: boolean
   GAUGE_COLORS?: 'inverted' | 'default'
