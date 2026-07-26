@@ -37,3 +37,16 @@ export function isPinGameInProgress(
   if (progress.currentIdx >= progress.order.length) return false
   return progress.currentIdx > 0 || progress.attemptsForCurrent > 0
 }
+
+/**
+ * True if the player has any recorded progress at all — either a game in
+ * progress, or a completed round whose score would be wiped by a reset.
+ * Used to decide when settings changes should prompt for confirmation.
+ */
+export function hasPinProgress(
+  progress: PinProgress | null | undefined,
+): boolean {
+  if (!progress) return false
+  if (progress.attemptsForCurrent > 0) return true
+  return Object.keys(progress.stationStates).length > 0
+}

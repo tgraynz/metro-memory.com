@@ -17,6 +17,12 @@ const MODE_OPTIONS: { value: GameMode; label: string; description: string }[] = 
     label: 'Pin mode',
     description: 'You are shown a station name and click on the map to find it.',
   },
+  {
+    value: 'pinHard',
+    label: 'Pin mode (hard)',
+    description:
+      'Same as pin mode, but played stations leave no trace — no labels or coloured dots persist.',
+  },
 ]
 
 function setsEqual(a: Set<string>, b: Set<string>): boolean {
@@ -52,6 +58,7 @@ export default function SettingsModal({
   setEnabledLines,
   onCommitReset,
   onCommitKeep,
+  onLinesChangedSilent,
   hasActiveGame,
 }: {
   open: boolean
@@ -68,6 +75,11 @@ export default function SettingsModal({
    *  purge `found` so it only contains ids on lines present in
    *  `newEnabledLines`. */
   onCommitKeep: (newEnabledLines: Set<string>) => void
+  /** Fired after a line change is silently applied (no active game to warn
+   *  about). Caller should reseed any pin game so its order matches the new
+   *  pool — otherwise the current prompt could point at a filtered-out
+   *  station. */
+  onLinesChangedSilent: () => void
   /** When true, Done prompts for confirmation before applying mode or line
    *  changes (used when an in-progress game would be disturbed). When false,
    *  changes apply silently. */
@@ -119,6 +131,7 @@ export default function SettingsModal({
     // poolIds (and any other line-dep memos) reflect the new selection.
     if (action === 'reset') onCommitReset()
     else if (action === 'keep') onCommitKeep(draftLines)
+    else if (linesChanged) onLinesChangedSilent()
   }
 
   const handleDone = () => {

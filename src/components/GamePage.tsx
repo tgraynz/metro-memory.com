@@ -12,10 +12,7 @@ import useHideLabels from '@/hooks/useHideLabels'
 import useNormalizeString from '@/hooks/useNormalizeString'
 import useTranslation from '@/hooks/useTranslation'
 import { useConfig } from '@/lib/configContext'
-import {
-  computePinScoreProportion,
-  isPinGameInProgress,
-} from '@/lib/pinScoring'
+import { computePinScoreProportion, hasPinProgress } from '@/lib/pinScoring'
 import {
   DataFeature,
   DataFeatureCollection,
@@ -826,6 +823,10 @@ export default function GamePage({
   // them, the disabled-line feature (often the topmost per its layout
   // sort-key, which can't read feature-state) would cover the found dot
   // below.
+  //
+  // In pin hard mode, the disabled-line treatment is turned off entirely —
+  // both lines and stations render at full visibility so the current pool
+  // isn't visually inferable.
   useEffect(() => {
     if (!map) return
     const enabledArr = [...enabledLines]
@@ -842,13 +843,20 @@ export default function GamePage({
       true,
       false,
     ]
+    const hideDisabled = mode !== 'pinHard'
     if (map.getLayer('lines')) {
-      map.setPaintProperty('lines', 'line-opacity', opacityExpr)
+      map.setPaintProperty(
+        'lines',
+        'line-opacity',
+        hideDisabled ? opacityExpr : 1,
+      )
     }
     for (const id of ['stations', 'stations-circles', 'stations-labels']) {
-      if (map.getLayer(id)) map.setFilter(id, enabledFilter)
+      if (map.getLayer(id)) {
+        map.setFilter(id, hideDisabled ? enabledFilter : null)
+      }
     }
-  }, [map, enabledLines])
+  }, [map, enabledLines, mode])
 
   const zoomToFeature = useCallback(
     (id: number) => {
@@ -899,6 +907,11 @@ export default function GamePage({
               />
             ) : (
               <PinMode
+                // Force remount across pin-mode variants so PinMode's
+                // initialisedRef and the mode-keyed localStorage hook both
+                // reset cleanly — otherwise switching between soft and hard
+                // with fresh progress leaves the component stuck on Loading.
+                key={mode}
                 mode={mode}
                 stationPool={pinStationPool}
                 idMap={idMap}
@@ -970,6 +983,12 @@ export default function GamePage({
           }
           resetAll()
         }}
+        onLinesChangedSilent={() => {
+          // No active game so we don't need the confirm popup, but the pin
+          // order (if PinMode is mounted) was baked from the old pool —
+          // reseed so the prompt matches the new selection.
+          pinResetRef.current?.()
+        }}
         onCommitKeep={(newEnabledLines) => {
           // Type-mode line change: keep any previously-found station that
           // still has at least one feature on a currently-enabled line.
@@ -996,9 +1015,7 @@ export default function GamePage({
           setFound([...kept])
         }}
         hasActiveGame={
-          mode === 'type'
-            ? found.length > 0
-            : isPinGameInProgress(pinProgress)
+          mode === 'type' ? found.length > 0 : hasPinProgress(pinProgress)
         }
       />
     </div>

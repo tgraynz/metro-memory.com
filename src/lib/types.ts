@@ -43,6 +43,11 @@ export type GameMode = 'type' | 'pin' | 'pinHard'
 export type PinStationState = 'first' | 'second' | 'third' | 'missed'
 
 export interface PinProgress {
+  /** Mode this progress was seeded for. Used to detect stale progress after
+   *  a mode switch, when the localStorage-backed value briefly lags the new
+   *  key by one render. Optional for backward compatibility with older
+   *  saved data — a missing tag triggers a re-seed. */
+  mode?: GameMode
   order: number[]
   currentIdx: number
   attemptsForCurrent: number

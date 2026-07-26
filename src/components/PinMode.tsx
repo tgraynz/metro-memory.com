@@ -64,35 +64,64 @@ export default function PinMode({
   // stale state on features it was called against.
   const appliedIdsRef = useRef<Set<number>>(new Set())
 
+  // Pending hard-mode clear timeouts. Cancelled on mode change / unmount so
+  // a delayed clear from an aborted mode doesn't wipe the current mode's
+  // visuals.
+  const hardFlashTimeoutsRef = useRef<Set<ReturnType<typeof setTimeout>>>(
+    new Set(),
+  )
+
+  useEffect(() => {
+    return () => {
+      for (const t of hardFlashTimeoutsRef.current) clearTimeout(t)
+      hardFlashTimeoutsRef.current.clear()
+    }
+  }, [mode])
+
   // Seed a new game from the current pool.
   const seedGame = useCallback(() => {
     const order = shuffle(poolIds)
     const next: PinProgress = {
+      mode,
       order,
       currentIdx: 0,
       attemptsForCurrent: 0,
       stationStates: {},
     }
     setProgress(next)
-  }, [poolIds, setProgress])
+  }, [poolIds, setProgress, mode])
 
-  // Initialise: adopt saved progress if it matches the current pool, otherwise seed fresh.
+  // Initialise: adopt saved progress if it matches the current pool AND was
+  // seeded for the current mode; otherwise seed fresh. The mode check guards
+  // against a race after a mode switch: GamePage's mode-keyed
+  // useLocalStorageValue lags the new key by one render, so we can briefly
+  // receive the previous mode's progress as a prop even though `key={mode}`
+  // has re-mounted us.
   useEffect(() => {
     if (initialisedRef.current) return
     // Wait for the async localStorage read to resolve.
     if (progress === undefined) return
 
-    initialisedRef.current = true
-
     if (progress) {
+      // Progress carries no mode tag on very old saved data — treat as
+      // stale and re-seed.
+      if (progress.mode !== mode) {
+        seedGame()
+        return
+      }
       const sameOrder = [...progress.order].sort((a, b) => a - b)
       const matchesPool =
         sameOrder.length === poolIds.length &&
         sameOrder.every((v, i) => v === poolIds[i])
-      if (matchesPool) return // saved progress already valid — nothing to do
+      if (matchesPool) {
+        initialisedRef.current = true
+        return // saved progress already valid — nothing to do
+      }
     }
+
+    initialisedRef.current = true
     seedGame()
-  }, [progress, poolIds, seedGame])
+  }, [progress, poolIds, seedGame, mode])
 
   const currentStationId = progress
     ? progress.order[progress.currentIdx] ?? null
@@ -128,6 +157,30 @@ export default function PinMode({
           },
         }
         setProgress(next)
+
+        // Hard mode: no persistent visual is applied by the effect below, so
+        // briefly flash the graded colour so the player still gets feedback,
+        // then clear it. Timeout is tracked so a mode change cancels it.
+        if (mode === 'pinHard' && map) {
+          const ids =
+            (currentName && nameToIds.get(currentName)) || [currentStationId]
+          for (const fid of ids) {
+            map.setFeatureState(
+              { source: 'features', id: fid },
+              { pinState: state },
+            )
+          }
+          const t = setTimeout(() => {
+            hardFlashTimeoutsRef.current.delete(t)
+            for (const fid of ids) {
+              map.removeFeatureState(
+                { source: 'features', id: fid },
+                'pinState',
+              )
+            }
+          }, 600)
+          hardFlashTimeoutsRef.current.add(t)
+        }
       } else {
         // Wrong guess — flash the clicked station and bump the attempt counter.
         onFlashWrong(clickedId)
@@ -156,6 +209,8 @@ export default function PinMode({
       onFlashWrong,
       onRevealAnswer,
       setProgress,
+      mode,
+      map,
     ],
   )
 
@@ -175,6 +230,11 @@ export default function PinMode({
       map.removeFeatureState({ source: 'features', id: fid }, 'showLabel')
     }
     appliedIdsRef.current.clear()
+
+    // Hard mode leaves no persistent visual — played stations look identical
+    // to unplayed. Correct-guess feedback is a brief flash triggered inline
+    // in handleClickStation instead.
+    if (mode === 'pinHard') return
 
     for (const [idStr, state] of Object.entries(progress.stationStates)) {
       const id = Number(idStr)
