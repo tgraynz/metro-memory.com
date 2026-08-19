@@ -12,6 +12,12 @@ export type DataFeatureCollection = FeatureCollection<
     long_name?: string
     short_name?: string
     line?: string
+    /** Fare zones this station belongs to. Boundary stations have multiple
+     *  entries. Missing / undefined = the city has no zone data at all;
+     *  such cities skip the zone selector entirely. Stations with no
+     *  official zone in a zoned city should be stamped with a sentinel
+     *  bucket zone (e.g. 0) so they can still be selected as a group. */
+    zones?: number[]
   }
 >
 
@@ -38,7 +44,7 @@ export interface Line {
   order: number
 }
 
-export type GameMode = 'type' | 'pin' | 'pinHard'
+export type GameMode = 'type' | 'typeHard' | 'typeHarder' | 'pin' | 'pinHard'
 
 export type PinStationState = 'first' | 'second' | 'third' | 'missed'
 

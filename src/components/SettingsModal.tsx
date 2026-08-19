@@ -13,6 +13,18 @@ const MODE_OPTIONS: { value: GameMode; label: string; description: string }[] = 
     description: 'The original game — type station names to reveal them.',
   },
   {
+    value: 'typeHard',
+    label: 'Type (hard)',
+    description:
+      'Type the highlighted station name.',
+  },
+  {
+    value: 'typeHarder',
+    label: 'Type (harder)',
+    description:
+      'Same as Type (hard), but played stations leave no trace.',
+  },
+  {
     value: 'pin',
     label: 'Pin',
     description: 'Click on the stations.',
@@ -21,32 +33,49 @@ const MODE_OPTIONS: { value: GameMode; label: string; description: string }[] = 
     value: 'pinHard',
     label: 'Pin (hard)',
     description:
-      'Played stations leave no trace — labels and coloured dots disappear.',
+      'Played stations leave no trace.',
   },
 ]
 
-function setsEqual(a: Set<string>, b: Set<string>): boolean {
+function setsEqual<T>(a: Set<T>, b: Set<T>): boolean {
   if (a.size !== b.size) return false
   for (const v of a) if (!b.has(v)) return false
   return true
 }
 
-type ConfirmKind = 'mode' | 'lines-pin' | 'lines-type'
-
-const CONFIRM_MESSAGES: Record<ConfirmKind, string> = {
-  mode: 'You are changing game mode - you are going to lose all of your progress. Are you sure?',
-  'lines-pin':
-    'You are changing the selected lines - you are going to lose all of your progress. Are you sure?',
-  'lines-type':
-    'You are changing the selected lines - you may lose some of your progress. Are you sure?',
+// Top-level game-mode taxonomy: Type family (type / typeHard / typeHarder)
+// vs Pin family (pin / pinHard). Derived from the mode string prefix so
+// adding a new variant only requires appending to MODE_OPTIONS.
+type ModeFamily = 'type' | 'pin'
+function getFamily(m: GameMode): ModeFamily {
+  return m.startsWith('pin') ? 'pin' : 'type'
+}
+// Base variant of each family — what draftMode falls back to when the
+// player switches family via the segmented control.
+const FAMILY_BASE: Record<ModeFamily, GameMode> = {
+  type: 'type',
+  pin: 'pin',
 }
 
-// Type-mode line changes preserve valid found stations rather than doing a
+type ConfirmKind = 'mode' | 'pool-pin' | 'pool-type'
+
+// Line and zone selection are grouped under a single "pool" concept in the
+// confirmation copy — from the player's perspective both narrow the same
+// set of stations.
+const CONFIRM_MESSAGES: Record<ConfirmKind, string> = {
+  mode: 'You are changing game mode - you are going to lose all of your progress. Are you sure?',
+  'pool-pin':
+    'You are changing your line or zone selection - you are going to lose all of your progress. Are you sure?',
+  'pool-type':
+    'You are changing your line or zone selection - you may lose some of your progress. Are you sure?',
+}
+
+// Type-mode pool changes preserve valid found stations rather than doing a
 // full wipe; every other kind fully resets both modes.
 const CONFIRM_ACTION: Record<ConfirmKind, 'reset' | 'keep'> = {
   mode: 'reset',
-  'lines-pin': 'reset',
-  'lines-type': 'keep',
+  'pool-pin': 'reset',
+  'pool-type': 'keep',
 }
 
 export default function SettingsModal({
@@ -56,9 +85,12 @@ export default function SettingsModal({
   setMode,
   enabledLines,
   setEnabledLines,
+  enabledZones,
+  setEnabledZones,
+  allZones,
   onCommitReset,
   onCommitKeep,
-  onLinesChangedSilent,
+  onPoolChangedSilent,
   hasActiveGame,
 }: {
   open: boolean
@@ -67,20 +99,29 @@ export default function SettingsModal({
   setMode: (mode: GameMode) => void
   enabledLines: Set<string>
   setEnabledLines: (lines: Set<string>) => void
-  /** Fired after mode changes (or pin-mode line changes) have been flushed.
+  /** All zones present in the city's data, sorted ascending. Empty for
+   *  cities without zone metadata — the modal then skips the Zones section
+   *  entirely. */
+  allZones: number[]
+  enabledZones: Set<number>
+  setEnabledZones: (zones: Set<number>) => void
+  /** Fired after mode changes (or pin-mode pool changes) have been flushed.
    *  Caller should imperatively clear map visuals and reseed/reset both
    *  modes. */
   onCommitReset: () => void
-  /** Fired after a type-mode line change has been flushed. Caller should
-   *  purge `found` so it only contains ids on lines present in
-   *  `newEnabledLines`. */
-  onCommitKeep: (newEnabledLines: Set<string>) => void
-  /** Fired after a line change is silently applied (no active game to warn
-   *  about). Caller should reseed any pin game so its order matches the new
-   *  pool — otherwise the current prompt could point at a filtered-out
-   *  station. */
-  onLinesChangedSilent: () => void
-  /** When true, Done prompts for confirmation before applying mode or line
+  /** Fired after a type-mode pool change (line and/or zone) has been
+   *  flushed. Caller should purge `found` so it only contains ids that
+   *  survive both `newEnabledLines` and `newEnabledZones`. */
+  onCommitKeep: (
+    newEnabledLines: Set<string>,
+    newEnabledZones: Set<number>,
+  ) => void
+  /** Fired after a pool change (line and/or zone) is silently applied (no
+   *  active game to warn about). Caller should reseed any pin game so its
+   *  order matches the new pool — otherwise the current prompt could point
+   *  at a filtered-out station. */
+  onPoolChangedSilent: () => void
+  /** When true, Done prompts for confirmation before applying mode or pool
    *  changes (used when an in-progress game would be disturbed). When false,
    *  changes apply silently. */
   hasActiveGame: boolean
@@ -93,18 +134,43 @@ export default function SettingsModal({
   const [draftLines, setDraftLines] = useState<Set<string>>(
     () => new Set(enabledLines),
   )
+  const [draftZones, setDraftZones] = useState<Set<number>>(
+    () => new Set(enabledZones),
+  )
   const [draftMode, setDraftMode] = useState<GameMode>(mode)
+
+  // Collapse state for the Lines / Zones filter sections. Default closed
+  // to keep the modal compact — the header shows a count summary so the
+  // player can see the current selection without expanding.
+  const [linesOpen, setLinesOpen] = useState<boolean>(false)
+  const [zonesOpen, setZonesOpen] = useState<boolean>(false)
 
   // Resync drafts to the current committed values each time the modal opens.
   useEffect(() => {
     if (open) {
       setDraftLines(new Set(enabledLines))
+      setDraftZones(new Set(enabledZones))
       setDraftMode(mode)
+      setLinesOpen(false)
+      setZonesOpen(false)
     }
     // We deliberately only resync on open transitions; changes to props while
     // the modal is closed shouldn't wipe an unrelated in-flight draft.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open])
+
+  // Family selection derives from draftMode. Clicking a family segment
+  // resets draftMode to that family's base variant — losing sub-variant
+  // memory across family switches, which keeps state minimal and avoids
+  // surprising "your last typeHarder is still selected" moments.
+  const draftFamily = getFamily(draftMode)
+  const switchFamily = (family: ModeFamily) => {
+    if (draftFamily === family) return
+    setDraftMode(FAMILY_BASE[family])
+  }
+  const familyOptions = MODE_OPTIONS.filter(
+    (o) => getFamily(o.value) === draftFamily,
+  )
 
   const toggleLine = (key: string) => {
     setDraftLines((prev) => {
@@ -115,53 +181,76 @@ export default function SettingsModal({
     })
   }
 
+  const toggleZone = (zone: number) => {
+    setDraftZones((prev) => {
+      const next = new Set(prev)
+      if (next.has(zone)) next.delete(zone)
+      else next.add(zone)
+      return next
+    })
+  }
+
   const allLineKeys = Object.keys(LINES).sort(
     (a, b) => (LINES[a].order ?? 0) - (LINES[b].order ?? 0),
   )
-  const allEnabled = allLineKeys.every((k) => draftLines.has(k))
+  const allLinesEnabled = allLineKeys.every((k) => draftLines.has(k))
+  const allZonesEnabled = allZones.every((z) => draftZones.has(z))
+  const hasZones = allZones.length > 0
 
   const applyChanges = (
+    poolChanged: boolean,
     linesChanged: boolean,
+    zonesChanged: boolean,
     modeChanged: boolean,
     action: 'reset' | 'keep' | null,
   ) => {
     if (modeChanged) flushSync(() => setMode(draftMode))
     if (linesChanged) flushSync(() => setEnabledLines(draftLines))
+    if (zonesChanged) flushSync(() => setEnabledZones(draftZones))
     // Fire callback AFTER all state has been flushed so PinMode's derived
-    // poolIds (and any other line-dep memos) reflect the new selection.
+    // poolIds (and any other pool-dep memos) reflect the new selection.
     if (action === 'reset') onCommitReset()
-    else if (action === 'keep') onCommitKeep(draftLines)
-    else if (linesChanged) onLinesChangedSilent()
+    else if (action === 'keep') onCommitKeep(draftLines, draftZones)
+    else if (poolChanged) onPoolChangedSilent()
   }
 
   const handleDone = () => {
     const linesChanged = !setsEqual(draftLines, enabledLines)
+    const zonesChanged = !setsEqual(draftZones, enabledZones)
     const modeChanged = draftMode !== mode
+    const poolChanged = linesChanged || zonesChanged
 
-    if (!linesChanged && !modeChanged) {
+    if (!poolChanged && !modeChanged) {
       setOpen(false)
       return
     }
 
     if (!hasActiveGame) {
       // Nothing at stake — commit silently.
-      applyChanges(linesChanged, modeChanged, null)
+      applyChanges(poolChanged, linesChanged, zonesChanged, modeChanged, null)
       setOpen(false)
       return
     }
 
     // Determine which confirmation copy to show. Mode change trumps
-    // simultaneous line changes.
+    // simultaneous pool changes.
     let kind: ConfirmKind
     if (modeChanged) kind = 'mode'
-    else if (mode !== 'type') kind = 'lines-pin'
-    else kind = 'lines-type'
+    else if (mode !== 'type') kind = 'pool-pin'
+    else kind = 'pool-type'
 
     if (confirm(CONFIRM_MESSAGES[kind])) {
-      applyChanges(linesChanged, modeChanged, CONFIRM_ACTION[kind])
+      applyChanges(
+        poolChanged,
+        linesChanged,
+        zonesChanged,
+        modeChanged,
+        CONFIRM_ACTION[kind],
+      )
       setOpen(false)
     } else {
       setDraftLines(new Set(enabledLines))
+      setDraftZones(new Set(enabledZones))
       setDraftMode(mode)
     }
   }
@@ -204,8 +293,33 @@ export default function SettingsModal({
                   <h4 className="text-xs font-bold uppercase tracking-wider text-gray-500">
                     Game mode
                   </h4>
+                  <div
+                    role="tablist"
+                    aria-label="Game mode family"
+                    className="mt-2 flex gap-1 rounded-md border border-gray-200 p-1"
+                  >
+                    {(['type', 'pin'] as const).map((family) => {
+                      const active = draftFamily === family
+                      return (
+                        <button
+                          key={family}
+                          type="button"
+                          role="tab"
+                          aria-selected={active}
+                          onClick={() => switchFamily(family)}
+                          className={`flex-1 rounded px-3 py-1.5 text-sm font-semibold transition-colors ${
+                            active
+                              ? 'bg-zinc-700 text-white'
+                              : 'text-gray-700 hover:bg-gray-100'
+                          }`}
+                        >
+                          {family === 'type' ? 'Type' : 'Pin'}
+                        </button>
+                      )
+                    })}
+                  </div>
                   <div className="mt-2 flex flex-col gap-2">
-                    {MODE_OPTIONS.map((opt) => (
+                    {familyOptions.map((opt) => (
                       <label
                         key={opt.value}
                         className="flex cursor-pointer items-start gap-3 rounded-md border border-gray-200 p-3 hover:border-gray-400"
@@ -231,60 +345,159 @@ export default function SettingsModal({
                   </div>
                 </div>
 
-                <div className="mt-6">
-                  <div className="flex items-center justify-between">
-                    <h4 className="text-xs font-bold uppercase tracking-wider text-gray-500">
+                <div className="mt-6 rounded-md border border-gray-200">
+                  <button
+                    type="button"
+                    aria-expanded={linesOpen}
+                    onClick={() => setLinesOpen((v) => !v)}
+                    className="flex w-full items-center justify-between px-3 py-2 text-left hover:bg-gray-50"
+                  >
+                    <span className="text-xs font-bold uppercase tracking-wider text-gray-500">
                       Lines
-                    </h4>
+                    </span>
+                    <span className="flex items-center gap-2 text-xs text-gray-400">
+                      <span className="tabular-nums">
+                        {draftLines.size}/{allLineKeys.length}
+                      </span>
+                      <span aria-hidden className="text-sm text-gray-500">
+                        {linesOpen ? '−' : '+'}
+                      </span>
+                    </span>
+                  </button>
+                  {linesOpen && (
+                    <div className="border-t border-gray-200 p-3">
+                      <div className="flex items-center justify-between">
+                        <p className="text-xs text-gray-500">
+                          Which lines to include in the game.
+                        </p>
+                        <button
+                          type="button"
+                          className="text-xs font-medium text-zinc-600 hover:text-zinc-800"
+                          onClick={() =>
+                            setDraftLines(
+                              allLinesEnabled
+                                ? new Set()
+                                : new Set(allLineKeys),
+                            )
+                          }
+                        >
+                          {allLinesEnabled ? 'Deselect all' : 'Select all'}
+                        </button>
+                      </div>
+                      <div className="mt-2 flex flex-wrap gap-1.5">
+                        {allLineKeys.map((key) => {
+                          const line = LINES[key]
+                          const on = draftLines.has(key)
+                          return (
+                            <button
+                              key={key}
+                              type="button"
+                              aria-pressed={on}
+                              onClick={() => toggleLine(key)}
+                              // 1px border on both states so the box is
+                              // pixel-identical regardless of selection —
+                              // on the selected variant the border matches
+                              // the background colour so it reads as
+                              // borderless.
+                              className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-medium transition-colors ${
+                                on ? '' : 'bg-white text-gray-700 hover:bg-gray-50'
+                              }`}
+                              style={
+                                on
+                                  ? {
+                                      backgroundColor: line.color,
+                                      color: line.textColor,
+                                      border: `1px solid ${line.color}`,
+                                    }
+                                  : { border: `1px solid ${line.color}` }
+                              }
+                            >
+                              {line.name}
+                            </button>
+                          )
+                        })}
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                {hasZones && (
+                  <div className="mt-3 rounded-md border border-gray-200">
                     <button
                       type="button"
-                      className="text-xs font-medium text-zinc-600 hover:text-zinc-800"
-                      onClick={() =>
-                        setDraftLines(
-                          allEnabled ? new Set() : new Set(allLineKeys),
-                        )
-                      }
+                      aria-expanded={zonesOpen}
+                      onClick={() => setZonesOpen((v) => !v)}
+                      className="flex w-full items-center justify-between px-3 py-2 text-left hover:bg-gray-50"
                     >
-                      {allEnabled ? 'Deselect all' : 'Select all'}
+                      <span className="text-xs font-bold uppercase tracking-wider text-gray-500">
+                        Zones
+                      </span>
+                      <span className="flex items-center gap-2 text-xs text-gray-400">
+                        <span className="tabular-nums">
+                          {draftZones.size}/{allZones.length}
+                        </span>
+                        <span aria-hidden className="text-sm text-gray-500">
+                          {zonesOpen ? '−' : '+'}
+                        </span>
+                      </span>
                     </button>
+                    {zonesOpen && (
+                      <div className="border-t border-gray-200 p-3">
+                        <div className="flex items-center justify-between">
+                          <p className="text-xs text-gray-500">
+                            Which zones to include in the game.
+                          </p>
+                          <button
+                            type="button"
+                            className="text-xs font-medium text-zinc-600 hover:text-zinc-800"
+                            onClick={() =>
+                              setDraftZones(
+                                allZonesEnabled
+                                  ? new Set()
+                                  : new Set(allZones),
+                              )
+                            }
+                          >
+                            {allZonesEnabled ? 'Deselect all' : 'Select all'}
+                          </button>
+                        </div>
+                        <div className="mt-2 flex flex-wrap gap-1.5">
+                          {allZones.map((zone) => {
+                            const on = draftZones.has(zone)
+                            return (
+                              <button
+                                key={zone}
+                                type="button"
+                                aria-pressed={on}
+                                onClick={() => toggleZone(zone)}
+                                // Border present on both states (matching
+                                // bg colour on the selected variant) so
+                                // the pill size stays fixed on toggle.
+                                className={`inline-flex items-center rounded-full border px-3 py-1 text-xs font-medium transition-colors ${
+                                  on
+                                    ? 'border-zinc-700 bg-zinc-700 text-white'
+                                    : 'border-gray-300 bg-white text-gray-700 hover:bg-gray-50'
+                                }`}
+                              >
+                                {zone === 0 ? 'Unzoned' : `Zone ${zone}`}
+                              </button>
+                            )
+                          })}
+                        </div>
+                      </div>
+                    )}
                   </div>
-                  <p className="mt-1 text-xs text-gray-500">
-                    Which lines to include in the game.
-                  </p>
-                  <div className="mt-2 flex max-h-64 flex-col gap-1 overflow-y-auto">
-                    {allLineKeys.map((key) => {
-                      const line = LINES[key]
-                      const on = draftLines.has(key)
-                      return (
-                        <label
-                          key={key}
-                          className="flex cursor-pointer items-center gap-2 rounded px-2 py-1 hover:bg-gray-50"
-                        >
-                          <input
-                            type="checkbox"
-                            checked={on}
-                            onChange={() => toggleLine(key)}
-                            className="accent-zinc-600"
-                          />
-                          <span
-                            className="inline-block h-3 w-3 rounded-full"
-                            style={{ backgroundColor: line.color }}
-                          />
-                          <span className="text-sm text-gray-800">
-                            {line.name}
-                          </span>
-                        </label>
-                      )
-                    })}
-                  </div>
-                </div>
+                )}
 
                 <div className="mt-6">
                   <button
                     type="button"
                     className="inline-flex w-full justify-center rounded-md bg-zinc-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-zinc-500 disabled:cursor-not-allowed disabled:bg-zinc-300 disabled:hover:bg-zinc-300"
                     onClick={handleDone}
-                    disabled={draftLines.size === 0}
+                    disabled={
+                      draftLines.size === 0 ||
+                      (hasZones && draftZones.size === 0)
+                    }
                   >
                     Done
                   </button>

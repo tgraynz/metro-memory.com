@@ -8,6 +8,7 @@ import MenuComponent from '@/components/Menu'
 import PinMode, { pinClickHandlerRef, pinResetRef } from '@/components/PinMode'
 import SettingsModal from '@/components/SettingsModal'
 import StripeModal from '@/components/StripeModal'
+import TypeHardMode, { typeHardResetRef } from '@/components/TypeHardMode'
 import TypeResults from '@/components/TypeResults'
 import useHideLabels from '@/hooks/useHideLabels'
 import useNormalizeString from '@/hooks/useNormalizeString'
@@ -80,6 +81,40 @@ export default function GamePage({
     [setEnabledLinesArr],
   )
 
+  // Union of every zone appearing anywhere in the feature set. Sorted
+  // ascending, but the sentinel zone 0 ("Unzoned" — stations outside the
+  // numbered fare system) is pushed to the end so the checkbox list reads
+  // 1, 2, ..., 9, Unzoned instead of leading with the bucket.
+  // Cities with no zone data at all yield an empty list, which the
+  // settings modal uses to skip rendering the zone selector entirely.
+  const allZones = useMemo(() => {
+    const seen = new Set<number>()
+    for (const f of fc.features) {
+      const zs = f.properties.zones
+      if (!zs) continue
+      for (const z of zs) seen.add(z)
+    }
+    return Array.from(seen).sort((a, b) => {
+      if (a === 0) return 1
+      if (b === 0) return -1
+      return a - b
+    })
+  }, [fc.features])
+
+  const { value: enabledZonesArr, set: setEnabledZonesArr } =
+    useLocalStorageValue<number[] | null>(`${CITY_NAME}-enabled-zones`, {
+      defaultValue: null,
+      initializeWithValue: false,
+    })
+  const enabledZones = useMemo(
+    () => new Set(enabledZonesArr ?? allZones),
+    [enabledZonesArr, allZones],
+  )
+  const setEnabledZones = useCallback(
+    (s: Set<number>) => setEnabledZonesArr([...s]),
+    [setEnabledZonesArr],
+  )
+
   // Pin-mode progress lives here so the right-hand score panel can read it.
   // Keyed on mode so soft vs hard pin variants persist independently.
   const pinStorageKey = `${CITY_NAME}-pin-progress-${mode}`
@@ -133,15 +168,25 @@ export default function GamePage({
   }, [fc.features])
 
   // Features currently in play (all types — points, routes, etc.) after
-  // filtering by the enabled-line set. Used as the base for fuse, per-line
-  // counts, and the score denominator so line selection applies uniformly to
-  // both game modes.
+  // filtering by the enabled-line set AND the enabled-zone set. Used as
+  // the base for fuse, per-line counts, and the score denominator so line
+  // and zone selection apply uniformly to both game modes.
+  //
+  // Zone filter is "any-of": a station is included when at least one of
+  // its zones is enabled (boundary stations belong to multiple zones and
+  // should show for either). Features without any `zones` metadata come
+  // from cities that don't ship zone data at all — those pass the zone
+  // filter unconditionally so they behave as before.
   const enabledFeatures = useMemo(
     () =>
-      fc.features.filter(
-        (f) => f.properties.line && enabledLines.has(f.properties.line),
-      ),
-    [fc.features, enabledLines],
+      fc.features.filter((f) => {
+        if (!f.properties.line || !enabledLines.has(f.properties.line))
+          return false
+        const zs = f.properties.zones
+        if (!zs || zs.length === 0) return true
+        return zs.some((z) => enabledZones.has(z))
+      }),
+    [fc.features, enabledLines, enabledZones],
   )
 
   // In review mode we narrow the pool further to only stations whose name
@@ -157,6 +202,23 @@ export default function GamePage({
       (f) => f.properties.name && nameSet.has(f.properties.name),
     )
   }, [enabledFeatures, isReview, reviewPool])
+
+  // Full per-line station counts across the entire city dataset — no
+  // line-, zone-, or review-pool narrowing. Handed to FoundSummary alongside
+  // `stationsPerLine` so it can tell whether a "line complete" moment in
+  // the current pool is *also* a completion of the whole line. Confetti
+  // should only fire when both hold: the player must have every station on
+  // the line in their selection AND have found them all. Any pool narrowing
+  // (fewer lines, fewer zones, review round) suppresses the celebration.
+  const fullStationsPerLine = useMemo(() => {
+    const out: { [key: string]: number } = {}
+    for (const feature of fc.features) {
+      const line = feature.properties.line
+      if (!line) continue
+      out[line] = (out[line] || 0) + 1
+    }
+    return out
+  }, [fc.features])
 
   const stationsPerLine = useMemo(() => {
     const stationsPerLine: { [key: string]: number } = {}
@@ -218,15 +280,25 @@ export default function GamePage({
     if (typeof window !== 'undefined') {
       window.localStorage.removeItem(`${CITY_NAME}-pin-progress-pin`)
       window.localStorage.removeItem(`${CITY_NAME}-pin-progress-pinHard`)
+      // typeHard / typeHarder reuse the same key template with their
+      // own mode string.
+      window.localStorage.removeItem(`${CITY_NAME}-pin-progress-typeHard`)
+      window.localStorage.removeItem(`${CITY_NAME}-pin-progress-typeHarder`)
       window.localStorage.removeItem(`${CITY_NAME}-review-pool-type`)
+      window.localStorage.removeItem(`${CITY_NAME}-review-pool-typeHard`)
+      window.localStorage.removeItem(`${CITY_NAME}-review-pool-typeHarder`)
       window.localStorage.removeItem(`${CITY_NAME}-review-pool-pin`)
       window.localStorage.removeItem(`${CITY_NAME}-review-pool-pinHard`)
       window.localStorage.removeItem(`${CITY_NAME}-is-review-type`)
+      window.localStorage.removeItem(`${CITY_NAME}-is-review-typeHard`)
+      window.localStorage.removeItem(`${CITY_NAME}-is-review-typeHarder`)
       window.localStorage.removeItem(`${CITY_NAME}-is-review-pin`)
       window.localStorage.removeItem(`${CITY_NAME}-is-review-pinHard`)
     }
-    // If PinMode is currently mounted, ask it to reseed a fresh game.
+    // If PinMode or TypeHardMode is currently mounted, ask it to reseed a
+    // fresh game. Only one of the two refs is populated at a time.
     pinResetRef.current?.()
+    typeHardResetRef.current?.()
   }, [
     setFound,
     setIsNewPlayer,
@@ -397,13 +469,15 @@ export default function GamePage({
 
   const handlePlayAgain = useCallback(() => {
     // flushSync so activeFeatures/pinStationPool reflect the normal pool
-    // before we ask PinMode to reseed.
+    // before we ask the prompt-mode component to reseed. Only one of the
+    // two refs will be populated at a time (whichever mode is mounted).
     flushSync(() => {
       setIsReview(false)
       setTypeGaveUp(false)
       setFound([])
     })
     pinResetRef.current?.()
+    typeHardResetRef.current?.()
   }, [setIsReview, setTypeGaveUp, setFound])
 
   const handleReview = useCallback(() => {
@@ -416,6 +490,7 @@ export default function GamePage({
       setFound([])
     })
     pinResetRef.current?.()
+    typeHardResetRef.current?.()
   }, [missedThisRound, setReviewPool, setIsReview, setTypeGaveUp, setFound])
 
   // ---- Pin-mode-derived stats used by the right-hand score panel ----------
@@ -606,6 +681,17 @@ export default function GamePage({
         },
       })
 
+      // Separate source for TypeHardMode's "which station are you being
+      // asked about" highlight. Kept apart from `hovered` so the mouse-
+      // move handler can't clobber the prompt indicator (and vice versa).
+      mapboxMap.addSource('prompted', {
+        type: 'geojson',
+        data: {
+          type: 'FeatureCollection',
+          features: [],
+        },
+      })
+
       if (MAP_FROM_DATA && routes) {
         mapboxMap.addSource('lines', {
           type: 'geojson',
@@ -704,6 +790,23 @@ export default function GamePage({
           'circle-blur': 1,
         },
         source: 'hovered',
+        filter: ['==', '$type', 'Point'],
+      })
+
+      // Same yellow blur as hover, driven by TypeHardMode to mark the
+      // station the player is being asked to type.
+      mapboxMap.addLayer({
+        id: 'stations-prompted',
+        type: 'circle',
+        paint: {
+          'circle-radius': 16,
+          'circle-color': '#fde047',
+          'circle-blur-transition': {
+            duration: 100,
+          },
+          'circle-blur': 1,
+        },
+        source: 'prompted',
         filter: ['==', '$type', 'Point'],
       })
 
@@ -1035,27 +1138,44 @@ export default function GamePage({
   useEffect(() => {
     if (!map) return
     const enabledArr = [...enabledLines]
+    const enabledZonesArr = [...enabledZones]
     const opacityExpr: mapboxgl.Expression = [
       'case',
       ['match', ['get', 'line'], enabledArr, true, false],
       1,
       0.1,
     ]
-    const enabledFilter: mapboxgl.Expression = [
+    const enabledLineFilter: mapboxgl.Expression = [
       'match',
       ['get', 'line'],
       enabledArr,
       true,
       false,
     ]
+    // Zone filter: features without a `zones` property pass through (cities
+    // without zone data — no filter to apply). Features with zones must
+    // have at least one entry in the enabled-zone set.
+    const enabledZoneFilter: mapboxgl.Expression = [
+      'any',
+      ['!', ['has', 'zones']],
+      ...enabledZonesArr.map(
+        (z) =>
+          ['in', z, ['get', 'zones']] as unknown as mapboxgl.Expression,
+      ),
+    ]
+    const poolFilter: mapboxgl.Expression = [
+      'all',
+      enabledLineFilter,
+      enabledZoneFilter,
+    ]
     const stationFilter: mapboxgl.Expression =
       isReview && reviewPool && reviewPool.length > 0
         ? [
             'all',
-            enabledFilter,
+            poolFilter,
             ['match', ['get', 'name'], reviewPool, true, false],
           ]
-        : enabledFilter
+        : poolFilter
     const hideDisabled = mode !== 'pinHard'
     if (map.getLayer('lines')) {
       map.setPaintProperty(
@@ -1069,7 +1189,7 @@ export default function GamePage({
         map.setFilter(id, hideDisabled ? stationFilter : null)
       }
     }
-  }, [map, enabledLines, mode, isReview, reviewPool])
+  }, [map, enabledLines, enabledZones, mode, isReview, reviewPool])
 
   const zoomToFeature = useCallback(
     (id: number) => {
@@ -1106,7 +1226,7 @@ export default function GamePage({
             stationsPerLine={panelStationsPerLine}
             defaultMinimized
             minimizable
-            suppressLineCompleteConfetti={isReview}
+            fullStationsPerLine={fullStationsPerLine}
           />
           <div className="flex gap-2 lg:gap-4">
             {mode === 'type' ? (
@@ -1137,6 +1257,24 @@ export default function GamePage({
                   </button>
                 </>
               )
+            ) : mode === 'typeHard' || mode === 'typeHarder' ? (
+              <TypeHardMode
+                // Force remount across type-hard variants so the
+                // initialisedRef and mode-keyed LS hook both reset cleanly.
+                key={mode}
+                mode={mode}
+                stationPool={pinStationPool}
+                idMap={idMap}
+                nameToIds={nameToIds}
+                fuse={fuse}
+                map={map}
+                progress={pinProgress}
+                setProgress={setPinProgress}
+                onRevealAnswer={revealAnswer}
+                onPlayAgain={handlePlayAgain}
+                onReview={handleReview}
+                hasMissed={missedThisRound.length > 0}
+              />
             ) : (
               <PinMode
                 // Force remount across pin-mode variants so PinMode's
@@ -1174,7 +1312,7 @@ export default function GamePage({
           stationsPerLine={panelStationsPerLine}
           minimizable
           defaultMinimized
-          suppressLineCompleteConfetti={isReview}
+          fullStationsPerLine={fullStationsPerLine}
         />
         {callout}
         <hr className="my-4 w-full border-b border-zinc-100" />
@@ -1206,6 +1344,9 @@ export default function GamePage({
         setMode={setModeValue}
         enabledLines={enabledLines}
         setEnabledLines={setEnabledLines}
+        enabledZones={enabledZones}
+        setEnabledZones={setEnabledZones}
+        allZones={allZones}
         onCommitReset={() => {
           // Full state wipe. Imperatively clear any `found` visuals we've
           // applied first as insurance in case the effect-driven clear from
@@ -1219,25 +1360,28 @@ export default function GamePage({
           }
           resetAll()
         }}
-        onLinesChangedSilent={() => {
-          // No active game so we don't need the confirm popup, but the pin
-          // order (if PinMode is mounted) was baked from the old pool —
-          // reseed so the prompt matches the new selection. Also exit review
-          // if we were in one: the snapshotted review pool belonged to the
-          // previous line configuration and may no longer be valid.
+        onPoolChangedSilent={() => {
+          // No active game so we don't need the confirm popup, but the
+          // shuffled order (if a prompt-mode component is mounted) was
+          // baked from the old pool — reseed so the prompt matches the
+          // new selection. Also exit review if we were in one: the
+          // snapshotted review pool belonged to the previous pool
+          // configuration and may no longer be valid.
           if (isReview) flushSync(() => setIsReview(false))
           pinResetRef.current?.()
+          typeHardResetRef.current?.()
         }}
-        onCommitKeep={(newEnabledLines) => {
-          // Type-mode line change: keep any previously-found station that
-          // still has at least one feature on a currently-enabled line.
-          // We collect names from ALL previously-found ids first (not just
-          // the ones whose specific feature id survives the filter), so a
-          // station whose only found feature was on a removed line still
-          // gets a chance to be preserved via a sibling on a newly-enabled
-          // line. Sibling features on the same station name are also
-          // back-filled from the enabled set, keeping Input's already-found
-          // detection in sync across multi-line stations.
+        onCommitKeep={(newEnabledLines, newEnabledZones) => {
+          // Type-mode pool change: keep any previously-found station that
+          // still has at least one feature passing BOTH the new line filter
+          // AND the new zone filter. We collect names from ALL
+          // previously-found ids first (not just the ones whose specific
+          // feature id survives the filter), so a station whose only found
+          // feature was on a removed line still gets a chance to be
+          // preserved via a sibling on a newly-enabled line. Sibling
+          // features on the same station name are also back-filled from the
+          // enabled set, keeping Input's already-found detection in sync
+          // across multi-line stations.
           const foundNames = new Set<string>()
           for (const id of localFound || []) {
             const name = idMap.get(id)?.properties.name
@@ -1247,18 +1391,29 @@ export default function GamePage({
           for (const name of foundNames) {
             const siblingIds = nameToIds.get(name) || []
             for (const id of siblingIds) {
-              const line = idMap.get(id)?.properties.line
-              if (line && newEnabledLines.has(line)) kept.add(id)
+              const feat = idMap.get(id)
+              if (!feat) continue
+              const line = feat.properties.line
+              if (!line || !newEnabledLines.has(line)) continue
+              const zs = feat.properties.zones
+              if (zs && zs.length > 0 && !zs.some((z) => newEnabledZones.has(z)))
+                continue
+              kept.add(id)
             }
           }
           // Also exit review if we were in one — the review pool was
-          // snapshotted against the previous line configuration.
+          // snapshotted against the previous pool configuration.
           if (isReview) setIsReview(false)
           setTypeGaveUp(false)
           setFound([...kept])
         }}
         hasActiveGame={
-          mode === 'type' ? found.length > 0 : hasPinProgress(pinProgress)
+          // Being in review counts as an active game regardless of
+          // progress — the review round itself is state the player chose to
+          // enter, and applying pool changes silently would drop them out
+          // of review without warning.
+          isReview ||
+          (mode === 'type' ? found.length > 0 : hasPinProgress(pinProgress))
         }
       />
     </div>

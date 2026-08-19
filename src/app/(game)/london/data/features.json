@@ -14,7 +14,11 @@
         "id": 711,
         "name": "Elephant & Castle",
         "line": "Bakerloo",
-        "order": 0
+        "order": 0,
+        "zones": [
+          1,
+          2
+        ]
       },
       "id": 711
     },
@@ -31,7 +35,10 @@
         "id": 393,
         "name": "Hainault",
         "line": "Central",
-        "order": 0
+        "order": 0,
+        "zones": [
+          4
+        ]
       },
       "id": 393
     },
@@ -48,7 +55,10 @@
         "id": 257,
         "name": "Epping",
         "line": "Central",
-        "order": 0
+        "order": 0,
+        "zones": [
+          6
+        ]
       },
       "id": 257
     },
@@ -65,7 +75,10 @@
         "id": 633,
         "name": "Hammersmith",
         "line": "Circle",
-        "order": 0
+        "order": 0,
+        "zones": [
+          2
+        ]
       },
       "id": 633
     },
@@ -82,7 +95,10 @@
         "id": 111,
         "name": "Bank",
         "line": "DLR",
-        "order": 0
+        "order": 0,
+        "zones": [
+          1
+        ]
       },
       "id": 111
     },
@@ -99,7 +115,11 @@
         "id": 311,
         "name": "Stratford International",
         "line": "DLR",
-        "order": 0
+        "order": 0,
+        "zones": [
+          2,
+          3
+        ]
       },
       "id": 311
     },
@@ -116,7 +136,10 @@
         "id": 522,
         "name": "Tower Gateway",
         "line": "DLR",
-        "order": 0
+        "order": 0,
+        "zones": [
+          1
+        ]
       },
       "id": 522
     },
@@ -133,7 +156,10 @@
         "id": 580,
         "name": "Edgware Road",
         "line": "District",
-        "order": 0
+        "order": 0,
+        "zones": [
+          1
+        ]
       },
       "id": 580
     },
@@ -150,7 +176,10 @@
         "id": 301,
         "name": "Upminster",
         "line": "District",
-        "order": 0
+        "order": 0,
+        "zones": [
+          6
+        ]
       },
       "id": 301
     },
@@ -167,7 +196,10 @@
         "id": 797,
         "name": "Abbey Wood",
         "line": "ElizabethLine",
-        "order": 0
+        "order": 0,
+        "zones": [
+          4
+        ]
       },
       "id": 797
     },
@@ -184,7 +216,10 @@
         "id": 208,
         "name": "Shenfield",
         "line": "ElizabethLine",
-        "order": 0
+        "order": 0,
+        "zones": [
+          0
+        ]
       },
       "id": 208
     },
@@ -201,7 +236,10 @@
         "id": 466,
         "name": "Barking",
         "line": "HammersmithAndCity",
-        "order": 0
+        "order": 0,
+        "zones": [
+          4
+        ]
       },
       "id": 466
     },
@@ -218,7 +256,11 @@
         "id": 232,
         "name": "Stratford",
         "line": "Jubilee",
-        "order": 0
+        "order": 0,
+        "zones": [
+          2,
+          3
+        ]
       },
       "id": 232
     },
@@ -235,7 +277,10 @@
         "id": 146,
         "name": "Chesham",
         "line": "Metropolitan",
-        "order": 0
+        "order": 0,
+        "zones": [
+          9
+        ]
       },
       "id": 146
     },
@@ -252,7 +297,10 @@
         "id": 647,
         "name": "Uxbridge",
         "line": "Metropolitan",
-        "order": 0
+        "order": 0,
+        "zones": [
+          6
+        ]
       },
       "id": 647
     },
@@ -269,7 +317,10 @@
         "id": 430,
         "name": "Watford",
         "line": "Metropolitan",
-        "order": 0
+        "order": 0,
+        "zones": [
+          7
+        ]
       },
       "id": 430
     },
@@ -286,7 +337,10 @@
         "id": 462,
         "name": "Amersham",
         "line": "Metropolitan",
-        "order": 0
+        "order": 0,
+        "zones": [
+          9
+        ]
       },
       "id": 462
     },
@@ -303,7 +357,10 @@
         "id": 763,
         "name": "High Barnet",
         "line": "Northern",
-        "order": 0
+        "order": 0,
+        "zones": [
+          5
+        ]
       },
       "id": 763
     },
@@ -320,7 +377,10 @@
         "id": 155,
         "name": "Edgware",
         "line": "Northern",
-        "order": 0
+        "order": 0,
+        "zones": [
+          5
+        ]
       },
       "id": 155
     },
@@ -337,7 +397,10 @@
         "id": 157,
         "name": "Mill Hill East",
         "line": "Northern",
-        "order": 0
+        "order": 0,
+        "zones": [
+          4
+        ]
       },
       "id": 157
     },
@@ -354,7 +417,10 @@
         "id": 448,
         "name": "Battersea Power Station",
         "line": "Northern",
-        "order": 0
+        "order": 0,
+        "zones": [
+          1
+        ]
       },
       "id": 448
     },
@@ -371,7 +437,10 @@
         "id": 0,
         "name": "Romford",
         "line": "Liberty",
-        "order": 0
+        "order": 0,
+        "zones": [
+          6
+        ]
       },
       "id": 0
     },
@@ -388,7 +457,10 @@
         "id": 5,
         "name": "Euston",
         "line": "Lioness",
-        "order": 0
+        "order": 0,
+        "zones": [
+          1
+        ]
       },
       "id": 5
     },
@@ -405,7 +477,11 @@
         "id": 66,
         "name": "Stratford",
         "line": "Mildmay",
-        "order": 0
+        "order": 0,
+        "zones": [
+          2,
+          3
+        ]
       },
       "id": 66
     },
@@ -422,7 +498,10 @@
         "id": 227,
         "name": "Gospel Oak",
         "line": "Suffragette",
-        "order": 0
+        "order": 0,
+        "zones": [
+          2
+        ]
       },
       "id": 227
     },
@@ -439,7 +518,10 @@
         "id": 275,
         "name": "Liverpool Street",
         "line": "Weaver",
-        "order": 0
+        "order": 0,
+        "zones": [
+          1
+        ]
       },
       "id": 275
     },
@@ -456,7 +538,10 @@
         "id": 434,
         "name": "Dalston Junction",
         "line": "Windrush",
-        "order": 0
+        "order": 0,
+        "zones": [
+          2
+        ]
       },
       "id": 434
     },
@@ -473,7 +558,10 @@
         "id": 485,
         "name": "Highbury & Islington",
         "line": "Windrush",
-        "order": 0
+        "order": 0,
+        "zones": [
+          2
+        ]
       },
       "id": 485
     },
@@ -490,7 +578,10 @@
         "id": 560,
         "name": "Cockfosters",
         "line": "Piccadilly",
-        "order": 0
+        "order": 0,
+        "zones": [
+          5
+        ]
       },
       "id": 560
     },
@@ -507,7 +598,10 @@
         "id": 629,
         "name": "Walthamstow Central",
         "line": "Victoria",
-        "order": 0
+        "order": 0,
+        "zones": [
+          3
+        ]
       },
       "id": 629
     },
@@ -524,7 +618,10 @@
         "id": 113,
         "name": "Bank",
         "line": "WaterlooAndCity",
-        "order": 0
+        "order": 0,
+        "zones": [
+          1
+        ]
       },
       "id": 113
     },
@@ -541,7 +638,10 @@
         "id": 648,
         "name": "Uxbridge",
         "line": "Piccadilly",
-        "order": 552
+        "order": 552,
+        "zones": [
+          6
+        ]
       },
       "id": 648
     },
@@ -558,7 +658,10 @@
         "id": 405,
         "name": "Hillingdon",
         "line": "Piccadilly",
-        "order": 538
+        "order": 538,
+        "zones": [
+          6
+        ]
       },
       "id": 405
     },
@@ -575,7 +678,10 @@
         "id": 127,
         "name": "Heathrow Terminal 4",
         "line": "Piccadilly",
-        "order": 522
+        "order": 522,
+        "zones": [
+          6
+        ]
       },
       "id": 127
     },
@@ -592,7 +698,10 @@
         "id": 76,
         "name": "Ickenham",
         "line": "Piccadilly",
-        "order": 521
+        "order": 521,
+        "zones": [
+          6
+        ]
       },
       "id": 76
     },
@@ -609,7 +718,10 @@
         "id": 190,
         "name": "Heathrow Terminal 5",
         "line": "Piccadilly",
-        "order": 507
+        "order": 507,
+        "zones": [
+          6
+        ]
       },
       "id": 190
     },
@@ -626,7 +738,10 @@
         "id": 248,
         "name": "Ruislip",
         "line": "Piccadilly",
-        "order": 504
+        "order": 504,
+        "zones": [
+          6
+        ]
       },
       "id": 248
     },
@@ -643,7 +758,10 @@
         "id": 356,
         "name": "Ruislip Manor",
         "line": "Piccadilly",
-        "order": 500
+        "order": 500,
+        "zones": [
+          6
+        ]
       },
       "id": 356
     },
@@ -660,7 +778,10 @@
         "id": 696,
         "name": "Eastcote",
         "line": "Piccadilly",
-        "order": 496
+        "order": 496,
+        "zones": [
+          5
+        ]
       },
       "id": 696
     },
@@ -677,7 +798,10 @@
         "id": 12,
         "name": "Heathrow Terminals 2 & 3",
         "line": "Piccadilly",
-        "order": 486
+        "order": 486,
+        "zones": [
+          6
+        ]
       },
       "id": 12
     },
@@ -694,7 +818,10 @@
         "id": 382,
         "name": "Rayners Lane",
         "line": "Piccadilly",
-        "order": 483
+        "order": 483,
+        "zones": [
+          5
+        ]
       },
       "id": 382
     },
@@ -711,7 +838,11 @@
         "id": 345,
         "name": "Hatton Cross",
         "line": "Piccadilly",
-        "order": 474
+        "order": 474,
+        "zones": [
+          5,
+          6
+        ]
       },
       "id": 345
     },
@@ -728,7 +859,10 @@
         "id": 46,
         "name": "South Harrow",
         "line": "Piccadilly",
-        "order": 465
+        "order": 465,
+        "zones": [
+          5
+        ]
       },
       "id": 46
     },
@@ -745,7 +879,10 @@
         "id": 306,
         "name": "Ealing Broadway",
         "line": "District",
-        "order": 456
+        "order": 456,
+        "zones": [
+          3
+        ]
       },
       "id": 306
     },
@@ -762,7 +899,10 @@
         "id": 777,
         "name": "Hounslow West",
         "line": "Piccadilly",
-        "order": 452
+        "order": 452,
+        "zones": [
+          5
+        ]
       },
       "id": 777
     },
@@ -779,7 +919,10 @@
         "id": 171,
         "name": "Sudbury Hill",
         "line": "Piccadilly",
-        "order": 448
+        "order": 448,
+        "zones": [
+          4
+        ]
       },
       "id": 171
     },
@@ -796,7 +939,10 @@
         "id": 102,
         "name": "Richmond",
         "line": "District",
-        "order": 445
+        "order": 445,
+        "zones": [
+          4
+        ]
       },
       "id": 102
     },
@@ -813,7 +959,10 @@
         "id": 755,
         "name": "Sudbury Town",
         "line": "Piccadilly",
-        "order": 434
+        "order": 434,
+        "zones": [
+          4
+        ]
       },
       "id": 755
     },
@@ -830,7 +979,10 @@
         "id": 630,
         "name": "Ealing Common",
         "line": "District",
-        "order": 432
+        "order": 432,
+        "zones": [
+          3
+        ]
       },
       "id": 630
     },
@@ -847,7 +999,10 @@
         "id": 23,
         "name": "Hounslow Central",
         "line": "Piccadilly",
-        "order": 432
+        "order": 432,
+        "zones": [
+          4
+        ]
       },
       "id": 23
     },
@@ -864,7 +1019,11 @@
         "id": 35,
         "name": "Kew Gardens",
         "line": "District",
-        "order": 425
+        "order": 425,
+        "zones": [
+          3,
+          4
+        ]
       },
       "id": 35
     },
@@ -881,7 +1040,10 @@
         "id": 516,
         "name": "Aldgate",
         "line": "Metropolitan",
-        "order": 423
+        "order": 423,
+        "zones": [
+          1
+        ]
       },
       "id": 516
     },
@@ -898,7 +1060,10 @@
         "id": 341,
         "name": "Hounslow East",
         "line": "Piccadilly",
-        "order": 423
+        "order": 423,
+        "zones": [
+          4
+        ]
       },
       "id": 341
     },
@@ -915,7 +1080,10 @@
         "id": 517,
         "name": "Alperton",
         "line": "Piccadilly",
-        "order": 420
+        "order": 420,
+        "zones": [
+          4
+        ]
       },
       "id": 517
     },
@@ -932,7 +1100,10 @@
         "id": 255,
         "name": "Acton Town",
         "line": "District",
-        "order": 417
+        "order": 417,
+        "zones": [
+          3
+        ]
       },
       "id": 255
     },
@@ -949,7 +1120,10 @@
         "id": 618,
         "name": "Liverpool Street",
         "line": "Metropolitan",
-        "order": 413
+        "order": 413,
+        "zones": [
+          1
+        ]
       },
       "id": 618
     },
@@ -966,7 +1140,10 @@
         "id": 178,
         "name": "Moorgate",
         "line": "Metropolitan",
-        "order": 410
+        "order": 410,
+        "zones": [
+          1
+        ]
       },
       "id": 178
     },
@@ -983,7 +1160,10 @@
         "id": 454,
         "name": "Osterley",
         "line": "Piccadilly",
-        "order": 407
+        "order": 407,
+        "zones": [
+          4
+        ]
       },
       "id": 454
     },
@@ -1000,7 +1180,10 @@
         "id": 599,
         "name": "Gunnersbury",
         "line": "District",
-        "order": 406
+        "order": 406,
+        "zones": [
+          3
+        ]
       },
       "id": 599
     },
@@ -1017,7 +1200,10 @@
         "id": 297,
         "name": "Barbican",
         "line": "Metropolitan",
-        "order": 404
+        "order": 404,
+        "zones": [
+          1
+        ]
       },
       "id": 297
     },
@@ -1034,7 +1220,10 @@
         "id": 518,
         "name": "Park Royal",
         "line": "Piccadilly",
-        "order": 403
+        "order": 403,
+        "zones": [
+          3
+        ]
       },
       "id": 518
     },
@@ -1051,7 +1240,10 @@
         "id": 540,
         "name": "Chiswick Park",
         "line": "District",
-        "order": 394
+        "order": 394,
+        "zones": [
+          3
+        ]
       },
       "id": 540
     },
@@ -1068,7 +1260,10 @@
         "id": 499,
         "name": "Farringdon",
         "line": "Metropolitan",
-        "order": 390
+        "order": 390,
+        "zones": [
+          1
+        ]
       },
       "id": 499
     },
@@ -1085,7 +1280,10 @@
         "id": 433,
         "name": "Boston Manor",
         "line": "Piccadilly",
-        "order": 389
+        "order": 389,
+        "zones": [
+          4
+        ]
       },
       "id": 433
     },
@@ -1102,7 +1300,10 @@
         "id": 705,
         "name": "North Ealing",
         "line": "Piccadilly",
-        "order": 387
+        "order": 387,
+        "zones": [
+          3
+        ]
       },
       "id": 705
     },
@@ -1119,7 +1320,10 @@
         "id": 38,
         "name": "West Ruislip",
         "line": "Central",
-        "order": 386
+        "order": 386,
+        "zones": [
+          6
+        ]
       },
       "id": 38
     },
@@ -1136,7 +1340,11 @@
         "id": 215,
         "name": "Turnham Green",
         "line": "District",
-        "order": 385
+        "order": 385,
+        "zones": [
+          2,
+          3
+        ]
       },
       "id": 215
     },
@@ -1153,7 +1361,10 @@
         "id": 415,
         "name": "Stamford Brook",
         "line": "District",
-        "order": 381
+        "order": 381,
+        "zones": [
+          2
+        ]
       },
       "id": 415
     },
@@ -1170,7 +1381,10 @@
         "id": 388,
         "name": "Northfields",
         "line": "Piccadilly",
-        "order": 379
+        "order": 379,
+        "zones": [
+          3
+        ]
       },
       "id": 388
     },
@@ -1187,7 +1401,10 @@
         "id": 583,
         "name": "Ruislip Gardens",
         "line": "Central",
-        "order": 376
+        "order": 376,
+        "zones": [
+          5
+        ]
       },
       "id": 583
     },
@@ -1204,7 +1421,10 @@
         "id": 365,
         "name": "South Ealing",
         "line": "Piccadilly",
-        "order": 374
+        "order": 374,
+        "zones": [
+          3
+        ]
       },
       "id": 365
     },
@@ -1221,7 +1441,10 @@
         "id": 170,
         "name": "Ravenscourt Park",
         "line": "District",
-        "order": 372
+        "order": 372,
+        "zones": [
+          2
+        ]
       },
       "id": 170
     },
@@ -1238,7 +1461,10 @@
         "id": 55,
         "name": "South Ruislip",
         "line": "Central",
-        "order": 371
+        "order": 371,
+        "zones": [
+          5
+        ]
       },
       "id": 55
     },
@@ -1255,7 +1481,10 @@
         "id": 631,
         "name": "Ealing Common",
         "line": "Piccadilly",
-        "order": 368
+        "order": 368,
+        "zones": [
+          3
+        ]
       },
       "id": 631
     },
@@ -1272,7 +1501,10 @@
         "id": 591,
         "name": "King's Cross St Pancras",
         "line": "Metropolitan",
-        "order": 365
+        "order": 365,
+        "zones": [
+          1
+        ]
       },
       "id": 591
     },
@@ -1289,7 +1521,10 @@
         "id": 134,
         "name": "Northolt",
         "line": "Central",
-        "order": 360
+        "order": 360,
+        "zones": [
+          5
+        ]
       },
       "id": 134
     },
@@ -1306,7 +1541,10 @@
         "id": 427,
         "name": "Hammersmith",
         "line": "District",
-        "order": 359
+        "order": 359,
+        "zones": [
+          2
+        ]
       },
       "id": 427
     },
@@ -1323,7 +1561,10 @@
         "id": 783,
         "name": "Euston Square",
         "line": "Metropolitan",
-        "order": 358
+        "order": 358,
+        "zones": [
+          1
+        ]
       },
       "id": 783
     },
@@ -1340,7 +1581,10 @@
         "id": 8,
         "name": "Greenford",
         "line": "Central",
-        "order": 355
+        "order": 355,
+        "zones": [
+          4
+        ]
       },
       "id": 8
     },
@@ -1357,7 +1601,10 @@
         "id": 525,
         "name": "Stanmore",
         "line": "Jubilee",
-        "order": 355
+        "order": 355,
+        "zones": [
+          5
+        ]
       },
       "id": 525
     },
@@ -1374,7 +1621,10 @@
         "id": 256,
         "name": "Acton Town",
         "line": "Piccadilly",
-        "order": 354
+        "order": 354,
+        "zones": [
+          3
+        ]
       },
       "id": 256
     },
@@ -1391,7 +1641,10 @@
         "id": 44,
         "name": "Great Portland Street",
         "line": "Metropolitan",
-        "order": 351
+        "order": 351,
+        "zones": [
+          1
+        ]
       },
       "id": 44
     },
@@ -1408,7 +1661,10 @@
         "id": 748,
         "name": "Barons Court",
         "line": "District",
-        "order": 347
+        "order": 347,
+        "zones": [
+          2
+        ]
       },
       "id": 748
     },
@@ -1425,7 +1681,10 @@
         "id": 410,
         "name": "Canons Park",
         "line": "Jubilee",
-        "order": 347
+        "order": 347,
+        "zones": [
+          5
+        ]
       },
       "id": 410
     },
@@ -1442,7 +1701,10 @@
         "id": 283,
         "name": "Perivale",
         "line": "Central",
-        "order": 345
+        "order": 345,
+        "zones": [
+          4
+        ]
       },
       "id": 283
     },
@@ -1459,7 +1721,10 @@
         "id": 312,
         "name": "West Kensington",
         "line": "District",
-        "order": 339
+        "order": 339,
+        "zones": [
+          2
+        ]
       },
       "id": 312
     },
@@ -1476,7 +1741,10 @@
         "id": 474,
         "name": "Baker Street",
         "line": "Metropolitan",
-        "order": 338
+        "order": 338,
+        "zones": [
+          1
+        ]
       },
       "id": 474
     },
@@ -1493,7 +1761,10 @@
         "id": 463,
         "name": "Queensbury",
         "line": "Jubilee",
-        "order": 336
+        "order": 336,
+        "zones": [
+          4
+        ]
       },
       "id": 463
     },
@@ -1510,7 +1781,10 @@
         "id": 519,
         "name": "Hanger Lane",
         "line": "Central",
-        "order": 334
+        "order": 334,
+        "zones": [
+          3
+        ]
       },
       "id": 519
     },
@@ -1527,7 +1801,10 @@
         "id": 253,
         "name": "Bayswater",
         "line": "Circle",
-        "order": 327
+        "order": 327,
+        "zones": [
+          1
+        ]
       },
       "id": 253
     },
@@ -1544,7 +1821,10 @@
         "id": 395,
         "name": "Kingsbury",
         "line": "Jubilee",
-        "order": 324
+        "order": 324,
+        "zones": [
+          4
+        ]
       },
       "id": 395
     },
@@ -1561,7 +1841,11 @@
         "id": 216,
         "name": "Turnham Green",
         "line": "Piccadilly",
-        "order": 323
+        "order": 323,
+        "zones": [
+          2,
+          3
+        ]
       },
       "id": 216
     },
@@ -1578,7 +1862,10 @@
         "id": 304,
         "name": "Ealing Broadway",
         "line": "Central",
-        "order": 315
+        "order": 315,
+        "zones": [
+          3
+        ]
       },
       "id": 304
     },
@@ -1595,7 +1882,11 @@
         "id": 423,
         "name": "Notting Hill Gate",
         "line": "Circle",
-        "order": 315
+        "order": 315,
+        "zones": [
+          1,
+          2
+        ]
       },
       "id": 423
     },
@@ -1612,7 +1903,10 @@
         "id": 226,
         "name": "Clapham Junction",
         "line": "Mildmay",
-        "order": 314
+        "order": 314,
+        "zones": [
+          2
+        ]
       },
       "id": 226
     },
@@ -1629,7 +1923,10 @@
         "id": 715,
         "name": "Gloucester Road",
         "line": "District",
-        "order": 310
+        "order": 310,
+        "zones": [
+          1
+        ]
       },
       "id": 715
     },
@@ -1646,7 +1943,10 @@
         "id": 319,
         "name": "High Street Kensington",
         "line": "Circle",
-        "order": 308
+        "order": 308,
+        "zones": [
+          1
+        ]
       },
       "id": 319
     },
@@ -1663,7 +1963,10 @@
         "id": 794,
         "name": "Morden",
         "line": "Northern",
-        "order": 307
+        "order": 307,
+        "zones": [
+          4
+        ]
       },
       "id": 794
     },
@@ -1680,7 +1983,10 @@
         "id": 747,
         "name": "Finchley Road",
         "line": "Metropolitan",
-        "order": 306
+        "order": 306,
+        "zones": [
+          2
+        ]
       },
       "id": 747
     },
@@ -1697,7 +2003,10 @@
         "id": 335,
         "name": "South Kensington",
         "line": "District",
-        "order": 303
+        "order": 303,
+        "zones": [
+          1
+        ]
       },
       "id": 335
     },
@@ -1714,7 +2023,10 @@
         "id": 428,
         "name": "Hammersmith",
         "line": "Piccadilly",
-        "order": 300
+        "order": 300,
+        "zones": [
+          2
+        ]
       },
       "id": 428
     },
@@ -1731,7 +2043,10 @@
         "id": 521,
         "name": "West Acton",
         "line": "Central",
-        "order": 299
+        "order": 299,
+        "zones": [
+          3
+        ]
       },
       "id": 521
     },
@@ -1748,7 +2063,10 @@
         "id": 514,
         "name": "Sloane Square",
         "line": "District",
-        "order": 298
+        "order": 298,
+        "zones": [
+          1
+        ]
       },
       "id": 514
     },
@@ -1765,7 +2083,10 @@
         "id": 714,
         "name": "Gloucester Road",
         "line": "Circle",
-        "order": 296
+        "order": 296,
+        "zones": [
+          1
+        ]
       },
       "id": 714
     },
@@ -1782,7 +2103,10 @@
         "id": 162,
         "name": "Richmond",
         "line": "Mildmay",
-        "order": 295
+        "order": 295,
+        "zones": [
+          4
+        ]
       },
       "id": 162
     },
@@ -1799,7 +2123,11 @@
         "id": 602,
         "name": "South Wimbledon",
         "line": "Northern",
-        "order": 293
+        "order": 293,
+        "zones": [
+          3,
+          4
+        ]
       },
       "id": 602
     },
@@ -1816,7 +2144,10 @@
         "id": 572,
         "name": "Wembley Park",
         "line": "Jubilee",
-        "order": 291
+        "order": 291,
+        "zones": [
+          4
+        ]
       },
       "id": 572
     },
@@ -1833,7 +2164,10 @@
         "id": 334,
         "name": "South Kensington",
         "line": "Circle",
-        "order": 289
+        "order": 289,
+        "zones": [
+          1
+        ]
       },
       "id": 334
     },
@@ -1850,7 +2184,11 @@
         "id": 635,
         "name": "North Acton",
         "line": "Central",
-        "order": 285
+        "order": 285,
+        "zones": [
+          2,
+          3
+        ]
       },
       "id": 635
     },
@@ -1867,7 +2205,10 @@
         "id": 756,
         "name": "Colliers Wood",
         "line": "Northern",
-        "order": 285
+        "order": 285,
+        "zones": [
+          3
+        ]
       },
       "id": 756
     },
@@ -1884,7 +2225,10 @@
         "id": 749,
         "name": "Barons Court",
         "line": "Piccadilly",
-        "order": 285
+        "order": 285,
+        "zones": [
+          2
+        ]
       },
       "id": 749
     },
@@ -1901,7 +2245,10 @@
         "id": 513,
         "name": "Sloane Square",
         "line": "Circle",
-        "order": 284
+        "order": 284,
+        "zones": [
+          1
+        ]
       },
       "id": 513
     },
@@ -1918,7 +2265,10 @@
         "id": 225,
         "name": "Imperial Wharf",
         "line": "Mildmay",
-        "order": 284
+        "order": 284,
+        "zones": [
+          2
+        ]
       },
       "id": 225
     },
@@ -1935,7 +2285,10 @@
         "id": 723,
         "name": "Victoria",
         "line": "District",
-        "order": 278
+        "order": 278,
+        "zones": [
+          1
+        ]
       },
       "id": 723
     },
@@ -1952,7 +2305,10 @@
         "id": 688,
         "name": "Tooting Broadway",
         "line": "Northern",
-        "order": 276
+        "order": 276,
+        "zones": [
+          3
+        ]
       },
       "id": 688
     },
@@ -1969,7 +2325,11 @@
         "id": 150,
         "name": "Kew Gardens",
         "line": "Mildmay",
-        "order": 275
+        "order": 275,
+        "zones": [
+          3,
+          4
+        ]
       },
       "id": 150
     },
@@ -1986,7 +2346,10 @@
         "id": 730,
         "name": "Neasden",
         "line": "Jubilee",
-        "order": 274
+        "order": 274,
+        "zones": [
+          3
+        ]
       },
       "id": 730
     },
@@ -2003,7 +2366,10 @@
         "id": 387,
         "name": "East Acton",
         "line": "Central",
-        "order": 272
+        "order": 272,
+        "zones": [
+          2
+        ]
       },
       "id": 387
     },
@@ -2020,7 +2386,10 @@
         "id": 681,
         "name": "Clapham Junction",
         "line": "Windrush",
-        "order": 271
+        "order": 271,
+        "zones": [
+          2
+        ]
       },
       "id": 681
     },
@@ -2037,7 +2406,10 @@
         "id": 745,
         "name": "Dollis Hill",
         "line": "Jubilee",
-        "order": 268
+        "order": 268,
+        "zones": [
+          3
+        ]
       },
       "id": 745
     },
@@ -2054,7 +2426,10 @@
         "id": 535,
         "name": "Tooting Bec",
         "line": "Northern",
-        "order": 268
+        "order": 268,
+        "zones": [
+          3
+        ]
       },
       "id": 535
     },
@@ -2071,7 +2446,10 @@
         "id": 634,
         "name": "Hammersmith",
         "line": "HammersmithAndCity",
-        "order": 266
+        "order": 266,
+        "zones": [
+          2
+        ]
       },
       "id": 634
     },
@@ -2088,7 +2466,10 @@
         "id": 174,
         "name": "Goldhawk Road",
         "line": "HammersmithAndCity",
-        "order": 265
+        "order": 265,
+        "zones": [
+          2
+        ]
       },
       "id": 174
     },
@@ -2105,7 +2486,10 @@
         "id": 403,
         "name": "St James's Park",
         "line": "District",
-        "order": 264
+        "order": 264,
+        "zones": [
+          1
+        ]
       },
       "id": 403
     },
@@ -2122,7 +2506,10 @@
         "id": 223,
         "name": "West Brompton",
         "line": "Mildmay",
-        "order": 264
+        "order": 264,
+        "zones": [
+          2
+        ]
       },
       "id": 223
     },
@@ -2139,7 +2526,10 @@
         "id": 722,
         "name": "Victoria",
         "line": "Circle",
-        "order": 263
+        "order": 263,
+        "zones": [
+          1
+        ]
       },
       "id": 722
     },
@@ -2156,7 +2546,11 @@
         "id": 481,
         "name": "Willesden Green",
         "line": "Jubilee",
-        "order": 263
+        "order": 263,
+        "zones": [
+          2,
+          3
+        ]
       },
       "id": 481
     },
@@ -2173,7 +2567,10 @@
         "id": 604,
         "name": "Balham",
         "line": "Northern",
-        "order": 260
+        "order": 260,
+        "zones": [
+          3
+        ]
       },
       "id": 604
     },
@@ -2190,7 +2587,10 @@
         "id": 562,
         "name": "Shepherd's Bush Market",
         "line": "HammersmithAndCity",
-        "order": 259
+        "order": 259,
+        "zones": [
+          2
+        ]
       },
       "id": 562
     },
@@ -2207,7 +2607,10 @@
         "id": 573,
         "name": "Wembley Park",
         "line": "Metropolitan",
-        "order": 259
+        "order": 259,
+        "zones": [
+          4
+        ]
       },
       "id": 573
     },
@@ -2224,7 +2627,11 @@
         "id": 506,
         "name": "Earl's Court",
         "line": "Piccadilly",
-        "order": 259
+        "order": 259,
+        "zones": [
+          1,
+          2
+        ]
       },
       "id": 506
     },
@@ -2241,7 +2648,10 @@
         "id": 495,
         "name": "Kilburn",
         "line": "Jubilee",
-        "order": 256
+        "order": 256,
+        "zones": [
+          2
+        ]
       },
       "id": 495
     },
@@ -2258,7 +2668,10 @@
         "id": 148,
         "name": "Gunnersbury",
         "line": "Mildmay",
-        "order": 254
+        "order": 254,
+        "zones": [
+          3
+        ]
       },
       "id": 148
     },
@@ -2275,7 +2688,10 @@
         "id": 107,
         "name": "Westminster",
         "line": "District",
-        "order": 253
+        "order": 253,
+        "zones": [
+          1
+        ]
       },
       "id": 107
     },
@@ -2292,7 +2708,10 @@
         "id": 456,
         "name": "Wood Lane",
         "line": "HammersmithAndCity",
-        "order": 251
+        "order": 251,
+        "zones": [
+          2
+        ]
       },
       "id": 456
     },
@@ -2309,7 +2728,11 @@
         "id": 646,
         "name": "Clapham South",
         "line": "Northern",
-        "order": 251
+        "order": 251,
+        "zones": [
+          2,
+          3
+        ]
       },
       "id": 646
     },
@@ -2326,7 +2749,10 @@
         "id": 402,
         "name": "St James's Park",
         "line": "Circle",
-        "order": 250
+        "order": 250,
+        "zones": [
+          1
+        ]
       },
       "id": 402
     },
@@ -2343,7 +2769,10 @@
         "id": 800,
         "name": "Harrow & Wealdstone",
         "line": "Bakerloo",
-        "order": 249
+        "order": 249,
+        "zones": [
+          5
+        ]
       },
       "id": 800
     },
@@ -2360,7 +2789,10 @@
         "id": 221,
         "name": "Kensington (Olympia)",
         "line": "Mildmay",
-        "order": 249
+        "order": 249,
+        "zones": [
+          2
+        ]
       },
       "id": 221
     },
@@ -2377,7 +2809,10 @@
         "id": 245,
         "name": "West Hampstead",
         "line": "Jubilee",
-        "order": 247
+        "order": 247,
+        "zones": [
+          2
+        ]
       },
       "id": 245
     },
@@ -2394,7 +2829,10 @@
         "id": 716,
         "name": "Gloucester Road",
         "line": "Piccadilly",
-        "order": 247
+        "order": 247,
+        "zones": [
+          1
+        ]
       },
       "id": 716
     },
@@ -2411,7 +2849,10 @@
         "id": 494,
         "name": "Latimer Road",
         "line": "HammersmithAndCity",
-        "order": 245
+        "order": 245,
+        "zones": [
+          2
+        ]
       },
       "id": 494
     },
@@ -2428,7 +2869,10 @@
         "id": 553,
         "name": "Embankment",
         "line": "District",
-        "order": 244
+        "order": 244,
+        "zones": [
+          1
+        ]
       },
       "id": 553
     },
@@ -2445,7 +2889,10 @@
         "id": 401,
         "name": "White City",
         "line": "Central",
-        "order": 243
+        "order": 243,
+        "zones": [
+          2
+        ]
       },
       "id": 401
     },
@@ -2462,7 +2909,10 @@
         "id": 413,
         "name": "Clapham Common",
         "line": "Northern",
-        "order": 243
+        "order": 243,
+        "zones": [
+          2
+        ]
       },
       "id": 413
     },
@@ -2479,7 +2929,10 @@
         "id": 659,
         "name": "Preston Road",
         "line": "Metropolitan",
-        "order": 242
+        "order": 242,
+        "zones": [
+          4
+        ]
       },
       "id": 659
     },
@@ -2496,7 +2949,10 @@
         "id": 220,
         "name": "Shepherd's Bush",
         "line": "Mildmay",
-        "order": 242
+        "order": 242,
+        "zones": [
+          2
+        ]
       },
       "id": 220
     },
@@ -2513,7 +2969,10 @@
         "id": 383,
         "name": "Kenton",
         "line": "Bakerloo",
-        "order": 240
+        "order": 240,
+        "zones": [
+          4
+        ]
       },
       "id": 383
     },
@@ -2530,7 +2989,10 @@
         "id": 336,
         "name": "South Kensington",
         "line": "Piccadilly",
-        "order": 240
+        "order": 240,
+        "zones": [
+          1
+        ]
       },
       "id": 336
     },
@@ -2547,7 +3009,10 @@
         "id": 106,
         "name": "Westminster",
         "line": "Circle",
-        "order": 239
+        "order": 239,
+        "zones": [
+          1
+        ]
       },
       "id": 106
     },
@@ -2564,7 +3029,10 @@
         "id": 746,
         "name": "Finchley Road",
         "line": "Jubilee",
-        "order": 238
+        "order": 238,
+        "zones": [
+          2
+        ]
       },
       "id": 746
     },
@@ -2581,7 +3049,10 @@
         "id": 785,
         "name": "Ladbroke Grove",
         "line": "HammersmithAndCity",
-        "order": 237
+        "order": 237,
+        "zones": [
+          2
+        ]
       },
       "id": 785
     },
@@ -2598,7 +3069,10 @@
         "id": 65,
         "name": "Watford Junction",
         "line": "Lioness",
-        "order": 237
+        "order": 237,
+        "zones": [
+          0
+        ]
       },
       "id": 65
     },
@@ -2615,7 +3089,10 @@
         "id": 469,
         "name": "Clapham North",
         "line": "Northern",
-        "order": 236
+        "order": 236,
+        "zones": [
+          2
+        ]
       },
       "id": 469
     },
@@ -2632,7 +3109,10 @@
         "id": 141,
         "name": "South Acton",
         "line": "Mildmay",
-        "order": 236
+        "order": 236,
+        "zones": [
+          3
+        ]
       },
       "id": 141
     },
@@ -2649,7 +3129,10 @@
         "id": 400,
         "name": "Temple",
         "line": "District",
-        "order": 232
+        "order": 232,
+        "zones": [
+          1
+        ]
       },
       "id": 400
     },
@@ -2666,7 +3149,10 @@
         "id": 57,
         "name": "Northwick Park",
         "line": "Metropolitan",
-        "order": 232
+        "order": 232,
+        "zones": [
+          4
+        ]
       },
       "id": 57
     },
@@ -2683,7 +3169,10 @@
         "id": 130,
         "name": "South Kenton",
         "line": "Bakerloo",
-        "order": 231
+        "order": 231,
+        "zones": [
+          4
+        ]
       },
       "id": 130
     },
@@ -2700,7 +3189,10 @@
         "id": 552,
         "name": "Embankment",
         "line": "Circle",
-        "order": 230
+        "order": 230,
+        "zones": [
+          1
+        ]
       },
       "id": 552
     },
@@ -2717,7 +3209,10 @@
         "id": 642,
         "name": "West Croydon",
         "line": "Windrush",
-        "order": 230
+        "order": 230,
+        "zones": [
+          5
+        ]
       },
       "id": 642
     },
@@ -2734,7 +3229,10 @@
         "id": 547,
         "name": "Stockwell",
         "line": "Northern",
-        "order": 228
+        "order": 228,
+        "zones": [
+          2
+        ]
       },
       "id": 547
     },
@@ -2751,7 +3249,10 @@
         "id": 675,
         "name": "North Wembley",
         "line": "Bakerloo",
-        "order": 227
+        "order": 227,
+        "zones": [
+          4
+        ]
       },
       "id": 675
     },
@@ -2768,7 +3269,10 @@
         "id": 116,
         "name": "Shepherd's Bush",
         "line": "Central",
-        "order": 227
+        "order": 227,
+        "zones": [
+          2
+        ]
       },
       "id": 116
     },
@@ -2785,7 +3289,10 @@
         "id": 482,
         "name": "Swiss Cottage",
         "line": "Jubilee",
-        "order": 226
+        "order": 226,
+        "zones": [
+          2
+        ]
       },
       "id": 482
     },
@@ -2802,7 +3309,10 @@
         "id": 585,
         "name": "Oval",
         "line": "Northern",
-        "order": 225
+        "order": 225,
+        "zones": [
+          2
+        ]
       },
       "id": 585
     },
@@ -2819,7 +3329,10 @@
         "id": 680,
         "name": "Wandsworth Road",
         "line": "Windrush",
-        "order": 225
+        "order": 225,
+        "zones": [
+          2
+        ]
       },
       "id": 680
     },
@@ -2836,7 +3349,10 @@
         "id": 273,
         "name": "Holland Park",
         "line": "Central",
-        "order": 223
+        "order": 223,
+        "zones": [
+          2
+        ]
       },
       "id": 273
     },
@@ -2853,7 +3369,10 @@
         "id": 329,
         "name": "Blackfriars",
         "line": "District",
-        "order": 223
+        "order": 223,
+        "zones": [
+          1
+        ]
       },
       "id": 329
     },
@@ -2870,7 +3389,10 @@
         "id": 139,
         "name": "Acton Central",
         "line": "Mildmay",
-        "order": 223
+        "order": 223,
+        "zones": [
+          3
+        ]
       },
       "id": 139
     },
@@ -2887,7 +3409,10 @@
         "id": 375,
         "name": "Cheshunt",
         "line": "Weaver",
-        "order": 222
+        "order": 222,
+        "zones": [
+          8
+        ]
       },
       "id": 375
     },
@@ -2904,7 +3429,10 @@
         "id": 546,
         "name": "Westbourne Park",
         "line": "HammersmithAndCity",
-        "order": 221
+        "order": 221,
+        "zones": [
+          2
+        ]
       },
       "id": 546
     },
@@ -2921,7 +3449,10 @@
         "id": 184,
         "name": "Harrow-on-the-Hill",
         "line": "Metropolitan",
-        "order": 221
+        "order": 221,
+        "zones": [
+          5
+        ]
       },
       "id": 184
     },
@@ -2938,7 +3469,11 @@
         "id": 385,
         "name": "Kennington",
         "line": "Northern",
-        "order": 221
+        "order": 221,
+        "zones": [
+          1,
+          2
+        ]
       },
       "id": 385
     },
@@ -2955,7 +3490,10 @@
         "id": 126,
         "name": "Heathrow Terminal 4",
         "line": "ElizabethLine",
-        "order": 220
+        "order": 220,
+        "zones": [
+          6
+        ]
       },
       "id": 126
     },
@@ -2972,7 +3510,10 @@
         "id": 60,
         "name": "Wembley Central",
         "line": "Bakerloo",
-        "order": 219
+        "order": 219,
+        "zones": [
+          4
+        ]
       },
       "id": 60
     },
@@ -2989,7 +3530,11 @@
         "id": 422,
         "name": "Notting Hill Gate",
         "line": "Central",
-        "order": 219
+        "order": 219,
+        "zones": [
+          1,
+          2
+        ]
       },
       "id": 422
     },
@@ -3006,7 +3551,10 @@
         "id": 399,
         "name": "Temple",
         "line": "Circle",
-        "order": 218
+        "order": 218,
+        "zones": [
+          1
+        ]
       },
       "id": 399
     },
@@ -3023,7 +3571,10 @@
         "id": 63,
         "name": "Watford High Street",
         "line": "Lioness",
-        "order": 218
+        "order": 218,
+        "zones": [
+          8
+        ]
       },
       "id": 63
     },
@@ -3040,7 +3591,10 @@
         "id": 447,
         "name": "Knightsbridge",
         "line": "Piccadilly",
-        "order": 218
+        "order": 218,
+        "zones": [
+          1
+        ]
       },
       "id": 447
     },
@@ -3057,7 +3611,10 @@
         "id": 188,
         "name": "Heathrow Terminal 5",
         "line": "ElizabethLine",
-        "order": 216
+        "order": 216,
+        "zones": [
+          6
+        ]
       },
       "id": 188
     },
@@ -3074,7 +3631,10 @@
         "id": 18,
         "name": "St John's Wood",
         "line": "Jubilee",
-        "order": 216
+        "order": 216,
+        "zones": [
+          2
+        ]
       },
       "id": 18
     },
@@ -3091,7 +3651,10 @@
         "id": 679,
         "name": "Clapham High Street",
         "line": "Windrush",
-        "order": 216
+        "order": 216,
+        "zones": [
+          2
+        ]
       },
       "id": 679
     },
@@ -3108,7 +3671,10 @@
         "id": 719,
         "name": "Mansion House",
         "line": "District",
-        "order": 215
+        "order": 215,
+        "zones": [
+          1
+        ]
       },
       "id": 719
     },
@@ -3125,7 +3691,10 @@
         "id": 507,
         "name": "Queensway",
         "line": "Central",
-        "order": 214
+        "order": 214,
+        "zones": [
+          1
+        ]
       },
       "id": 507
     },
@@ -3142,7 +3711,10 @@
         "id": 339,
         "name": "Royal Oak",
         "line": "HammersmithAndCity",
-        "order": 213
+        "order": 213,
+        "zones": [
+          2
+        ]
       },
       "id": 339
     },
@@ -3159,7 +3731,10 @@
         "id": 92,
         "name": "Lancaster Gate",
         "line": "Central",
-        "order": 211
+        "order": 211,
+        "zones": [
+          1
+        ]
       },
       "id": 92
     },
@@ -3176,7 +3751,10 @@
         "id": 742,
         "name": "Reading",
         "line": "ElizabethLine",
-        "order": 211
+        "order": 211,
+        "zones": [
+          0
+        ]
       },
       "id": 742
     },
@@ -3193,7 +3771,10 @@
         "id": 574,
         "name": "Hyde Park Corner",
         "line": "Piccadilly",
-        "order": 211
+        "order": 211,
+        "zones": [
+          1
+        ]
       },
       "id": 574
     },
@@ -3210,7 +3791,10 @@
         "id": 181,
         "name": "Cannon Street",
         "line": "District",
-        "order": 210
+        "order": 210,
+        "zones": [
+          1
+        ]
       },
       "id": 181
     },
@@ -3227,7 +3811,10 @@
         "id": 328,
         "name": "Blackfriars",
         "line": "Circle",
-        "order": 209
+        "order": 209,
+        "zones": [
+          1
+        ]
       },
       "id": 328
     },
@@ -3244,7 +3831,10 @@
         "id": 194,
         "name": "Woolwich Arsenal",
         "line": "DLR",
-        "order": 208
+        "order": 208,
+        "zones": [
+          4
+        ]
       },
       "id": 194
     },
@@ -3261,7 +3851,11 @@
         "id": 712,
         "name": "Elephant & Castle",
         "line": "Northern",
-        "order": 208
+        "order": 208,
+        "zones": [
+          1,
+          2
+        ]
       },
       "id": 712
     },
@@ -3278,7 +3872,10 @@
         "id": 717,
         "name": "Marble Arch",
         "line": "Central",
-        "order": 207
+        "order": 207,
+        "zones": [
+          1
+        ]
       },
       "id": 717
     },
@@ -3295,7 +3892,10 @@
         "id": 374,
         "name": "Theobalds Grove",
         "line": "Weaver",
-        "order": 207
+        "order": 207,
+        "zones": [
+          7
+        ]
       },
       "id": 374
     },
@@ -3312,7 +3912,10 @@
         "id": 778,
         "name": "Bond Street",
         "line": "Central",
-        "order": 204
+        "order": 204,
+        "zones": [
+          1
+        ]
       },
       "id": 778
     },
@@ -3329,7 +3932,10 @@
         "id": 70,
         "name": "Monument",
         "line": "District",
-        "order": 204
+        "order": 204,
+        "zones": [
+          1
+        ]
       },
       "id": 70
     },
@@ -3346,7 +3952,10 @@
         "id": 15,
         "name": "Twyford",
         "line": "ElizabethLine",
-        "order": 203
+        "order": 203,
+        "zones": [
+          0
+        ]
       },
       "id": 15
     },
@@ -3363,7 +3972,10 @@
         "id": 192,
         "name": "Paddington",
         "line": "HammersmithAndCity",
-        "order": 203
+        "order": 203,
+        "zones": [
+          1
+        ]
       },
       "id": 192
     },
@@ -3380,7 +3992,10 @@
         "id": 397,
         "name": "Green Park",
         "line": "Piccadilly",
-        "order": 203
+        "order": 203,
+        "zones": [
+          1
+        ]
       },
       "id": 397
     },
@@ -3397,7 +4012,10 @@
         "id": 153,
         "name": "North Harrow",
         "line": "Metropolitan",
-        "order": 202
+        "order": 202,
+        "zones": [
+          5
+        ]
       },
       "id": 153
     },
@@ -3414,7 +4032,10 @@
         "id": 449,
         "name": "Brixton",
         "line": "Victoria",
-        "order": 202
+        "order": 202,
+        "zones": [
+          2
+        ]
       },
       "id": 449
     },
@@ -3431,7 +4052,10 @@
         "id": 718,
         "name": "Mansion House",
         "line": "Circle",
-        "order": 201
+        "order": 201,
+        "zones": [
+          1
+        ]
       },
       "id": 718
     },
@@ -3448,7 +4072,10 @@
         "id": 114,
         "name": "Stonebridge Park",
         "line": "Bakerloo",
-        "order": 200
+        "order": 200,
+        "zones": [
+          3
+        ]
       },
       "id": 114
     },
@@ -3465,7 +4092,10 @@
         "id": 315,
         "name": "Oxford Circus",
         "line": "Central",
-        "order": 200
+        "order": 200,
+        "zones": [
+          1
+        ]
       },
       "id": 315
     },
@@ -3482,7 +4112,10 @@
         "id": 412,
         "name": "Borough",
         "line": "Northern",
-        "order": 199
+        "order": 199,
+        "zones": [
+          1
+        ]
       },
       "id": 412
     },
@@ -3499,7 +4132,10 @@
         "id": 508,
         "name": "Pinner",
         "line": "Metropolitan",
-        "order": 198
+        "order": 198,
+        "zones": [
+          5
+        ]
       },
       "id": 508
     },
@@ -3516,7 +4152,10 @@
         "id": 10,
         "name": "Heathrow Terminals 2 & 3",
         "line": "ElizabethLine",
-        "order": 197
+        "order": 197,
+        "zones": [
+          6
+        ]
       },
       "id": 10
     },
@@ -3533,7 +4172,11 @@
         "id": 564,
         "name": "Crystal Palace",
         "line": "Windrush",
-        "order": 197
+        "order": 197,
+        "zones": [
+          3,
+          4
+        ]
       },
       "id": 564
     },
@@ -3550,7 +4193,10 @@
         "id": 180,
         "name": "Cannon Street",
         "line": "Circle",
-        "order": 196
+        "order": 196,
+        "zones": [
+          1
+        ]
       },
       "id": 180
     },
@@ -3567,7 +4213,10 @@
         "id": 640,
         "name": "Norwood Junction",
         "line": "Windrush",
-        "order": 196
+        "order": 196,
+        "zones": [
+          4
+        ]
       },
       "id": 640
     },
@@ -3584,7 +4233,10 @@
         "id": 607,
         "name": "Tottenham Court Road",
         "line": "Central",
-        "order": 195
+        "order": 195,
+        "zones": [
+          1
+        ]
       },
       "id": 607
     },
@@ -3601,7 +4253,10 @@
         "id": 770,
         "name": "Maidenhead",
         "line": "ElizabethLine",
-        "order": 195
+        "order": 195,
+        "zones": [
+          0
+        ]
       },
       "id": 770
     },
@@ -3618,7 +4273,10 @@
         "id": 432,
         "name": "Piccadilly Circus",
         "line": "Piccadilly",
-        "order": 195
+        "order": 195,
+        "zones": [
+          1
+        ]
       },
       "id": 432
     },
@@ -3635,7 +4293,10 @@
         "id": 549,
         "name": "Harlesden",
         "line": "Bakerloo",
-        "order": 193
+        "order": 193,
+        "zones": [
+          3
+        ]
       },
       "id": 549
     },
@@ -3652,7 +4313,10 @@
         "id": 373,
         "name": "Turkey Street",
         "line": "Weaver",
-        "order": 193
+        "order": 193,
+        "zones": [
+          6
+        ]
       },
       "id": 373
     },
@@ -3669,7 +4333,10 @@
         "id": 236,
         "name": "Taplow",
         "line": "ElizabethLine",
-        "order": 192
+        "order": 192,
+        "zones": [
+          0
+        ]
       },
       "id": 236
     },
@@ -3686,7 +4353,10 @@
         "id": 581,
         "name": "Edgware Road",
         "line": "HammersmithAndCity",
-        "order": 191
+        "order": 191,
+        "zones": [
+          1
+        ]
       },
       "id": 581
     },
@@ -3703,7 +4373,10 @@
         "id": 84,
         "name": "Holborn",
         "line": "Central",
-        "order": 190
+        "order": 190,
+        "zones": [
+          1
+        ]
       },
       "id": 84
     },
@@ -3720,7 +4393,10 @@
         "id": 69,
         "name": "Monument",
         "line": "Circle",
-        "order": 190
+        "order": 190,
+        "zones": [
+          1
+        ]
       },
       "id": 69
     },
@@ -3737,7 +4413,10 @@
         "id": 343,
         "name": "Burnham",
         "line": "ElizabethLine",
-        "order": 190
+        "order": 190,
+        "zones": [
+          0
+        ]
       },
       "id": 343
     },
@@ -3754,7 +4433,10 @@
         "id": 62,
         "name": "Bushey",
         "line": "Lioness",
-        "order": 190
+        "order": 190,
+        "zones": [
+          8
+        ]
       },
       "id": 62
     },
@@ -3771,7 +4453,10 @@
         "id": 204,
         "name": "Leicester Square",
         "line": "Piccadilly",
-        "order": 190
+        "order": 190,
+        "zones": [
+          1
+        ]
       },
       "id": 204
     },
@@ -3788,7 +4473,11 @@
         "id": 137,
         "name": "Willesden Junction",
         "line": "Mildmay",
-        "order": 189
+        "order": 189,
+        "zones": [
+          2,
+          3
+        ]
       },
       "id": 137
     },
@@ -3805,7 +4494,10 @@
         "id": 638,
         "name": "Anerley",
         "line": "Windrush",
-        "order": 187
+        "order": 187,
+        "zones": [
+          4
+        ]
       },
       "id": 638
     },
@@ -3822,7 +4514,10 @@
         "id": 164,
         "name": "Tower Hill",
         "line": "District",
-        "order": 186
+        "order": 186,
+        "zones": [
+          1
+        ]
       },
       "id": 164
     },
@@ -3839,7 +4534,10 @@
         "id": 140,
         "name": "Slough",
         "line": "ElizabethLine",
-        "order": 186
+        "order": 186,
+        "zones": [
+          0
+        ]
       },
       "id": 140
     },
@@ -3856,7 +4554,10 @@
         "id": 473,
         "name": "Baker Street",
         "line": "Jubilee",
-        "order": 186
+        "order": 186,
+        "zones": [
+          1
+        ]
       },
       "id": 473
     },
@@ -3873,7 +4574,10 @@
         "id": 669,
         "name": "London Bridge",
         "line": "Northern",
-        "order": 186
+        "order": 186,
+        "zones": [
+          1
+        ]
       },
       "id": 669
     },
@@ -3890,7 +4594,10 @@
         "id": 657,
         "name": "Covent Garden",
         "line": "Piccadilly",
-        "order": 186
+        "order": 186,
+        "zones": [
+          1
+        ]
       },
       "id": 657
     },
@@ -3907,7 +4614,10 @@
         "id": 472,
         "name": "Baker Street",
         "line": "HammersmithAndCity",
-        "order": 185
+        "order": 185,
+        "zones": [
+          1
+        ]
       },
       "id": 472
     },
@@ -3924,7 +4634,10 @@
         "id": 548,
         "name": "Stockwell",
         "line": "Victoria",
-        "order": 185
+        "order": 185,
+        "zones": [
+          2
+        ]
       },
       "id": 548
     },
@@ -3941,7 +4654,10 @@
         "id": 685,
         "name": "Chancery Lane",
         "line": "Central",
-        "order": 184
+        "order": 184,
+        "zones": [
+          1
+        ]
       },
       "id": 685
     },
@@ -3958,7 +4674,10 @@
         "id": 636,
         "name": "Penge West",
         "line": "Windrush",
-        "order": 184
+        "order": 184,
+        "zones": [
+          4
+        ]
       },
       "id": 636
     },
@@ -3975,7 +4694,11 @@
         "id": 444,
         "name": "Willesden Junction",
         "line": "Bakerloo",
-        "order": 183
+        "order": 183,
+        "zones": [
+          2,
+          3
+        ]
       },
       "id": 444
     },
@@ -3992,7 +4715,10 @@
         "id": 709,
         "name": "Langley",
         "line": "ElizabethLine",
-        "order": 183
+        "order": 183,
+        "zones": [
+          0
+        ]
       },
       "id": 709
     },
@@ -4009,7 +4735,10 @@
         "id": 371,
         "name": "Southbury",
         "line": "Weaver",
-        "order": 183
+        "order": 183,
+        "zones": [
+          5
+        ]
       },
       "id": 371
     },
@@ -4026,7 +4755,10 @@
         "id": 91,
         "name": "Northwood Hills",
         "line": "Metropolitan",
-        "order": 181
+        "order": 181,
+        "zones": [
+          6
+        ]
       },
       "id": 91
     },
@@ -4043,7 +4775,10 @@
         "id": 337,
         "name": "St Paul's",
         "line": "Central",
-        "order": 179
+        "order": 179,
+        "zones": [
+          1
+        ]
       },
       "id": 337
     },
@@ -4060,7 +4795,10 @@
         "id": 166,
         "name": "West Drayton",
         "line": "ElizabethLine",
-        "order": 178
+        "order": 178,
+        "zones": [
+          6
+        ]
       },
       "id": 166
     },
@@ -4077,7 +4815,10 @@
         "id": 762,
         "name": "King George V",
         "line": "DLR",
-        "order": 177
+        "order": 177,
+        "zones": [
+          3
+        ]
       },
       "id": 762
     },
@@ -4094,7 +4835,10 @@
         "id": 43,
         "name": "Great Portland Street",
         "line": "HammersmithAndCity",
-        "order": 177
+        "order": 177,
+        "zones": [
+          1
+        ]
       },
       "id": 43
     },
@@ -4111,7 +4855,10 @@
         "id": 736,
         "name": "Waterloo",
         "line": "Northern",
-        "order": 177
+        "order": 177,
+        "zones": [
+          1
+        ]
       },
       "id": 736
     },
@@ -4128,7 +4875,10 @@
         "id": 58,
         "name": "Carpenders Park",
         "line": "Lioness",
-        "order": 176
+        "order": 176,
+        "zones": [
+          7
+        ]
       },
       "id": 58
     },
@@ -4145,7 +4895,10 @@
         "id": 327,
         "name": "Enfield Town",
         "line": "Weaver",
-        "order": 175
+        "order": 175,
+        "zones": [
+          5
+        ]
       },
       "id": 327
     },
@@ -4162,7 +4915,10 @@
         "id": 558,
         "name": "Sydenham",
         "line": "Windrush",
-        "order": 175
+        "order": 175,
+        "zones": [
+          3
+        ]
       },
       "id": 558
     },
@@ -4179,7 +4935,10 @@
         "id": 85,
         "name": "Holborn",
         "line": "Piccadilly",
-        "order": 175
+        "order": 175,
+        "zones": [
+          1
+        ]
       },
       "id": 85
     },
@@ -4196,7 +4955,10 @@
         "id": 53,
         "name": "Aldgate East",
         "line": "District",
-        "order": 174
+        "order": 174,
+        "zones": [
+          1
+        ]
       },
       "id": 53
     },
@@ -4213,7 +4975,10 @@
         "id": 678,
         "name": "Denmark Hill",
         "line": "Windrush",
-        "order": 174
+        "order": 174,
+        "zones": [
+          2
+        ]
       },
       "id": 678
     },
@@ -4230,7 +4995,10 @@
         "id": 110,
         "name": "Bank",
         "line": "Central",
-        "order": 173
+        "order": 173,
+        "zones": [
+          1
+        ]
       },
       "id": 110
     },
@@ -4247,7 +5015,10 @@
         "id": 112,
         "name": "Bank",
         "line": "Northern",
-        "order": 173
+        "order": 173,
+        "zones": [
+          1
+        ]
       },
       "id": 112
     },
@@ -4264,7 +5035,10 @@
         "id": 163,
         "name": "Tower Hill",
         "line": "Circle",
-        "order": 172
+        "order": 172,
+        "zones": [
+          1
+        ]
       },
       "id": 163
     },
@@ -4281,7 +5055,10 @@
         "id": 128,
         "name": "Kensal Rise",
         "line": "Mildmay",
-        "order": 172
+        "order": 172,
+        "zones": [
+          2
+        ]
       },
       "id": 128
     },
@@ -4298,7 +5075,10 @@
         "id": 782,
         "name": "Euston Square",
         "line": "HammersmithAndCity",
-        "order": 171
+        "order": 171,
+        "zones": [
+          1
+        ]
       },
       "id": 782
     },
@@ -4315,7 +5095,10 @@
         "id": 477,
         "name": "Beckton",
         "line": "DLR",
-        "order": 170
+        "order": 170,
+        "zones": [
+          3
+        ]
       },
       "id": 477
     },
@@ -4332,7 +5115,10 @@
         "id": 554,
         "name": "Embankment",
         "line": "Northern",
-        "order": 168
+        "order": 168,
+        "zones": [
+          1
+        ]
       },
       "id": 554
     },
@@ -4349,7 +5135,10 @@
         "id": 370,
         "name": "Hayes & Harlington",
         "line": "ElizabethLine",
-        "order": 167
+        "order": 167,
+        "zones": [
+          5
+        ]
       },
       "id": 370
     },
@@ -4366,7 +5155,10 @@
         "id": 179,
         "name": "Moorgate",
         "line": "Northern",
-        "order": 167
+        "order": 167,
+        "zones": [
+          1
+        ]
       },
       "id": 179
     },
@@ -4383,7 +5175,11 @@
         "id": 263,
         "name": "Vauxhall",
         "line": "Victoria",
-        "order": 166
+        "order": 166,
+        "zones": [
+          1,
+          2
+        ]
       },
       "id": 263
     },
@@ -4400,7 +5196,10 @@
         "id": 595,
         "name": "Kensal Green",
         "line": "Bakerloo",
-        "order": 165
+        "order": 165,
+        "zones": [
+          2
+        ]
       },
       "id": 595
     },
@@ -4417,7 +5216,10 @@
         "id": 291,
         "name": "Charing Cross",
         "line": "Northern",
-        "order": 165
+        "order": 165,
+        "zones": [
+          1
+        ]
       },
       "id": 291
     },
@@ -4434,7 +5236,10 @@
         "id": 325,
         "name": "Bush Hill Park",
         "line": "Weaver",
-        "order": 165
+        "order": 165,
+        "zones": [
+          5
+        ]
       },
       "id": 325
     },
@@ -4451,7 +5256,10 @@
         "id": 804,
         "name": "Northwood",
         "line": "Metropolitan",
-        "order": 164
+        "order": 164,
+        "zones": [
+          6
+        ]
       },
       "id": 804
     },
@@ -4468,7 +5276,10 @@
         "id": 124,
         "name": "Brondesbury Park",
         "line": "Mildmay",
-        "order": 164
+        "order": 164,
+        "zones": [
+          2
+        ]
       },
       "id": 124
     },
@@ -4485,7 +5296,10 @@
         "id": 80,
         "name": "Russell Square",
         "line": "Piccadilly",
-        "order": 164
+        "order": 164,
+        "zones": [
+          1
+        ]
       },
       "id": 80
     },
@@ -4502,7 +5316,10 @@
         "id": 87,
         "name": "Wimbledon",
         "line": "District",
-        "order": 163
+        "order": 163,
+        "zones": [
+          3
+        ]
       },
       "id": 87
     },
@@ -4519,7 +5336,10 @@
         "id": 590,
         "name": "King's Cross St Pancras",
         "line": "HammersmithAndCity",
-        "order": 163
+        "order": 163,
+        "zones": [
+          1
+        ]
       },
       "id": 590
     },
@@ -4536,7 +5356,10 @@
         "id": 414,
         "name": "London City Airport",
         "line": "DLR",
-        "order": 162
+        "order": 162,
+        "zones": [
+          3
+        ]
       },
       "id": 414
     },
@@ -4553,7 +5376,10 @@
         "id": 697,
         "name": "Whitechapel",
         "line": "District",
-        "order": 162
+        "order": 162,
+        "zones": [
+          2
+        ]
       },
       "id": 697
     },
@@ -4570,7 +5396,10 @@
         "id": 284,
         "name": "Southall",
         "line": "ElizabethLine",
-        "order": 162
+        "order": 162,
+        "zones": [
+          4
+        ]
       },
       "id": 284
     },
@@ -4587,7 +5416,10 @@
         "id": 56,
         "name": "Hatch End",
         "line": "Lioness",
-        "order": 162
+        "order": 162,
+        "zones": [
+          6
+        ]
       },
       "id": 56
     },
@@ -4604,7 +5436,10 @@
         "id": 515,
         "name": "Aldgate",
         "line": "Circle",
-        "order": 161
+        "order": 161,
+        "zones": [
+          1
+        ]
       },
       "id": 515
     },
@@ -4621,7 +5456,10 @@
         "id": 613,
         "name": "Liverpool Street",
         "line": "Central",
-        "order": 160
+        "order": 160,
+        "zones": [
+          1
+        ]
       },
       "id": 613
     },
@@ -4638,7 +5476,11 @@
         "id": 556,
         "name": "Lewisham",
         "line": "DLR",
-        "order": 160
+        "order": 160,
+        "zones": [
+          2,
+          3
+        ]
       },
       "id": 556
     },
@@ -4655,7 +5497,10 @@
         "id": 557,
         "name": "Forest Hill",
         "line": "Windrush",
-        "order": 160
+        "order": 160,
+        "zones": [
+          3
+        ]
       },
       "id": 557
     },
@@ -4672,7 +5517,10 @@
         "id": 780,
         "name": "Bond Street",
         "line": "Jubilee",
-        "order": 159
+        "order": 159,
+        "zones": [
+          1
+        ]
       },
       "id": 780
     },
@@ -4689,7 +5537,10 @@
         "id": 72,
         "name": "Old Street",
         "line": "Northern",
-        "order": 159
+        "order": 159,
+        "zones": [
+          1
+        ]
       },
       "id": 72
     },
@@ -4706,7 +5557,10 @@
         "id": 476,
         "name": "Pimlico",
         "line": "Victoria",
-        "order": 159
+        "order": 159,
+        "zones": [
+          1
+        ]
       },
       "id": 476
     },
@@ -4723,7 +5577,10 @@
         "id": 203,
         "name": "Leicester Square",
         "line": "Northern",
-        "order": 158
+        "order": 158,
+        "zones": [
+          1
+        ]
       },
       "id": 203
     },
@@ -4740,7 +5597,10 @@
         "id": 269,
         "name": "Barking Riverside",
         "line": "Suffragette",
-        "order": 158
+        "order": 158,
+        "zones": [
+          4
+        ]
       },
       "id": 269
     },
@@ -4757,7 +5617,10 @@
         "id": 673,
         "name": "Peckham Rye",
         "line": "Windrush",
-        "order": 157
+        "order": 157,
+        "zones": [
+          2
+        ]
       },
       "id": 673
     },
@@ -4774,7 +5637,10 @@
         "id": 563,
         "name": "Gallions Reach",
         "line": "DLR",
-        "order": 156
+        "order": 156,
+        "zones": [
+          3
+        ]
       },
       "id": 563
     },
@@ -4791,7 +5657,10 @@
         "id": 307,
         "name": "Ealing Broadway",
         "line": "ElizabethLine",
-        "order": 156
+        "order": 156,
+        "zones": [
+          3
+        ]
       },
       "id": 307
     },
@@ -4808,7 +5677,10 @@
         "id": 534,
         "name": "Hanwell",
         "line": "ElizabethLine",
-        "order": 156
+        "order": 156,
+        "zones": [
+          4
+        ]
       },
       "id": 534
     },
@@ -4825,7 +5697,10 @@
         "id": 425,
         "name": "Chingford",
         "line": "Weaver",
-        "order": 156
+        "order": 156,
+        "zones": [
+          5
+        ]
       },
       "id": 425
     },
@@ -4842,7 +5717,10 @@
         "id": 52,
         "name": "Headstone Lane",
         "line": "Lioness",
-        "order": 155
+        "order": 155,
+        "zones": [
+          5
+        ]
       },
       "id": 52
     },
@@ -4859,7 +5737,10 @@
         "id": 104,
         "name": "Brondesbury",
         "line": "Mildmay",
-        "order": 155
+        "order": 155,
+        "zones": [
+          2
+        ]
       },
       "id": 104
     },
@@ -4876,7 +5757,10 @@
         "id": 593,
         "name": "King's Cross St Pancras",
         "line": "Piccadilly",
-        "order": 155
+        "order": 155,
+        "zones": [
+          1
+        ]
       },
       "id": 593
     },
@@ -4893,7 +5777,10 @@
         "id": 702,
         "name": "Queen's Park",
         "line": "Bakerloo",
-        "order": 154
+        "order": 154,
+        "zones": [
+          2
+        ]
       },
       "id": 702
     },
@@ -4910,7 +5797,10 @@
         "id": 450,
         "name": "Stepney Green",
         "line": "District",
-        "order": 154
+        "order": 154,
+        "zones": [
+          2
+        ]
       },
       "id": 450
     },
@@ -4927,7 +5817,10 @@
         "id": 367,
         "name": "West Ealing",
         "line": "ElizabethLine",
-        "order": 154
+        "order": 154,
+        "zones": [
+          3
+        ]
       },
       "id": 367
     },
@@ -4944,7 +5837,10 @@
         "id": 555,
         "name": "Honor Oak Park",
         "line": "Windrush",
-        "order": 153
+        "order": 153,
+        "zones": [
+          3
+        ]
       },
       "id": 555
     },
@@ -4961,7 +5857,10 @@
         "id": 609,
         "name": "Tottenham Court Road",
         "line": "Northern",
-        "order": 152
+        "order": 152,
+        "zones": [
+          1
+        ]
       },
       "id": 609
     },
@@ -4978,7 +5877,10 @@
         "id": 614,
         "name": "Liverpool Street",
         "line": "Circle",
-        "order": 151
+        "order": 151,
+        "zones": [
+          1
+        ]
       },
       "id": 614
     },
@@ -4995,7 +5897,11 @@
         "id": 214,
         "name": "Elverson Road",
         "line": "DLR",
-        "order": 151
+        "order": 151,
+        "zones": [
+          2,
+          3
+        ]
       },
       "id": 214
     },
@@ -5012,7 +5918,11 @@
         "id": 145,
         "name": "Moor Park",
         "line": "Metropolitan",
-        "order": 150
+        "order": 150,
+        "zones": [
+          6,
+          7
+        ]
       },
       "id": 145
     },
@@ -5029,7 +5939,10 @@
         "id": 22,
         "name": "Angel",
         "line": "Northern",
-        "order": 150
+        "order": 150,
+        "zones": [
+          1
+        ]
       },
       "id": 22
     },
@@ -5046,7 +5959,10 @@
         "id": 51,
         "name": "Harrow & Wealdstone",
         "line": "Lioness",
-        "order": 148
+        "order": 148,
+        "zones": [
+          5
+        ]
       },
       "id": 51
     },
@@ -5063,7 +5979,10 @@
         "id": 101,
         "name": "West Hampstead",
         "line": "Mildmay",
-        "order": 148
+        "order": 148,
+        "zones": [
+          2
+        ]
       },
       "id": 101
     },
@@ -5080,7 +5999,10 @@
         "id": 175,
         "name": "Moorgate",
         "line": "Circle",
-        "order": 147
+        "order": 147,
+        "zones": [
+          1
+        ]
       },
       "id": 175
     },
@@ -5097,7 +6019,10 @@
         "id": 416,
         "name": "Acton Main Line",
         "line": "ElizabethLine",
-        "order": 147
+        "order": 147,
+        "zones": [
+          3
+        ]
       },
       "id": 416
     },
@@ -5114,7 +6039,10 @@
         "id": 429,
         "name": "Goodge Street",
         "line": "Northern",
-        "order": 147
+        "order": 147,
+        "zones": [
+          1
+        ]
       },
       "id": 429
     },
@@ -5131,7 +6059,10 @@
         "id": 156,
         "name": "Wimbledon Park",
         "line": "District",
-        "order": 145
+        "order": 145,
+        "zones": [
+          3
+        ]
       },
       "id": 156
     },
@@ -5148,7 +6079,10 @@
         "id": 266,
         "name": "Mile End",
         "line": "District",
-        "order": 145
+        "order": 145,
+        "zones": [
+          2
+        ]
       },
       "id": 266
     },
@@ -5165,7 +6099,10 @@
         "id": 728,
         "name": "Victoria",
         "line": "Victoria",
-        "order": 144
+        "order": 144,
+        "zones": [
+          1
+        ]
       },
       "id": 728
     },
@@ -5182,7 +6119,10 @@
         "id": 246,
         "name": "Kilburn Park",
         "line": "Bakerloo",
-        "order": 143
+        "order": 143,
+        "zones": [
+          2
+        ]
       },
       "id": 246
     },
@@ -5199,7 +6139,10 @@
         "id": 707,
         "name": "Warren Street",
         "line": "Northern",
-        "order": 143
+        "order": 143,
+        "zones": [
+          1
+        ]
       },
       "id": 707
     },
@@ -5216,7 +6159,10 @@
         "id": 323,
         "name": "Edmonton Green",
         "line": "Weaver",
-        "order": 143
+        "order": 143,
+        "zones": [
+          4
+        ]
       },
       "id": 323
     },
@@ -5233,7 +6179,10 @@
         "id": 295,
         "name": "Barbican",
         "line": "Circle",
-        "order": 142
+        "order": 142,
+        "zones": [
+          1
+        ]
       },
       "id": 295
     },
@@ -5250,7 +6199,10 @@
         "id": 396,
         "name": "Green Park",
         "line": "Jubilee",
-        "order": 142
+        "order": 142,
+        "zones": [
+          1
+        ]
       },
       "id": 396
     },
@@ -5267,7 +6219,10 @@
         "id": 610,
         "name": "Caledonian Road",
         "line": "Piccadilly",
-        "order": 142
+        "order": 142,
+        "zones": [
+          2
+        ]
       },
       "id": 610
     },
@@ -5284,7 +6239,10 @@
         "id": 539,
         "name": "Bethnal Green",
         "line": "Central",
-        "order": 141
+        "order": 141,
+        "zones": [
+          2
+        ]
       },
       "id": 539
     },
@@ -5301,7 +6259,10 @@
         "id": 592,
         "name": "King's Cross St Pancras",
         "line": "Northern",
-        "order": 141
+        "order": 141,
+        "zones": [
+          1
+        ]
       },
       "id": 592
     },
@@ -5318,7 +6279,10 @@
         "id": 97,
         "name": "Finchley Road & Frognal",
         "line": "Mildmay",
-        "order": 141
+        "order": 141,
+        "zones": [
+          2
+        ]
       },
       "id": 97
     },
@@ -5335,7 +6299,10 @@
         "id": 420,
         "name": "Highams Park",
         "line": "Weaver",
-        "order": 141
+        "order": 141,
+        "zones": [
+          4
+        ]
       },
       "id": 420
     },
@@ -5352,7 +6319,10 @@
         "id": 543,
         "name": "Brockley",
         "line": "Windrush",
-        "order": 141
+        "order": 141,
+        "zones": [
+          2
+        ]
       },
       "id": 543
     },
@@ -5369,7 +6339,10 @@
         "id": 277,
         "name": "Bow Road",
         "line": "District",
-        "order": 140
+        "order": 140,
+        "zones": [
+          2
+        ]
       },
       "id": 277
     },
@@ -5386,7 +6359,10 @@
         "id": 498,
         "name": "Farringdon",
         "line": "HammersmithAndCity",
-        "order": 140
+        "order": 140,
+        "zones": [
+          1
+        ]
       },
       "id": 498
     },
@@ -5403,7 +6379,10 @@
         "id": 309,
         "name": "Silver Street",
         "line": "Weaver",
-        "order": 140
+        "order": 140,
+        "zones": [
+          4
+        ]
       },
       "id": 309
     },
@@ -5420,7 +6399,10 @@
         "id": 672,
         "name": "Queens Road Peckham",
         "line": "Windrush",
-        "order": 140
+        "order": 140,
+        "zones": [
+          2
+        ]
       },
       "id": 672
     },
@@ -5437,7 +6419,11 @@
         "id": 109,
         "name": "Deptford Bridge",
         "line": "DLR",
-        "order": 139
+        "order": 139,
+        "zones": [
+          2,
+          3
+        ]
       },
       "id": 109
     },
@@ -5454,7 +6440,10 @@
         "id": 475,
         "name": "Pontoon Dock",
         "line": "DLR",
-        "order": 138
+        "order": 138,
+        "zones": [
+          3
+        ]
       },
       "id": 475
     },
@@ -5471,7 +6460,10 @@
         "id": 120,
         "name": "Cyprus",
         "line": "DLR",
-        "order": 138
+        "order": 138,
+        "zones": [
+          3
+        ]
       },
       "id": 120
     },
@@ -5488,7 +6480,10 @@
         "id": 49,
         "name": "Kenton",
         "line": "Lioness",
-        "order": 138
+        "order": 138,
+        "zones": [
+          4
+        ]
       },
       "id": 49
     },
@@ -5505,7 +6500,10 @@
         "id": 260,
         "name": "Holloway Road",
         "line": "Piccadilly",
-        "order": 138
+        "order": 138,
+        "zones": [
+          2
+        ]
       },
       "id": 260
     },
@@ -5522,7 +6520,10 @@
         "id": 720,
         "name": "Beckton Park",
         "line": "DLR",
-        "order": 137
+        "order": 137,
+        "zones": [
+          3
+        ]
       },
       "id": 720
     },
@@ -5539,7 +6540,10 @@
         "id": 96,
         "name": "Hampstead Heath",
         "line": "Mildmay",
-        "order": 137
+        "order": 137,
+        "zones": [
+          2
+        ]
       },
       "id": 96
     },
@@ -5556,7 +6560,10 @@
         "id": 313,
         "name": "Maida Vale",
         "line": "Bakerloo",
-        "order": 135
+        "order": 135,
+        "zones": [
+          2
+        ]
       },
       "id": 313
     },
@@ -5573,7 +6580,10 @@
         "id": 121,
         "name": "Royal Albert",
         "line": "DLR",
-        "order": 132
+        "order": 132,
+        "zones": [
+          3
+        ]
       },
       "id": 121
     },
@@ -5590,7 +6600,10 @@
         "id": 117,
         "name": "Southfields",
         "line": "District",
-        "order": 132
+        "order": 132,
+        "zones": [
+          3
+        ]
       },
       "id": 117
     },
@@ -5607,7 +6620,10 @@
         "id": 132,
         "name": "Arsenal",
         "line": "Piccadilly",
-        "order": 132
+        "order": 132,
+        "zones": [
+          2
+        ]
       },
       "id": 132
     },
@@ -5624,7 +6640,10 @@
         "id": 47,
         "name": "South Kenton",
         "line": "Lioness",
-        "order": 131
+        "order": 131,
+        "zones": [
+          4
+        ]
       },
       "id": 47
     },
@@ -5641,7 +6660,10 @@
         "id": 262,
         "name": "Barking",
         "line": "Suffragette",
-        "order": 131
+        "order": 131,
+        "zones": [
+          4
+        ]
       },
       "id": 262
     },
@@ -5658,7 +6680,10 @@
         "id": 541,
         "name": "New Cross Gate",
         "line": "Windrush",
-        "order": 131
+        "order": 131,
+        "zones": [
+          2
+        ]
       },
       "id": 541
     },
@@ -5675,7 +6700,10 @@
         "id": 584,
         "name": "West Silvertown",
         "line": "DLR",
-        "order": 130
+        "order": 130,
+        "zones": [
+          3
+        ]
       },
       "id": 584
     },
@@ -5692,7 +6720,10 @@
         "id": 529,
         "name": "Euston",
         "line": "Northern",
-        "order": 130
+        "order": 130,
+        "zones": [
+          1
+        ]
       },
       "id": 529
     },
@@ -5709,7 +6740,10 @@
         "id": 308,
         "name": "White Hart Lane",
         "line": "Weaver",
-        "order": 130
+        "order": 130,
+        "zones": [
+          3
+        ]
       },
       "id": 308
     },
@@ -5726,7 +6760,10 @@
         "id": 682,
         "name": "Finsbury Park",
         "line": "Piccadilly",
-        "order": 129
+        "order": 129,
+        "zones": [
+          2
+        ]
       },
       "id": 682
     },
@@ -5743,7 +6780,10 @@
         "id": 398,
         "name": "Green Park",
         "line": "Victoria",
-        "order": 129
+        "order": 129,
+        "zones": [
+          1
+        ]
       },
       "id": 398
     },
@@ -5760,7 +6800,10 @@
         "id": 496,
         "name": "Farringdon",
         "line": "Circle",
-        "order": 128
+        "order": 128,
+        "zones": [
+          1
+        ]
       },
       "id": 496
     },
@@ -5777,7 +6820,10 @@
         "id": 282,
         "name": "Paddington",
         "line": "ElizabethLine",
-        "order": 128
+        "order": 128,
+        "zones": [
+          1
+        ]
       },
       "id": 282
     },
@@ -5794,7 +6840,10 @@
         "id": 41,
         "name": "North Wembley",
         "line": "Lioness",
-        "order": 128
+        "order": 128,
+        "zones": [
+          4
+        ]
       },
       "id": 41
     },
@@ -5811,7 +6860,11 @@
         "id": 27,
         "name": "Bromley-by-Bow",
         "line": "District",
-        "order": 126
+        "order": 126,
+        "zones": [
+          2,
+          3
+        ]
       },
       "id": 27
     },
@@ -5828,7 +6881,10 @@
         "id": 296,
         "name": "Barbican",
         "line": "HammersmithAndCity",
-        "order": 126
+        "order": 126,
+        "zones": [
+          1
+        ]
       },
       "id": 296
     },
@@ -5845,7 +6901,10 @@
         "id": 265,
         "name": "Mile End",
         "line": "Central",
-        "order": 125
+        "order": 125,
+        "zones": [
+          2
+        ]
       },
       "id": 265
     },
@@ -5862,7 +6921,10 @@
         "id": 211,
         "name": "Chalk Farm",
         "line": "Northern",
-        "order": 125
+        "order": 125,
+        "zones": [
+          2
+        ]
       },
       "id": 211
     },
@@ -5879,7 +6941,10 @@
         "id": 93,
         "name": "Gospel Oak",
         "line": "Mildmay",
-        "order": 125
+        "order": 125,
+        "zones": [
+          2
+        ]
       },
       "id": 93
     },
@@ -5896,7 +6961,10 @@
         "id": 658,
         "name": "Warwick Avenue",
         "line": "Bakerloo",
-        "order": 124
+        "order": 124,
+        "zones": [
+          2
+        ]
       },
       "id": 658
     },
@@ -5913,7 +6981,10 @@
         "id": 108,
         "name": "Westminster",
         "line": "Jubilee",
-        "order": 123
+        "order": 123,
+        "zones": [
+          1
+        ]
       },
       "id": 108
     },
@@ -5930,7 +7001,10 @@
         "id": 177,
         "name": "Moorgate",
         "line": "HammersmithAndCity",
-        "order": 121
+        "order": 121,
+        "zones": [
+          1
+        ]
       },
       "id": 177
     },
@@ -5947,7 +7021,10 @@
         "id": 39,
         "name": "Wembley Central",
         "line": "Lioness",
-        "order": 121
+        "order": 121,
+        "zones": [
+          4
+        ]
       },
       "id": 39
     },
@@ -5964,7 +7041,10 @@
         "id": 144,
         "name": "Mornington Crescent",
         "line": "Northern",
-        "order": 120
+        "order": 120,
+        "zones": [
+          2
+        ]
       },
       "id": 144
     },
@@ -5981,7 +7061,10 @@
         "id": 333,
         "name": "Rickmansworth",
         "line": "Metropolitan",
-        "order": 119
+        "order": 119,
+        "zones": [
+          7
+        ]
       },
       "id": 333
     },
@@ -5998,7 +7081,10 @@
         "id": 305,
         "name": "Bruce Grove",
         "line": "Weaver",
-        "order": 119
+        "order": 119,
+        "zones": [
+          3
+        ]
       },
       "id": 305
     },
@@ -6015,7 +7101,10 @@
         "id": 316,
         "name": "Oxford Circus",
         "line": "Victoria",
-        "order": 119
+        "order": 119,
+        "zones": [
+          1
+        ]
       },
       "id": 316
     },
@@ -6032,7 +7121,11 @@
         "id": 347,
         "name": "Greenwich",
         "line": "DLR",
-        "order": 118
+        "order": 118,
+        "zones": [
+          2,
+          3
+        ]
       },
       "id": 347
     },
@@ -6049,7 +7142,11 @@
         "id": 758,
         "name": "West Ham",
         "line": "District",
-        "order": 118
+        "order": 118,
+        "zones": [
+          2,
+          3
+        ]
       },
       "id": 758
     },
@@ -6066,7 +7163,10 @@
         "id": 617,
         "name": "Liverpool Street",
         "line": "HammersmithAndCity",
-        "order": 118
+        "order": 118,
+        "zones": [
+          1
+        ]
       },
       "id": 617
     },
@@ -6083,7 +7183,10 @@
         "id": 386,
         "name": "Prince Regent",
         "line": "DLR",
-        "order": 117
+        "order": 117,
+        "zones": [
+          3
+        ]
       },
       "id": 386
     },
@@ -6100,7 +7203,10 @@
         "id": 479,
         "name": "New Cross",
         "line": "Windrush",
-        "order": 117
+        "order": 117,
+        "zones": [
+          2
+        ]
       },
       "id": 479
     },
@@ -6117,7 +7223,10 @@
         "id": 779,
         "name": "Bond Street",
         "line": "ElizabethLine",
-        "order": 116
+        "order": 116,
+        "zones": [
+          1
+        ]
       },
       "id": 779
     },
@@ -6134,7 +7243,10 @@
         "id": 735,
         "name": "Waterloo",
         "line": "Jubilee",
-        "order": 115
+        "order": 115,
+        "zones": [
+          1
+        ]
       },
       "id": 735
     },
@@ -6151,7 +7263,10 @@
         "id": 90,
         "name": "Kentish Town West",
         "line": "Mildmay",
-        "order": 115
+        "order": 115,
+        "zones": [
+          2
+        ]
       },
       "id": 90
     },
@@ -6168,7 +7283,11 @@
         "id": 261,
         "name": "Woodgrange Park",
         "line": "Suffragette",
-        "order": 115
+        "order": 115,
+        "zones": [
+          3,
+          4
+        ]
       },
       "id": 261
     },
@@ -6185,7 +7304,11 @@
         "id": 532,
         "name": "East Putney",
         "line": "District",
-        "order": 114
+        "order": 114,
+        "zones": [
+          2,
+          3
+        ]
       },
       "id": 532
     },
@@ -6202,7 +7325,10 @@
         "id": 417,
         "name": "Wood Street",
         "line": "Weaver",
-        "order": 113
+        "order": 113,
+        "zones": [
+          4
+        ]
       },
       "id": 417
     },
@@ -6219,7 +7345,10 @@
         "id": 6,
         "name": "Custom House",
         "line": "DLR",
-        "order": 112
+        "order": 112,
+        "zones": [
+          3
+        ]
       },
       "id": 6
     },
@@ -6236,7 +7365,10 @@
         "id": 198,
         "name": "Belsize Park",
         "line": "Northern",
-        "order": 112
+        "order": 112,
+        "zones": [
+          2
+        ]
       },
       "id": 198
     },
@@ -6253,7 +7385,10 @@
         "id": 483,
         "name": "Plaistow",
         "line": "District",
-        "order": 111
+        "order": 111,
+        "zones": [
+          3
+        ]
       },
       "id": 483
     },
@@ -6270,7 +7405,10 @@
         "id": 586,
         "name": "Paddington",
         "line": "Bakerloo",
-        "order": 110
+        "order": 110,
+        "zones": [
+          1
+        ]
       },
       "id": 586
     },
@@ -6287,7 +7425,10 @@
         "id": 608,
         "name": "Tottenham Court Road",
         "line": "ElizabethLine",
-        "order": 110
+        "order": 110,
+        "zones": [
+          1
+        ]
       },
       "id": 608
     },
@@ -6304,7 +7445,10 @@
         "id": 31,
         "name": "Southwark",
         "line": "Jubilee",
-        "order": 110
+        "order": 110,
+        "zones": [
+          1
+        ]
       },
       "id": 31
     },
@@ -6321,7 +7465,10 @@
         "id": 380,
         "name": "Camden Town",
         "line": "Northern",
-        "order": 110
+        "order": 110,
+        "zones": [
+          2
+        ]
       },
       "id": 380
     },
@@ -6338,7 +7485,11 @@
         "id": 639,
         "name": "Manor House",
         "line": "Piccadilly",
-        "order": 110
+        "order": 110,
+        "zones": [
+          2,
+          3
+        ]
       },
       "id": 639
     },
@@ -6355,7 +7506,11 @@
         "id": 34,
         "name": "Cutty Sark",
         "line": "DLR",
-        "order": 108
+        "order": 108,
+        "zones": [
+          2,
+          3
+        ]
       },
       "id": 34
     },
@@ -6372,7 +7527,11 @@
         "id": 228,
         "name": "Stratford",
         "line": "Central",
-        "order": 106
+        "order": 106,
+        "zones": [
+          2,
+          3
+        ]
       },
       "id": 228
     },
@@ -6389,7 +7548,10 @@
         "id": 731,
         "name": "Royal Victoria",
         "line": "DLR",
-        "order": 106
+        "order": 106,
+        "zones": [
+          3
+        ]
       },
       "id": 731
     },
@@ -6406,7 +7568,10 @@
         "id": 708,
         "name": "Warren Street",
         "line": "Victoria",
-        "order": 106
+        "order": 106,
+        "zones": [
+          1
+        ]
       },
       "id": 708
     },
@@ -6423,7 +7588,10 @@
         "id": 649,
         "name": "Upton Park",
         "line": "District",
-        "order": 105
+        "order": 105,
+        "zones": [
+          3
+        ]
       },
       "id": 649
     },
@@ -6440,7 +7608,10 @@
         "id": 54,
         "name": "Aldgate East",
         "line": "HammersmithAndCity",
-        "order": 105
+        "order": 105,
+        "zones": [
+          1
+        ]
       },
       "id": 54
     },
@@ -6457,7 +7628,10 @@
         "id": 29,
         "name": "Stonebridge Park",
         "line": "Lioness",
-        "order": 104
+        "order": 104,
+        "zones": [
+          3
+        ]
       },
       "id": 29
     },
@@ -6474,7 +7648,10 @@
         "id": 589,
         "name": "King's Cross St Pancras",
         "line": "Circle",
-        "order": 103
+        "order": 103,
+        "zones": [
+          1
+        ]
       },
       "id": 589
     },
@@ -6491,7 +7668,10 @@
         "id": 668,
         "name": "London Bridge",
         "line": "Jubilee",
-        "order": 103
+        "order": 103,
+        "zones": [
+          1
+        ]
       },
       "id": 668
     },
@@ -6508,7 +7688,10 @@
         "id": 147,
         "name": "Putney Bridge",
         "line": "District",
-        "order": 102
+        "order": 102,
+        "zones": [
+          2
+        ]
       },
       "id": 147
     },
@@ -6525,7 +7708,11 @@
         "id": 753,
         "name": "Canning Town",
         "line": "DLR",
-        "order": 101
+        "order": 101,
+        "zones": [
+          2,
+          3
+        ]
       },
       "id": 753
     },
@@ -6542,7 +7729,11 @@
         "id": 435,
         "name": "East Ham",
         "line": "District",
-        "order": 101
+        "order": 101,
+        "zones": [
+          3,
+          4
+        ]
       },
       "id": 435
     },
@@ -6559,7 +7750,11 @@
         "id": 701,
         "name": "Hampstead",
         "line": "Northern",
-        "order": 101
+        "order": 101,
+        "zones": [
+          2,
+          3
+        ]
       },
       "id": 701
     },
@@ -6576,7 +7771,10 @@
         "id": 89,
         "name": "Camden Road",
         "line": "Mildmay",
-        "order": 100
+        "order": 100,
+        "zones": [
+          2
+        ]
       },
       "id": 89
     },
@@ -6593,7 +7791,10 @@
         "id": 408,
         "name": "Walthamstow Central",
         "line": "Weaver",
-        "order": 100
+        "order": 100,
+        "zones": [
+          3
+        ]
       },
       "id": 408
     },
@@ -6610,7 +7811,10 @@
         "id": 258,
         "name": "Wanstead Park",
         "line": "Suffragette",
-        "order": 99
+        "order": 99,
+        "zones": [
+          3
+        ]
       },
       "id": 258
     },
@@ -6627,7 +7831,10 @@
         "id": 809,
         "name": "Kentish Town",
         "line": "Northern",
-        "order": 98
+        "order": 98,
+        "zones": [
+          2
+        ]
       },
       "id": 809
     },
@@ -6644,7 +7851,10 @@
         "id": 241,
         "name": "Island Gardens",
         "line": "DLR",
-        "order": 97
+        "order": 97,
+        "zones": [
+          2
+        ]
       },
       "id": 241
     },
@@ -6661,7 +7871,10 @@
         "id": 24,
         "name": "Harlesden",
         "line": "Lioness",
-        "order": 97
+        "order": 97,
+        "zones": [
+          3
+        ]
       },
       "id": 24
     },
@@ -6678,7 +7891,10 @@
         "id": 303,
         "name": "Seven Sisters",
         "line": "Weaver",
-        "order": 97
+        "order": 97,
+        "zones": [
+          3
+        ]
       },
       "id": 303
     },
@@ -6695,7 +7911,10 @@
         "id": 781,
         "name": "Euston Square",
         "line": "Circle",
-        "order": 96
+        "order": 96,
+        "zones": [
+          1
+        ]
       },
       "id": 781
     },
@@ -6712,7 +7931,10 @@
         "id": 531,
         "name": "Euston",
         "line": "Victoria",
-        "order": 96
+        "order": 96,
+        "zones": [
+          1
+        ]
       },
       "id": 531
     },
@@ -6729,7 +7951,10 @@
         "id": 391,
         "name": "St James Street",
         "line": "Weaver",
-        "order": 94
+        "order": 94,
+        "zones": [
+          3
+        ]
       },
       "id": 391
     },
@@ -6746,7 +7971,10 @@
         "id": 143,
         "name": "Edgware Road",
         "line": "Bakerloo",
-        "order": 92
+        "order": 92,
+        "zones": [
+          1
+        ]
       },
       "id": 143
     },
@@ -6763,7 +7991,10 @@
         "id": 699,
         "name": "Whitechapel",
         "line": "HammersmithAndCity",
-        "order": 92
+        "order": 92,
+        "zones": [
+          2
+        ]
       },
       "id": 699
     },
@@ -6780,7 +8011,10 @@
         "id": 652,
         "name": "Chorleywood",
         "line": "Metropolitan",
-        "order": 92
+        "order": 92,
+        "zones": [
+          7
+        ]
       },
       "id": 652
     },
@@ -6797,7 +8031,10 @@
         "id": 369,
         "name": "Turnpike Lane",
         "line": "Piccadilly",
-        "order": 91
+        "order": 91,
+        "zones": [
+          3
+        ]
       },
       "id": 369
     },
@@ -6814,7 +8051,10 @@
         "id": 42,
         "name": "Great Portland Street",
         "line": "Circle",
-        "order": 89
+        "order": 89,
+        "zones": [
+          1
+        ]
       },
       "id": 42
     },
@@ -6831,7 +8071,10 @@
         "id": 795,
         "name": "Mudchute",
         "line": "DLR",
-        "order": 89
+        "order": 89,
+        "zones": [
+          2
+        ]
       },
       "id": 795
     },
@@ -6848,7 +8091,10 @@
         "id": 497,
         "name": "Farringdon",
         "line": "ElizabethLine",
-        "order": 89
+        "order": 89,
+        "zones": [
+          1
+        ]
       },
       "id": 497
     },
@@ -6865,7 +8111,10 @@
         "id": 88,
         "name": "Caledonian Road & Barnsbury",
         "line": "Mildmay",
-        "order": 89
+        "order": 89,
+        "zones": [
+          2
+        ]
       },
       "id": 88
     },
@@ -6882,7 +8131,10 @@
         "id": 806,
         "name": "Tufnell Park",
         "line": "Northern",
-        "order": 88
+        "order": 88,
+        "zones": [
+          2
+        ]
       },
       "id": 806
     },
@@ -6899,7 +8151,10 @@
         "id": 122,
         "name": "Parsons Green",
         "line": "District",
-        "order": 87
+        "order": 87,
+        "zones": [
+          2
+        ]
       },
       "id": 122
     },
@@ -6916,7 +8171,10 @@
         "id": 271,
         "name": "Bermondsey",
         "line": "Jubilee",
-        "order": 87
+        "order": 87,
+        "zones": [
+          2
+        ]
       },
       "id": 271
     },
@@ -6933,7 +8191,10 @@
         "id": 286,
         "name": "Marylebone",
         "line": "Bakerloo",
-        "order": 86
+        "order": 86,
+        "zones": [
+          1
+        ]
       },
       "id": 286
     },
@@ -6950,7 +8211,10 @@
         "id": 17,
         "name": "Crossharbour",
         "line": "DLR",
-        "order": 86
+        "order": 86,
+        "zones": [
+          2
+        ]
       },
       "id": 17
     },
@@ -6967,7 +8231,11 @@
         "id": 21,
         "name": "Willesden Junction",
         "line": "Lioness",
-        "order": 86
+        "order": 86,
+        "zones": [
+          2,
+          3
+        ]
       },
       "id": 21
     },
@@ -6984,7 +8252,10 @@
         "id": 594,
         "name": "King's Cross St Pancras",
         "line": "Victoria",
-        "order": 86
+        "order": 86,
+        "zones": [
+          1
+        ]
       },
       "id": 594
     },
@@ -7001,7 +8272,10 @@
         "id": 300,
         "name": "Stamford Hill",
         "line": "Weaver",
-        "order": 85
+        "order": 85,
+        "zones": [
+          3
+        ]
       },
       "id": 300
     },
@@ -7018,7 +8292,10 @@
         "id": 677,
         "name": "Wood Green",
         "line": "Piccadilly",
-        "order": 85
+        "order": 85,
+        "zones": [
+          3
+        ]
       },
       "id": 677
     },
@@ -7035,7 +8312,10 @@
         "id": 451,
         "name": "Stepney Green",
         "line": "HammersmithAndCity",
-        "order": 84
+        "order": 84,
+        "zones": [
+          2
+        ]
       },
       "id": 451
     },
@@ -7052,7 +8332,10 @@
         "id": 366,
         "name": "West Harrow",
         "line": "Metropolitan",
-        "order": 84
+        "order": 84,
+        "zones": [
+          5
+        ]
       },
       "id": 366
     },
@@ -7069,7 +8352,10 @@
         "id": 357,
         "name": "Canada Water",
         "line": "Jubilee",
-        "order": 83
+        "order": 83,
+        "zones": [
+          2
+        ]
       },
       "id": 357
     },
@@ -7086,7 +8372,10 @@
         "id": 470,
         "name": "Baker Street",
         "line": "Bakerloo",
-        "order": 82
+        "order": 82,
+        "zones": [
+          1
+        ]
       },
       "id": 470
     },
@@ -7103,7 +8392,10 @@
         "id": 471,
         "name": "Baker Street",
         "line": "Circle",
-        "order": 82
+        "order": 82,
+        "zones": [
+          1
+        ]
       },
       "id": 471
     },
@@ -7120,7 +8412,10 @@
         "id": 251,
         "name": "Leytonstone High Road",
         "line": "Suffragette",
-        "order": 82
+        "order": 82,
+        "zones": [
+          3
+        ]
       },
       "id": 251
     },
@@ -7137,7 +8432,10 @@
         "id": 615,
         "name": "Liverpool Street",
         "line": "ElizabethLine",
-        "order": 80
+        "order": 80,
+        "zones": [
+          1
+        ]
       },
       "id": 615
     },
@@ -7154,7 +8452,10 @@
         "id": 86,
         "name": "Highbury & Islington",
         "line": "Mildmay",
-        "order": 80
+        "order": 80,
+        "zones": [
+          2
+        ]
       },
       "id": 86
     },
@@ -7171,7 +8472,10 @@
         "id": 310,
         "name": "Chalfont & Latimer",
         "line": "Metropolitan",
-        "order": 79
+        "order": 79,
+        "zones": [
+          8
+        ]
       },
       "id": 310
     },
@@ -7188,7 +8492,10 @@
         "id": 161,
         "name": "Fulham Broadway",
         "line": "District",
-        "order": 77
+        "order": 77,
+        "zones": [
+          2
+        ]
       },
       "id": 161
     },
@@ -7205,7 +8512,11 @@
         "id": 212,
         "name": "Archway",
         "line": "Northern",
-        "order": 77
+        "order": 77,
+        "zones": [
+          2,
+          3
+        ]
       },
       "id": 212
     },
@@ -7222,7 +8533,10 @@
         "id": 468,
         "name": "Surrey Quays",
         "line": "Windrush",
-        "order": 77
+        "order": 77,
+        "zones": [
+          2
+        ]
       },
       "id": 468
     },
@@ -7239,7 +8553,10 @@
         "id": 579,
         "name": "Edgware Road",
         "line": "Circle",
-        "order": 76
+        "order": 76,
+        "zones": [
+          1
+        ]
       },
       "id": 579
     },
@@ -7256,7 +8573,11 @@
         "id": 322,
         "name": "East India",
         "line": "DLR",
-        "order": 76
+        "order": 76,
+        "zones": [
+          2,
+          3
+        ]
       },
       "id": 322
     },
@@ -7273,7 +8594,10 @@
         "id": 249,
         "name": "Leyton Midland Road",
         "line": "Suffragette",
-        "order": 76
+        "order": 76,
+        "zones": [
+          3
+        ]
       },
       "id": 249
     },
@@ -7290,7 +8614,10 @@
         "id": 321,
         "name": "South Quay",
         "line": "DLR",
-        "order": 75
+        "order": 75,
+        "zones": [
+          2
+        ]
       },
       "id": 321
     },
@@ -7307,7 +8634,10 @@
         "id": 267,
         "name": "Mile End",
         "line": "HammersmithAndCity",
-        "order": 75
+        "order": 75,
+        "zones": [
+          2
+        ]
       },
       "id": 267
     },
@@ -7324,7 +8654,10 @@
         "id": 732,
         "name": "Leyton",
         "line": "Central",
-        "order": 73
+        "order": 73,
+        "zones": [
+          3
+        ]
       },
       "id": 732
     },
@@ -7341,7 +8674,10 @@
         "id": 244,
         "name": "Golders Green",
         "line": "Northern",
-        "order": 73
+        "order": 73,
+        "zones": [
+          3
+        ]
       },
       "id": 244
     },
@@ -7358,7 +8694,11 @@
         "id": 389,
         "name": "Clapton",
         "line": "Weaver",
-        "order": 73
+        "order": 73,
+        "zones": [
+          2,
+          3
+        ]
       },
       "id": 389
     },
@@ -7375,7 +8715,10 @@
         "id": 83,
         "name": "Canonbury",
         "line": "Mildmay",
-        "order": 72
+        "order": 72,
+        "zones": [
+          2
+        ]
       },
       "id": 83
     },
@@ -7392,7 +8735,10 @@
         "id": 278,
         "name": "Bow Road",
         "line": "HammersmithAndCity",
-        "order": 71
+        "order": 71,
+        "zones": [
+          2
+        ]
       },
       "id": 278
     },
@@ -7409,7 +8755,10 @@
         "id": 606,
         "name": "Canary Wharf",
         "line": "Jubilee",
-        "order": 71
+        "order": 71,
+        "zones": [
+          2
+        ]
       },
       "id": 606
     },
@@ -7426,7 +8775,10 @@
         "id": 298,
         "name": "Stoke Newington",
         "line": "Weaver",
-        "order": 71
+        "order": 71,
+        "zones": [
+          2
+        ]
       },
       "id": 298
     },
@@ -7443,7 +8795,10 @@
         "id": 464,
         "name": "Canada Water",
         "line": "Windrush",
-        "order": 71
+        "order": 71,
+        "zones": [
+          2
+        ]
       },
       "id": 464
     },
@@ -7460,7 +8815,10 @@
         "id": 152,
         "name": "Regent's Park",
         "line": "Bakerloo",
-        "order": 70
+        "order": 70,
+        "zones": [
+          1
+        ]
       },
       "id": 152
     },
@@ -7477,7 +8835,10 @@
         "id": 289,
         "name": "Blackwall",
         "line": "DLR",
-        "order": 69
+        "order": 69,
+        "zones": [
+          2
+        ]
       },
       "id": 289
     },
@@ -7494,7 +8855,10 @@
         "id": 465,
         "name": "Barking",
         "line": "District",
-        "order": 69
+        "order": 69,
+        "zones": [
+          4
+        ]
       },
       "id": 465
     },
@@ -7511,7 +8875,10 @@
         "id": 698,
         "name": "Whitechapel",
         "line": "ElizabethLine",
-        "order": 69
+        "order": 69,
+        "zones": [
+          2
+        ]
       },
       "id": 698
     },
@@ -7528,7 +8895,10 @@
         "id": 381,
         "name": "Rayners Lane",
         "line": "Metropolitan",
-        "order": 69
+        "order": 69,
+        "zones": [
+          5
+        ]
       },
       "id": 381
     },
@@ -7545,7 +8915,10 @@
         "id": 656,
         "name": "Highbury & Islington",
         "line": "Victoria",
-        "order": 69
+        "order": 69,
+        "zones": [
+          2
+        ]
       },
       "id": 656
     },
@@ -7562,7 +8935,11 @@
         "id": 230,
         "name": "Stratford",
         "line": "ElizabethLine",
-        "order": 68
+        "order": 68,
+        "zones": [
+          2,
+          3
+        ]
       },
       "id": 230
     },
@@ -7579,7 +8956,11 @@
         "id": 37,
         "name": "Bounds Green",
         "line": "Piccadilly",
-        "order": 68
+        "order": 68,
+        "zones": [
+          3,
+          4
+        ]
       },
       "id": 37
     },
@@ -7596,7 +8977,10 @@
         "id": 19,
         "name": "Kensal Green",
         "line": "Lioness",
-        "order": 67
+        "order": 67,
+        "zones": [
+          2
+        ]
       },
       "id": 19
     },
@@ -7613,7 +8997,10 @@
         "id": 461,
         "name": "Rotherhithe",
         "line": "Windrush",
-        "order": 67
+        "order": 67,
+        "zones": [
+          2
+        ]
       },
       "id": 461
     },
@@ -7630,7 +9017,11 @@
         "id": 240,
         "name": "Leytonstone",
         "line": "Central",
-        "order": 66
+        "order": 66,
+        "zones": [
+          3,
+          4
+        ]
       },
       "id": 240
     },
@@ -7647,7 +9038,10 @@
         "id": 363,
         "name": "Buckhurst Hill",
         "line": "Central",
-        "order": 66
+        "order": 66,
+        "zones": [
+          5
+        ]
       },
       "id": 363
     },
@@ -7664,7 +9058,11 @@
         "id": 459,
         "name": "Star Lane",
         "line": "DLR",
-        "order": 66
+        "order": 66,
+        "zones": [
+          2,
+          3
+        ]
       },
       "id": 459
     },
@@ -7681,7 +9079,10 @@
         "id": 159,
         "name": "Highgate",
         "line": "Northern",
-        "order": 66
+        "order": 66,
+        "zones": [
+          3
+        ]
       },
       "id": 159
     },
@@ -7698,7 +9099,10 @@
         "id": 242,
         "name": "Walthamstow Queen's Road",
         "line": "Suffragette",
-        "order": 66
+        "order": 66,
+        "zones": [
+          3
+        ]
       },
       "id": 242
     },
@@ -7715,7 +9119,10 @@
         "id": 406,
         "name": "West Brompton",
         "line": "District",
-        "order": 65
+        "order": 65,
+        "zones": [
+          2
+        ]
       },
       "id": 406
     },
@@ -7732,7 +9139,10 @@
         "id": 587,
         "name": "Paddington",
         "line": "Circle",
-        "order": 64
+        "order": 64,
+        "zones": [
+          1
+        ]
       },
       "id": 587
     },
@@ -7749,7 +9159,10 @@
         "id": 118,
         "name": "Maryland",
         "line": "ElizabethLine",
-        "order": 64
+        "order": 64,
+        "zones": [
+          3
+        ]
       },
       "id": 118
     },
@@ -7766,7 +9179,10 @@
         "id": 460,
         "name": "Wapping",
         "line": "Windrush",
-        "order": 64
+        "order": 64,
+        "zones": [
+          2
+        ]
       },
       "id": 460
     },
@@ -7783,7 +9199,10 @@
         "id": 509,
         "name": "Wanstead",
         "line": "Central",
-        "order": 63
+        "order": 63,
+        "zones": [
+          4
+        ]
       },
       "id": 509
     },
@@ -7800,7 +9219,10 @@
         "id": 268,
         "name": "Heron Quays",
         "line": "DLR",
-        "order": 63
+        "order": 63,
+        "zones": [
+          2
+        ]
       },
       "id": 268
     },
@@ -7817,7 +9239,10 @@
         "id": 293,
         "name": "Rectory Road",
         "line": "Weaver",
-        "order": 63
+        "order": 63,
+        "zones": [
+          2
+        ]
       },
       "id": 293
     },
@@ -7834,7 +9259,10 @@
         "id": 314,
         "name": "Oxford Circus",
         "line": "Bakerloo",
-        "order": 61
+        "order": 61,
+        "zones": [
+          1
+        ]
       },
       "id": 314
     },
@@ -7851,7 +9279,10 @@
         "id": 704,
         "name": "Canary Wharf",
         "line": "DLR",
-        "order": 61
+        "order": 61,
+        "zones": [
+          2
+        ]
       },
       "id": 704
     },
@@ -7868,7 +9299,10 @@
         "id": 78,
         "name": "Dalston Kingsland",
         "line": "Mildmay",
-        "order": 61
+        "order": 61,
+        "zones": [
+          2
+        ]
       },
       "id": 78
     },
@@ -7885,7 +9319,10 @@
         "id": 77,
         "name": "Poplar",
         "line": "DLR",
-        "order": 60
+        "order": 60,
+        "zones": [
+          2
+        ]
       },
       "id": 77
     },
@@ -7902,7 +9339,11 @@
         "id": 757,
         "name": "West Ham",
         "line": "DLR",
-        "order": 60
+        "order": 60,
+        "zones": [
+          2,
+          3
+        ]
       },
       "id": 757
     },
@@ -7919,7 +9360,10 @@
         "id": 644,
         "name": "Forest Gate",
         "line": "ElizabethLine",
-        "order": 60
+        "order": 60,
+        "zones": [
+          3
+        ]
       },
       "id": 644
     },
@@ -7936,7 +9380,10 @@
         "id": 350,
         "name": "East Finchley",
         "line": "Northern",
-        "order": 60
+        "order": 60,
+        "zones": [
+          3
+        ]
       },
       "id": 350
     },
@@ -7953,7 +9400,10 @@
         "id": 135,
         "name": "West India Quay",
         "line": "DLR",
-        "order": 59
+        "order": 59,
+        "zones": [
+          2
+        ]
       },
       "id": 135
     },
@@ -7970,7 +9420,10 @@
         "id": 457,
         "name": "Shadwell",
         "line": "Windrush",
-        "order": 58
+        "order": 58,
+        "zones": [
+          2
+        ]
       },
       "id": 457
     },
@@ -7987,7 +9440,10 @@
         "id": 684,
         "name": "Finsbury Park",
         "line": "Victoria",
-        "order": 58
+        "order": 58,
+        "zones": [
+          2
+        ]
       },
       "id": 684
     },
@@ -8004,7 +9460,11 @@
         "id": 28,
         "name": "Bromley-by-Bow",
         "line": "HammersmithAndCity",
-        "order": 57
+        "order": 57,
+        "zones": [
+          2,
+          3
+        ]
       },
       "id": 28
     },
@@ -8021,7 +9481,10 @@
         "id": 73,
         "name": "Hackney Central",
         "line": "Mildmay",
-        "order": 57
+        "order": 57,
+        "zones": [
+          2
+        ]
       },
       "id": 73
     },
@@ -8038,7 +9501,10 @@
         "id": 238,
         "name": "Blackhorse Road",
         "line": "Suffragette",
-        "order": 56
+        "order": 56,
+        "zones": [
+          3
+        ]
       },
       "id": 238
     },
@@ -8055,7 +9521,10 @@
         "id": 136,
         "name": "Snaresbrook",
         "line": "Central",
-        "order": 55
+        "order": 55,
+        "zones": [
+          4
+        ]
       },
       "id": 136
     },
@@ -8072,7 +9541,11 @@
         "id": 524,
         "name": "Manor Park",
         "line": "ElizabethLine",
-        "order": 55
+        "order": 55,
+        "zones": [
+          3,
+          4
+        ]
       },
       "id": 524
     },
@@ -8089,7 +9562,11 @@
         "id": 264,
         "name": "North Greenwich",
         "line": "Jubilee",
-        "order": 55
+        "order": 55,
+        "zones": [
+          2,
+          3
+        ]
       },
       "id": 264
     },
@@ -8106,7 +9583,10 @@
         "id": 695,
         "name": "Eastcote",
         "line": "Metropolitan",
-        "order": 55
+        "order": 55,
+        "zones": [
+          5
+        ]
       },
       "id": 695
     },
@@ -8123,7 +9603,10 @@
         "id": 16,
         "name": "Queen's Park",
         "line": "Lioness",
-        "order": 55
+        "order": 55,
+        "zones": [
+          2
+        ]
       },
       "id": 16
     },
@@ -8140,7 +9623,10 @@
         "id": 13,
         "name": "Redbridge",
         "line": "Central",
-        "order": 54
+        "order": 54,
+        "zones": [
+          4
+        ]
       },
       "id": 13
     },
@@ -8157,7 +9643,10 @@
         "id": 338,
         "name": "Royal Oak",
         "line": "Circle",
-        "order": 54
+        "order": 54,
+        "zones": [
+          2
+        ]
       },
       "id": 338
     },
@@ -8174,7 +9663,10 @@
         "id": 213,
         "name": "Arnos Grove",
         "line": "Piccadilly",
-        "order": 54
+        "order": 54,
+        "zones": [
+          4
+        ]
       },
       "id": 213
     },
@@ -8191,7 +9683,11 @@
         "id": 601,
         "name": "Abbey Road",
         "line": "DLR",
-        "order": 53
+        "order": 53,
+        "zones": [
+          2,
+          3
+        ]
       },
       "id": 601
     },
@@ -8208,7 +9704,11 @@
         "id": 505,
         "name": "Earl's Court",
         "line": "District",
-        "order": 53
+        "order": 53,
+        "zones": [
+          1,
+          2
+        ]
       },
       "id": 505
     },
@@ -8225,7 +9725,10 @@
         "id": 252,
         "name": "Upney",
         "line": "District",
-        "order": 53
+        "order": 53,
+        "zones": [
+          4
+        ]
       },
       "id": 252
     },
@@ -8242,7 +9745,10 @@
         "id": 411,
         "name": "Canary Wharf",
         "line": "ElizabethLine",
-        "order": 52
+        "order": 52,
+        "zones": [
+          2
+        ]
       },
       "id": 411
     },
@@ -8259,7 +9765,10 @@
         "id": 318,
         "name": "Brent Cross",
         "line": "Northern",
-        "order": 52
+        "order": 52,
+        "zones": [
+          3
+        ]
       },
       "id": 318
     },
@@ -8276,7 +9785,10 @@
         "id": 355,
         "name": "Ruislip Manor",
         "line": "Metropolitan",
-        "order": 51
+        "order": 51,
+        "zones": [
+          6
+        ]
       },
       "id": 355
     },
@@ -8293,7 +9805,10 @@
         "id": 292,
         "name": "Hackney Downs",
         "line": "Weaver",
-        "order": 51
+        "order": 51,
+        "zones": [
+          2
+        ]
       },
       "id": 292
     },
@@ -8310,7 +9825,10 @@
         "id": 431,
         "name": "Piccadilly Circus",
         "line": "Bakerloo",
-        "order": 50
+        "order": 50,
+        "zones": [
+          1
+        ]
       },
       "id": 431
     },
@@ -8327,7 +9845,10 @@
         "id": 14,
         "name": "Loughton",
         "line": "Central",
-        "order": 49
+        "order": 49,
+        "zones": [
+          6
+        ]
       },
       "id": 14
     },
@@ -8344,7 +9865,10 @@
         "id": 390,
         "name": "Ilford",
         "line": "ElizabethLine",
-        "order": 49
+        "order": 49,
+        "zones": [
+          4
+        ]
       },
       "id": 390
     },
@@ -8361,7 +9885,10 @@
         "id": 125,
         "name": "Gants Hill",
         "line": "Central",
-        "order": 48
+        "order": 48,
+        "zones": [
+          4
+        ]
       },
       "id": 125
     },
@@ -8378,7 +9905,10 @@
         "id": 394,
         "name": "Westferry",
         "line": "DLR",
-        "order": 48
+        "order": 48,
+        "zones": [
+          2
+        ]
       },
       "id": 394
     },
@@ -8395,7 +9925,10 @@
         "id": 645,
         "name": "Becontree",
         "line": "District",
-        "order": 48
+        "order": 48,
+        "zones": [
+          5
+        ]
       },
       "id": 645
     },
@@ -8412,7 +9945,11 @@
         "id": 759,
         "name": "West Ham",
         "line": "HammersmithAndCity",
-        "order": 48
+        "order": 48,
+        "zones": [
+          2,
+          3
+        ]
       },
       "id": 759
     },
@@ -8429,7 +9966,10 @@
         "id": 247,
         "name": "Ruislip",
         "line": "Metropolitan",
-        "order": 48
+        "order": 48,
+        "zones": [
+          6
+        ]
       },
       "id": 247
     },
@@ -8446,7 +9986,10 @@
         "id": 71,
         "name": "Homerton",
         "line": "Mildmay",
-        "order": 47
+        "order": 47,
+        "zones": [
+          2
+        ]
       },
       "id": 71
     },
@@ -8463,7 +10006,10 @@
         "id": 445,
         "name": "Whitechapel",
         "line": "Windrush",
-        "order": 46
+        "order": 46,
+        "zones": [
+          2
+        ]
       },
       "id": 445
     },
@@ -8480,7 +10026,10 @@
         "id": 545,
         "name": "Westbourne Park",
         "line": "Circle",
-        "order": 45
+        "order": 45,
+        "zones": [
+          2
+        ]
       },
       "id": 545
     },
@@ -8497,7 +10046,10 @@
         "id": 340,
         "name": "Finchley Central",
         "line": "Northern",
-        "order": 45
+        "order": 45,
+        "zones": [
+          4
+        ]
       },
       "id": 340
     },
@@ -8514,7 +10066,10 @@
         "id": 272,
         "name": "South Woodford",
         "line": "Central",
-        "order": 44
+        "order": 44,
+        "zones": [
+          4
+        ]
       },
       "id": 272
     },
@@ -8531,7 +10086,10 @@
         "id": 4,
         "name": "Seven Kings",
         "line": "ElizabethLine",
-        "order": 44
+        "order": 44,
+        "zones": [
+          4
+        ]
       },
       "id": 4
     },
@@ -8548,7 +10106,10 @@
         "id": 3,
         "name": "Upminster",
         "line": "Liberty",
-        "order": 44
+        "order": 44,
+        "zones": [
+          6
+        ]
       },
       "id": 3
     },
@@ -8565,7 +10126,11 @@
         "id": 160,
         "name": "Hendon Central",
         "line": "Northern",
-        "order": 43
+        "order": 43,
+        "zones": [
+          3,
+          4
+        ]
       },
       "id": 160
     },
@@ -8582,7 +10147,10 @@
         "id": 11,
         "name": "Kilburn High Road",
         "line": "Lioness",
-        "order": 43
+        "order": 43,
+        "zones": [
+          2
+        ]
       },
       "id": 11
     },
@@ -8599,7 +10167,11 @@
         "id": 45,
         "name": "Stratford High Street",
         "line": "DLR",
-        "order": 42
+        "order": 42,
+        "zones": [
+          2,
+          3
+        ]
       },
       "id": 45
     },
@@ -8616,7 +10188,10 @@
         "id": 490,
         "name": "All Saints",
         "line": "DLR",
-        "order": 42
+        "order": 42,
+        "zones": [
+          2
+        ]
       },
       "id": 490
     },
@@ -8633,7 +10208,10 @@
         "id": 197,
         "name": "Dagenham Heathway",
         "line": "District",
-        "order": 42
+        "order": 42,
+        "zones": [
+          5
+        ]
       },
       "id": 197
     },
@@ -8650,7 +10228,10 @@
         "id": 320,
         "name": "High Street Kensington",
         "line": "District",
-        "order": 41
+        "order": 41,
+        "zones": [
+          1
+        ]
       },
       "id": 320
     },
@@ -8667,7 +10248,10 @@
         "id": 484,
         "name": "Plaistow",
         "line": "HammersmithAndCity",
-        "order": 41
+        "order": 41,
+        "zones": [
+          3
+        ]
       },
       "id": 484
     },
@@ -8684,7 +10268,10 @@
         "id": 287,
         "name": "London Fields",
         "line": "Weaver",
-        "order": 41
+        "order": 41,
+        "zones": [
+          2
+        ]
       },
       "id": 287
     },
@@ -8701,7 +10288,10 @@
         "id": 276,
         "name": "Goodmayes",
         "line": "ElizabethLine",
-        "order": 40
+        "order": 40,
+        "zones": [
+          4
+        ]
       },
       "id": 276
     },
@@ -8718,7 +10308,10 @@
         "id": 453,
         "name": "Woodford",
         "line": "Central",
-        "order": 38
+        "order": 38,
+        "zones": [
+          4
+        ]
       },
       "id": 453
     },
@@ -8735,7 +10328,10 @@
         "id": 100,
         "name": "Langdon Park",
         "line": "DLR",
-        "order": 38
+        "order": 38,
+        "zones": [
+          2
+        ]
       },
       "id": 100
     },
@@ -8752,7 +10348,10 @@
         "id": 237,
         "name": "South Tottenham",
         "line": "Suffragette",
-        "order": 38
+        "order": 38,
+        "zones": [
+          3
+        ]
       },
       "id": 237
     },
@@ -8769,7 +10368,10 @@
         "id": 478,
         "name": "Limehouse",
         "line": "DLR",
-        "order": 37
+        "order": 37,
+        "zones": [
+          2
+        ]
       },
       "id": 478
     },
@@ -8786,7 +10388,10 @@
         "id": 138,
         "name": "Chadwell Heath",
         "line": "ElizabethLine",
-        "order": 37
+        "order": 37,
+        "zones": [
+          5
+        ]
       },
       "id": 138
     },
@@ -8803,7 +10408,11 @@
         "id": 229,
         "name": "Stratford",
         "line": "DLR",
-        "order": 35
+        "order": 35,
+        "zones": [
+          2,
+          3
+        ]
       },
       "id": 229
     },
@@ -8820,7 +10429,10 @@
         "id": 650,
         "name": "Upton Park",
         "line": "HammersmithAndCity",
-        "order": 35
+        "order": 35,
+        "zones": [
+          3
+        ]
       },
       "id": 650
     },
@@ -8837,7 +10449,11 @@
         "id": 754,
         "name": "Canning Town",
         "line": "Jubilee",
-        "order": 35
+        "order": 35,
+        "zones": [
+          2,
+          3
+        ]
       },
       "id": 754
     },
@@ -8854,7 +10470,10 @@
         "id": 9,
         "name": "South Hampstead",
         "line": "Lioness",
-        "order": 35
+        "order": 35,
+        "zones": [
+          2
+        ]
       },
       "id": 9
     },
@@ -8871,7 +10490,10 @@
         "id": 738,
         "name": "Waterloo",
         "line": "WaterlooAndCity",
-        "order": 35
+        "order": 35,
+        "zones": [
+          1
+        ]
       },
       "id": 738
     },
@@ -8888,7 +10510,10 @@
         "id": 7,
         "name": "Custom House",
         "line": "ElizabethLine",
-        "order": 34
+        "order": 34,
+        "zones": [
+          3
+        ]
       },
       "id": 7
     },
@@ -8905,7 +10530,10 @@
         "id": 290,
         "name": "Charing Cross",
         "line": "Bakerloo",
-        "order": 33
+        "order": 33,
+        "zones": [
+          1
+        ]
       },
       "id": 290
     },
@@ -8922,7 +10550,11 @@
         "id": 424,
         "name": "Notting Hill Gate",
         "line": "District",
-        "order": 33
+        "order": 33,
+        "zones": [
+          1,
+          2
+        ]
       },
       "id": 424
     },
@@ -8939,7 +10571,10 @@
         "id": 81,
         "name": "Kensington (Olympia)",
         "line": "District",
-        "order": 33
+        "order": 33,
+        "zones": [
+          2
+        ]
       },
       "id": 81
     },
@@ -8956,7 +10591,10 @@
         "id": 597,
         "name": "Dagenham East",
         "line": "District",
-        "order": 33
+        "order": 33,
+        "zones": [
+          5
+        ]
       },
       "id": 597
     },
@@ -8973,7 +10611,10 @@
         "id": 442,
         "name": "Shoreditch High Street",
         "line": "Windrush",
-        "order": 33
+        "order": 33,
+        "zones": [
+          1
+        ]
       },
       "id": 442
     },
@@ -8990,7 +10631,10 @@
         "id": 172,
         "name": "Southgate",
         "line": "Piccadilly",
-        "order": 33
+        "order": 33,
+        "zones": [
+          4
+        ]
       },
       "id": 172
     },
@@ -9007,7 +10651,10 @@
         "id": 626,
         "name": "Seven Sisters",
         "line": "Victoria",
-        "order": 33
+        "order": 33,
+        "zones": [
+          3
+        ]
       },
       "id": 626
     },
@@ -9024,7 +10671,10 @@
         "id": 26,
         "name": "Devons Road",
         "line": "DLR",
-        "order": 32
+        "order": 32,
+        "zones": [
+          2
+        ]
       },
       "id": 26
     },
@@ -9041,7 +10691,10 @@
         "id": 285,
         "name": "Cambridge Heath",
         "line": "Weaver",
-        "order": 32
+        "order": 32,
+        "zones": [
+          2
+        ]
       },
       "id": 285
     },
@@ -9058,7 +10711,11 @@
         "id": 436,
         "name": "East Ham",
         "line": "HammersmithAndCity",
-        "order": 31
+        "order": 31,
+        "zones": [
+          3,
+          4
+        ]
       },
       "id": 436
     },
@@ -9075,7 +10732,10 @@
         "id": 551,
         "name": "Embankment",
         "line": "Bakerloo",
-        "order": 30
+        "order": 30,
+        "zones": [
+          1
+        ]
       },
       "id": 551
     },
@@ -9092,7 +10752,10 @@
         "id": 489,
         "name": "Bow Church",
         "line": "DLR",
-        "order": 30
+        "order": 30,
+        "zones": [
+          2
+        ]
       },
       "id": 489
     },
@@ -9109,7 +10772,10 @@
         "id": 75,
         "name": "Ickenham",
         "line": "Metropolitan",
-        "order": 30
+        "order": 30,
+        "zones": [
+          6
+        ]
       },
       "id": 75
     },
@@ -9126,7 +10792,10 @@
         "id": 784,
         "name": "Ladbroke Grove",
         "line": "Circle",
-        "order": 29
+        "order": 29,
+        "zones": [
+          2
+        ]
       },
       "id": 784
     },
@@ -9143,7 +10812,10 @@
         "id": 360,
         "name": "Romford",
         "line": "ElizabethLine",
-        "order": 29
+        "order": 29,
+        "zones": [
+          6
+        ]
       },
       "id": 360
     },
@@ -9160,7 +10832,10 @@
         "id": 520,
         "name": "Roding Valley",
         "line": "Central",
-        "order": 28
+        "order": 28,
+        "zones": [
+          4
+        ]
       },
       "id": 520
     },
@@ -9177,7 +10852,10 @@
         "id": 409,
         "name": "Debden",
         "line": "Central",
-        "order": 28
+        "order": 28,
+        "zones": [
+          6
+        ]
       },
       "id": 409
     },
@@ -9194,7 +10872,10 @@
         "id": 706,
         "name": "Colindale",
         "line": "Northern",
-        "order": 28
+        "order": 28,
+        "zones": [
+          4
+        ]
       },
       "id": 706
     },
@@ -9211,7 +10892,10 @@
         "id": 67,
         "name": "Hackney Wick",
         "line": "Mildmay",
-        "order": 28
+        "order": 28,
+        "zones": [
+          2
+        ]
       },
       "id": 67
     },
@@ -9228,7 +10912,10 @@
         "id": 235,
         "name": "Harringay Green Lanes",
         "line": "Suffragette",
-        "order": 28
+        "order": 28,
+        "zones": [
+          3
+        ]
       },
       "id": 235
     },
@@ -9245,7 +10932,10 @@
         "id": 2,
         "name": "Emerson Park",
         "line": "Liberty",
-        "order": 27
+        "order": 27,
+        "zones": [
+          6
+        ]
       },
       "id": 2
     },
@@ -9262,7 +10952,10 @@
         "id": 364,
         "name": "Shadwell",
         "line": "DLR",
-        "order": 26
+        "order": 26,
+        "zones": [
+          2
+        ]
       },
       "id": 364
     },
@@ -9279,7 +10972,10 @@
         "id": 158,
         "name": "Elm Park",
         "line": "District",
-        "order": 26
+        "order": 26,
+        "zones": [
+          6
+        ]
       },
       "id": 158
     },
@@ -9296,7 +10992,10 @@
         "id": 789,
         "name": "Gidea Park",
         "line": "ElizabethLine",
-        "order": 26
+        "order": 26,
+        "zones": [
+          6
+        ]
       },
       "id": 789
     },
@@ -9313,7 +11012,10 @@
         "id": 99,
         "name": "West Finchley",
         "line": "Northern",
-        "order": 26
+        "order": 26,
+        "zones": [
+          4
+        ]
       },
       "id": 99
     },
@@ -9330,7 +11032,10 @@
         "id": 787,
         "name": "Harold Wood",
         "line": "ElizabethLine",
-        "order": 23
+        "order": 23,
+        "zones": [
+          6
+        ]
       },
       "id": 787
     },
@@ -9347,7 +11052,10 @@
         "id": 776,
         "name": "Tottenham Hale",
         "line": "Victoria",
-        "order": 23
+        "order": 23,
+        "zones": [
+          3
+        ]
       },
       "id": 776
     },
@@ -9364,7 +11072,10 @@
         "id": 493,
         "name": "Latimer Road",
         "line": "Circle",
-        "order": 22
+        "order": 22,
+        "zones": [
+          2
+        ]
       },
       "id": 493
     },
@@ -9381,7 +11092,10 @@
         "id": 488,
         "name": "Woodside Park",
         "line": "Northern",
-        "order": 22
+        "order": 22,
+        "zones": [
+          4
+        ]
       },
       "id": 488
     },
@@ -9398,7 +11112,10 @@
         "id": 254,
         "name": "Bayswater",
         "line": "District",
-        "order": 21
+        "order": 21,
+        "zones": [
+          1
+        ]
       },
       "id": 254
     },
@@ -9415,7 +11132,11 @@
         "id": 760,
         "name": "West Ham",
         "line": "Jubilee",
-        "order": 21
+        "order": 21,
+        "zones": [
+          2,
+          3
+        ]
       },
       "id": 760
     },
@@ -9432,7 +11153,10 @@
         "id": 733,
         "name": "Waterloo",
         "line": "Bakerloo",
-        "order": 20
+        "order": 20,
+        "zones": [
+          1
+        ]
       },
       "id": 733
     },
@@ -9449,7 +11173,10 @@
         "id": 68,
         "name": "Newbury Park",
         "line": "Central",
-        "order": 20
+        "order": 20,
+        "zones": [
+          4
+        ]
       },
       "id": 68
     },
@@ -9466,7 +11193,10 @@
         "id": 571,
         "name": "Hornchurch",
         "line": "District",
-        "order": 19
+        "order": 19,
+        "zones": [
+          6
+        ]
       },
       "id": 571
     },
@@ -9483,7 +11213,10 @@
         "id": 234,
         "name": "Crouch Hill",
         "line": "Suffragette",
-        "order": 19
+        "order": 19,
+        "zones": [
+          3
+        ]
       },
       "id": 234
     },
@@ -9500,7 +11233,10 @@
         "id": 578,
         "name": "Chigwell",
         "line": "Central",
-        "order": 18
+        "order": 18,
+        "zones": [
+          4
+        ]
       },
       "id": 578
     },
@@ -9517,7 +11253,10 @@
         "id": 280,
         "name": "Bethnal Green",
         "line": "Weaver",
-        "order": 18
+        "order": 18,
+        "zones": [
+          2
+        ]
       },
       "id": 280
     },
@@ -9534,7 +11273,10 @@
         "id": 452,
         "name": "Burnt Oak",
         "line": "Northern",
-        "order": 16
+        "order": 16,
+        "zones": [
+          4
+        ]
       },
       "id": 452
     },
@@ -9551,7 +11293,11 @@
         "id": 317,
         "name": "Pudding Mill Lane",
         "line": "DLR",
-        "order": 15
+        "order": 15,
+        "zones": [
+          2,
+          3
+        ]
       },
       "id": 317
     },
@@ -9568,7 +11314,10 @@
         "id": 687,
         "name": "Brentwood",
         "line": "ElizabethLine",
-        "order": 15
+        "order": 15,
+        "zones": [
+          9
+        ]
       },
       "id": 687
     },
@@ -9585,7 +11334,10 @@
         "id": 455,
         "name": "Wood Lane",
         "line": "Circle",
-        "order": 14
+        "order": 14,
+        "zones": [
+          2
+        ]
       },
       "id": 455
     },
@@ -9602,7 +11354,10 @@
         "id": 404,
         "name": "Hillingdon",
         "line": "Metropolitan",
-        "order": 14
+        "order": 14,
+        "zones": [
+          6
+        ]
       },
       "id": 404
     },
@@ -9619,7 +11374,10 @@
         "id": 165,
         "name": "Croxley",
         "line": "Metropolitan",
-        "order": 14
+        "order": 14,
+        "zones": [
+          7
+        ]
       },
       "id": 165
     },
@@ -9636,7 +11394,10 @@
         "id": 533,
         "name": "Totteridge & Whetstone",
         "line": "Northern",
-        "order": 14
+        "order": 14,
+        "zones": [
+          4
+        ]
       },
       "id": 533
     },
@@ -9653,7 +11414,10 @@
         "id": 512,
         "name": "Oakwood",
         "line": "Piccadilly",
-        "order": 14
+        "order": 14,
+        "zones": [
+          5
+        ]
       },
       "id": 512
     },
@@ -9670,7 +11434,10 @@
         "id": 231,
         "name": "Upper Holloway",
         "line": "Suffragette",
-        "order": 13
+        "order": 13,
+        "zones": [
+          2
+        ]
       },
       "id": 231
     },
@@ -9687,7 +11454,10 @@
         "id": 151,
         "name": "Lambeth North",
         "line": "Bakerloo",
-        "order": 11
+        "order": 11,
+        "zones": [
+          1
+        ]
       },
       "id": 151
     },
@@ -9704,7 +11474,10 @@
         "id": 288,
         "name": "Grange Hill",
         "line": "Central",
-        "order": 11
+        "order": 11,
+        "zones": [
+          4
+        ]
       },
       "id": 288
     },
@@ -9721,7 +11494,10 @@
         "id": 582,
         "name": "Woolwich",
         "line": "ElizabethLine",
-        "order": 10
+        "order": 10,
+        "zones": [
+          4
+        ]
       },
       "id": 582
     },
@@ -9738,7 +11514,11 @@
         "id": 440,
         "name": "Hoxton",
         "line": "Windrush",
-        "order": 10
+        "order": 10,
+        "zones": [
+          1,
+          2
+        ]
       },
       "id": 440
     },
@@ -9755,7 +11535,10 @@
         "id": 665,
         "name": "Upminster Bridge",
         "line": "District",
-        "order": 9
+        "order": 9,
+        "zones": [
+          6
+        ]
       },
       "id": 665
     },
@@ -9772,7 +11555,10 @@
         "id": 491,
         "name": "Canonbury",
         "line": "Windrush",
-        "order": 9
+        "order": 9,
+        "zones": [
+          2
+        ]
       },
       "id": 491
     },
@@ -9789,7 +11575,10 @@
         "id": 713,
         "name": "Barkingside",
         "line": "Central",
-        "order": 8
+        "order": 8,
+        "zones": [
+          4
+        ]
       },
       "id": 713
     },
@@ -9806,7 +11595,10 @@
         "id": 790,
         "name": "Theydon Bois",
         "line": "Central",
-        "order": 8
+        "order": 8,
+        "zones": [
+          6
+        ]
       },
       "id": 790
     },
@@ -9823,7 +11615,10 @@
         "id": 588,
         "name": "Paddington",
         "line": "District",
-        "order": 8
+        "order": 8,
+        "zones": [
+          1
+        ]
       },
       "id": 588
     },
@@ -9840,7 +11635,10 @@
         "id": 224,
         "name": "Nine Elms",
         "line": "Northern",
-        "order": 8
+        "order": 8,
+        "zones": [
+          1
+        ]
       },
       "id": 224
     },
@@ -9857,7 +11655,10 @@
         "id": 561,
         "name": "Shepherd's Bush Market",
         "line": "Circle",
-        "order": 7
+        "order": 7,
+        "zones": [
+          2
+        ]
       },
       "id": 561
     },
@@ -9874,7 +11675,10 @@
         "id": 437,
         "name": "Haggerston",
         "line": "Windrush",
-        "order": 6
+        "order": 6,
+        "zones": [
+          2
+        ]
       },
       "id": 437
     },
@@ -9891,7 +11695,10 @@
         "id": 119,
         "name": "Fairlop",
         "line": "Central",
-        "order": 4
+        "order": 4,
+        "zones": [
+          4
+        ]
       },
       "id": 119
     },
@@ -9908,7 +11715,10 @@
         "id": 33,
         "name": "Blackhorse Road",
         "line": "Victoria",
-        "order": 4
+        "order": 4,
+        "zones": [
+          3
+        ]
       },
       "id": 33
     },
@@ -9925,7 +11735,10 @@
         "id": 173,
         "name": "Goldhawk Road",
         "line": "Circle",
-        "order": 1
+        "order": 1,
+        "zones": [
+          2
+        ]
       },
       "id": 173
     }

@@ -254,10 +254,22 @@ export default function PinMode({
     }
     appliedIdsRef.current.clear()
 
-    // Hard mode leaves no persistent visual — played stations look identical
-    // to unplayed. Correct-guess feedback is a brief flash triggered inline
-    // in handleClickStation instead.
-    if (mode === 'pinHard') return
+    const finished = progress.currentIdx >= progress.order.length
+
+    // Hard mode: no persistent visual during play — played stations look
+    // identical to unplayed. Correct-guess feedback is the brief flash
+    // triggered inline in handleClickStation. But on round completion we
+    // reveal every played station's outcome (and its label) so the player
+    // can review before choosing Play again / Review missed.
+    if (mode === 'pinHard' && !finished) return
+
+    // Entering the pinHard reveal: cancel any pending flash-cleanup timeouts
+    // so they don't remove pinState from the last-clicked stations
+    // mid-reveal.
+    if (mode === 'pinHard' && finished) {
+      for (const t of hardFlashTimeoutsRef.current) clearTimeout(t)
+      hardFlashTimeoutsRef.current.clear()
+    }
 
     for (const [idStr, state] of Object.entries(progress.stationStates)) {
       const id = Number(idStr)
@@ -265,8 +277,9 @@ export default function PinMode({
       const ids = (name && nameToIds.get(name)) || [id]
       for (const fid of ids) {
         map.setFeatureState({ source: 'features', id: fid }, { pinState: state })
-        // Only reveal labels in soft pin mode; hard mode deliberately withholds them.
-        if (mode === 'pin') {
+        // Reveal labels in soft pin always; in pinHard only during the
+        // round-complete reveal so play stays label-free.
+        if (mode === 'pin' || (mode === 'pinHard' && finished)) {
           map.setFeatureState({ source: 'features', id: fid }, { showLabel: true })
         }
         appliedIdsRef.current.add(fid)
@@ -291,30 +304,23 @@ export default function PinMode({
 
   const handleSkip = useCallback(() => {
     if (!progress || currentStationId == null) return
-    const next: PinProgress = {
+    // Skip = defer to the end of the queue. The skipped station keeps its
+    // (empty) attempts state and slides to the back, so the player comes
+    // back to it later. Does NOT mark missed and does NOT reveal — those
+    // outcomes are reserved for the wrong × 3 path. This matches typeHard's
+    // skip semantics so the two prompt-modes behave the same way.
+    const skipped = progress.order[progress.currentIdx]
+    const nextOrder = [
+      ...progress.order.slice(0, progress.currentIdx),
+      ...progress.order.slice(progress.currentIdx + 1),
+      skipped,
+    ]
+    setProgress({
       ...progress,
-      currentIdx: progress.currentIdx + 1,
+      order: nextOrder,
       attemptsForCurrent: 0,
-      stationStates: {
-        ...progress.stationStates,
-        [currentStationId]: 'missed',
-      },
-    }
-    setProgress(next)
-    // Reveal the skipped station the same way a 3rd-wrong guess does — flash
-    // it and re-centre the map if it's off-screen or under the top UI.
-    const currentName = idMap.get(currentStationId)?.properties.name
-    const ids =
-      (currentName && nameToIds.get(currentName)) || [currentStationId]
-    onRevealAnswer(ids)
-  }, [
-    progress,
-    currentStationId,
-    setProgress,
-    idMap,
-    nameToIds,
-    onRevealAnswer,
-  ])
+    })
+  }, [progress, currentStationId, setProgress])
 
   // Register the click handler so GamePage can call it from its map layer.
   useEffect(() => {
